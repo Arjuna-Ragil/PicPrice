@@ -1,9 +1,13 @@
 import React from 'react'
 import addWishlist from '../../assets/search/addWishlistIcon.svg'
 import { useState, useEffect } from "react";
-import { geminiModel } from '../../services/firebase';
+import { db, geminiModel } from '../../services/firebase';
+import { useAuth } from '../../hooks/authContext';
+import { addDoc, collection, doc } from 'firebase/firestore';
 
 const Result = ({processImage, retry}) => {
+
+    const { user } = useAuth();
 
   const [result,setResult] = useState({
     product_name: "",
@@ -16,6 +20,20 @@ const Result = ({processImage, retry}) => {
     link_two_shop_name: "",
     link_two: ""
   });
+
+  async function addHistory(user, data) {
+    if (!user) {
+        console.log("not logged in");
+        return
+    }
+    try {
+        const userDocRef = doc(db, "users", user)
+        const historyRef = collection(userDocRef, "history")
+        await addDoc(historyRef, data)
+    } catch (error) {
+        console.log(error)
+    }
+  }
   
   async function getSummary(){
     try {
@@ -48,15 +66,12 @@ const Result = ({processImage, retry}) => {
         `,
     ]);
       const raw = result.response.text();
-      console.log(raw);
-
       const clean = raw.replace(/```json|```/g, "").trim();
-      console.log(clean);
-      
       const jsonResponse = JSON.parse(clean);
-      console.log(jsonResponse);
-
       setResult(jsonResponse);
+
+      await addHistory(user.uid, jsonResponse)
+
     } catch (error) {
       alert("didn't get the result, please try again");
       console.log(error);

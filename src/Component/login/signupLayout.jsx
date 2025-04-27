@@ -7,19 +7,17 @@ import { doc, setDoc } from 'firebase/firestore';
 const SignUpLayout = () => {
 
 const [username, setUsername] = useState("")
-const [email, setEmail] = useState("")
-const [password, setPassword] = useState("")
+const [emailU, setEmailU] = useState("")
+const [passwordU, setPasswordU] = useState("")
 
 function handleSignUp() {
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, emailU, passwordU)
     .then(async (userCredential) => {
       const user = userCredential.user
 
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
         name: username,
-        wishlist: [],
-        history: []
       });
 
       console.log("Account created")
@@ -43,17 +41,17 @@ function handleSignUp() {
         <input
           type='text'
           placeholder='Username'
-          onChange={setUsername}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input 
           type='email'
           placeholder='Email'
-          onChange={setEmail}
+          onChange={(e) => setEmailU(e.target.value)}
         />
         <input
           type='password'
           placeholder='Password'
-          onChange={setPassword}
+          onChange={(e) => setPasswordU(e.target.value)}
         />
         <button onClick={handleSignUp}>
           Sign Up

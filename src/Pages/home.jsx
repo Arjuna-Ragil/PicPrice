@@ -5,8 +5,8 @@ import Main from '../Component/home/mainHome'
 import MiniWishlist from '../Component/home/miniWishlist'
 import Tips from '../Component/home/tips'
 
-
 const Home = () => {
+
   return (
     <>
       <MainLayout/>
