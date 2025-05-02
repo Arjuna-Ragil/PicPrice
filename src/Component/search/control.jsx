@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ControlButtonLayout from './controlButton'
+import { Navigate } from 'react-router-dom'
 
 const Control = ({setRetryTrigger, imageChange, previewChange}) => {
+
+  const [goToHistory, setGoToHistory] = useState(false)
 
   const handleRetry = () => {
     setRetryTrigger(prev => prev + 1);
@@ -26,6 +29,10 @@ const Control = ({setRetryTrigger, imageChange, previewChange}) => {
 
     }
     reader.readAsDataURL(fileUpload);
+  }
+
+  if (goToHistory) {
+    return <Navigate to={'/history'} replace/>
   }
 
   return (
@@ -71,7 +78,9 @@ const Control = ({setRetryTrigger, imageChange, previewChange}) => {
               `}
             />
 
-            <ControlButtonLayout use={"Search History"} bg={"secondary"}/>
+            <button onClick={() => setGoToHistory(true)}>
+              <ControlButtonLayout use={"Search History"} bg={"secondary"}/>
+            </button>
         </div>
     </>
   )

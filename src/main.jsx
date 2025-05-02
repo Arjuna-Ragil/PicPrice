@@ -11,6 +11,7 @@ import SignUp from './Pages/signUp'
 import SignIn from './Pages/signIn'
 import AuthRoute from './hooks/authRoute'
 import AuthLoginRoute from './hooks/authLoginRoute'
+import History from './Pages/history'
 
 const router = createBrowserRouter([
   { path: '/', element:
@@ -27,11 +28,15 @@ const router = createBrowserRouter([
     <AuthRoute>
       <Wishlist />
     </AuthRoute>
-
   },
   { path: '/setting', element: 
     <AuthRoute>
       <Setting />
+    </AuthRoute>
+  },
+  { path: '/history', element: 
+    <AuthRoute>
+      <History />
     </AuthRoute>
   },
   { path: '/signup', element: 

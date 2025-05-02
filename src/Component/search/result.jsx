@@ -3,7 +3,7 @@ import addWishlist from '../../assets/search/addWishlistIcon.svg'
 import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
-import { addDoc, collection, doc } from 'firebase/firestore';
+import { addDoc, collection, doc, sum } from 'firebase/firestore';
 
 const Result = ({processImage, retry}) => {
 
@@ -34,6 +34,30 @@ const Result = ({processImage, retry}) => {
         console.log(error)
     }
   }
+
+  async function searchProduct(productName) {
+    const apiKey = "AIzaSyAxmryC-1v1vW7udIv3UpuNyNxdxD3BIAY"
+    const searchEngineId = "533bce3e3f5b848be"
+    const query = encodeURIComponent(productName)
+    const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${query}`
+
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+
+        const items = data.items || []
+        const links = items.slice(0,10).map(item => ({
+            shop_name: item.title,
+            link: item.link,
+            source: new URL(item.link).hostname,
+            snippet: item.snippet
+        }))
+
+        return links
+    } catch (error) {
+        console.log("error when searching product: ", error)
+    }
+  }
   
   async function getSummary(){
     try {
@@ -45,10 +69,24 @@ const Result = ({processImage, retry}) => {
             }
         },
         `
-            give me the name of the product, detail of the product (30 words),
-            the average price, the lowest price, the highest price in rupiah
-            and two links to the product in e-commerce sites around the world (give search product url if you can't find the product)
-            in a json format
+            What is the name of the product in the image? identify the exact product as specifically as possible,
+            if it's a character or variant, include it and avoid using "figure" or "toy" alone,
+            use all visible packaging, label, and unique traits to identify the product,
+            Return only the name of the product as a string 
+            and include price at the end of the product name, no other text
+        `,
+    ]);
+
+    const productName = result.response.text().trim()
+    const search = await searchProduct(productName)
+
+    const summary = await geminiModel.generateContent([
+        `the product name is ${productName}, and here are real links to this product:`, JSON.stringify(search),
+        `based only on those links, give me the name of the product, detail of the product (30 words),
+        the average price, the lowest price, the highest price (from the snippets given) and make sure all
+        prices are in the same currency (change as needed),
+        and include two of the real links to the product from the search result given.
+        in a json format
             {
             "product_name": "string",
             "detail": "string",
@@ -60,14 +98,14 @@ const Result = ({processImage, retry}) => {
             "link_two_shop_name": "string",
             "link_two": "string"
             }
-            only return the json, no other text, explanation, code, or comment, just the json format that i gave you
-            every field must be filled
-            links must be e-commerce links, no article
-        `,
-    ]);
-      const raw = result.response.text();
+        only return the json, no other text, explanation, code, or comment, 
+        just the json format that i gave you
+        every field must be filled`
+    ])
+      const raw = summary.response.text();
       const clean = raw.replace(/```json|```/g, "").trim();
       const jsonResponse = JSON.parse(clean);
+      console.log(jsonResponse)
       setResult(jsonResponse);
 
       await addHistory(user.uid, jsonResponse)
