@@ -39,6 +39,20 @@ const Result = ({processImage, retry}) => {
     }
   }
 
+  async function addWishlistHandler(user, data) {
+    if (!user) {
+        console.log("not logged in");
+        return
+    }
+    try {
+        const userDocRef = doc(db, "users", user.uid)
+        const wishlistRef = collection(userDocRef, "wishlist")
+        await addDoc(wishlistRef, data)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
   async function searchProduct(productName) {
     const apiKey = "AIzaSyAxmryC-1v1vW7udIv3UpuNyNxdxD3BIAY"
     const searchEngineId = "533bce3e3f5b848be"
@@ -158,7 +172,7 @@ const Result = ({processImage, retry}) => {
                 `}>
                     {result.product_name}
                 </h3>
-                <img className='p-4' src={addWishlist} alt='add to wishlist'/>
+                <img className='p-4' src={addWishlist} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
             </div>
 
             <h4 className={`

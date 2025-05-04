@@ -10,7 +10,12 @@ if (!item) return null
         items-center
         justify-between
     `}>
-        <h1>{item.product_name}</h1>
+        <p>{item.product_name}</p>
+        <p>${item.average_price}</p>
+        <p>{item.createdAt?.toDate().toLocaleString()}</p>
+        <button>Search</button>
+        <div><a href={item.link_one}>buy</a></div>
+        <p>like</p>
     </div>
   )
 }
