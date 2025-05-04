@@ -3,7 +3,7 @@ import addWishlist from '../../assets/search/addWishlistIcon.svg'
 import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
-import { addDoc, collection, doc, sum } from 'firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 
 const Result = ({processImage, retry}) => {
 
@@ -29,7 +29,11 @@ const Result = ({processImage, retry}) => {
     try {
         const userDocRef = doc(db, "users", user)
         const historyRef = collection(userDocRef, "history")
-        await addDoc(historyRef, data)
+        const dataWithTimeStamp = {
+            ...data,
+            createdAt: serverTimestamp(),
+        }
+        await addDoc(historyRef, dataWithTimeStamp)
     } catch (error) {
         console.log(error)
     }
@@ -46,7 +50,7 @@ const Result = ({processImage, retry}) => {
         const data = await response.json()
 
         const items = data.items || []
-        const links = items.slice(0,10).map(item => ({
+        const links = items.slice(0,20).map(item => ({
             shop_name: item.title,
             link: item.link,
             source: new URL(item.link).hostname,

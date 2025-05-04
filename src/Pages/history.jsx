@@ -3,6 +3,7 @@ import MainLayout from '../layout/mainLayout'
 import Title from '../Component/common/title'
 import ControlBar from '../Component/wishlist/controlBar'
 import WishlistList from '../Component/wishlist/wishlistList'
+import HistoryList from '../Component/history/historyList'
 
 const History = () => {
   return (
@@ -24,7 +25,7 @@ const History = () => {
           </nav>
 
           <main>
-            <WishlistList/>
+            <HistoryList/>
           </main>
         </div>
     </>
