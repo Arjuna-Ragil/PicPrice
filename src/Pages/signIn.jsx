@@ -6,7 +6,16 @@ const SignIn = () => {
   return (
     <>
         <LoginLayout/>
-        <SigninLayout/>
+
+        <div className={`
+          flex
+          justify-center
+          items-center
+          h-screen
+          backdrop-blur-md
+          `}>
+          <SigninLayout/>
+        </div>
     </>
   )
 }
