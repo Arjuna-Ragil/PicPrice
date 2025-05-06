@@ -12,6 +12,7 @@ const Search = () => {
   const [changePreview, setChangePreview] = useState(null)
   const [retry, setRetry] = useState(0);
   const [firebaseImage, setFirebaseImage] = useState(null)
+  const [firebaseSearch, setFirebaseSearch] = useState("")
 
   return (
     <>
@@ -38,7 +39,7 @@ const Search = () => {
               row-start-2
               row-end-7
             `}>
-              <ImageBox imageResult={setImageFile} changeImagePreview={changePreview} setFirebaseImage={setFirebaseImage}/>
+              <ImageBox imageResult={setImageFile} changeImagePreview={changePreview} setFirebaseImage={setFirebaseImage} setFirebaseSearch={setFirebaseSearch}/>
             </main>
             <section className={`
               col-start-1
@@ -46,7 +47,7 @@ const Search = () => {
               row-start-7
               row-end-12
             `}>
-              <Result processImage={imageFile} retry={retry} firebaseImage={firebaseImage}/>
+              <Result processImage={imageFile} retry={retry} firebaseImage={firebaseImage} firebaseSearch={firebaseSearch}/>
             </section>
             <section className={`
               col-start-4

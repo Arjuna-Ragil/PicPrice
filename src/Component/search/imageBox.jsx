@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 
-const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage}) => {
+const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage, setFirebaseSearch}) => {
 
   const [content, setContent] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -13,11 +13,7 @@ const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage}) => {
     if (productFromHistory) {
       setContent(true)
       setPreview(productFromHistory.photoURL)
-      setFirebaseImage({
-        type: productFromHistory.type,
-        file: productFromHistory.file
-      })
-      imageResult(productFromHistory)
+      setFirebaseSearch(productFromHistory.product_name)
     }
   }, [productFromHistory])
 
