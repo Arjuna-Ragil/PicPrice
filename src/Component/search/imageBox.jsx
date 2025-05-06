@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 
-const ImageBox = ({imageResult, changeImagePreview}) => {
+const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage}) => {
 
   const [content, setContent] = useState(false);
   const [preview, setPreview] = useState(null);
+
+  const location = useLocation()
+  const productFromHistory = location.state?.product
+
+  useEffect(() => {
+    if (productFromHistory) {
+      setContent(true)
+      setPreview(productFromHistory.photoURL)
+      setFirebaseImage({
+        type: productFromHistory.type,
+        file: productFromHistory.file
+      })
+      imageResult(productFromHistory)
+    }
+  }, [productFromHistory])
 
   useEffect(() => {
     if (changeImagePreview) {
@@ -16,6 +32,13 @@ const ImageBox = ({imageResult, changeImagePreview}) => {
     const fileUpload = event.target.files[0]
 
     if (!fileUpload) return;
+
+    const originalFile = {
+      type: fileUpload.type,
+      file: fileUpload
+    }
+
+    setFirebaseImage(originalFile)
 
     const reader = new FileReader();
     reader.onloadend = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 import { useAuth } from '../../hooks/authContext'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 import WishlistCard from './wishlistCard'
  
@@ -14,7 +14,7 @@ const Row = ({index, style, data}) => {
   )
 }
 
-const WishlistList = () => {
+const WishlistList = ({searchResult}) => {
   const { user } = useAuth()
   const [wishlistData, setWishlistData] = useState([])
 
@@ -32,17 +32,21 @@ const WishlistList = () => {
     }
 
     getWishlistData()
-  }, [user])    
+  }, [user])  
+  
+  const filteredWishlist = wishlistData.filter(item =>
+    item.product_name?.toLowerCase().includes(searchResult.toLowerCase())
+  )
 
   return (
     <div className='h-[68vh] bg-tertiary shadow-[0px_10px_10px_rgba(0,0,0,0.3)] p-5'>
-      {wishlistData.length > 0 ? (
+      {filteredWishlist.length > 0 ? (
       <List
         height={600}
-        itemCount={wishlistData.length}
+        itemCount={filteredWishlist.length}
         itemSize={50}
         width={"100%"}
-        itemData={wishlistData}
+        itemData={filteredWishlist}
       >
         {Row}
       </List>

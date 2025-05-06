@@ -14,39 +14,50 @@ const Row = ({index, style, data}) => {
   )
 }
 
-const HistoryList = () => {
+const HistoryList = ({searchResult, priceSort, dateSort}) => {
   const { user } = useAuth()
   const [historyData, setHistoryData] = useState([])
+  
 
   useEffect(() => {
     async function getHistoryData() {
       try {
         const historyRef = collection(db, "users", user.uid, "history");
-        const q = query(historyRef, orderBy("createdAt", "desc"))
+        let q = query(historyRef)
+
+        if (priceSort && dateSort) {
+          q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"),
+          orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
+        } else if (priceSort) {
+          q = query(historyRef, orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
+        } else if (dateSort) {
+          q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"))
+        }
+
         const snapshot = await getDocs(q);
         const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
         setHistoryData(data)
-        console.log(data)
       } catch (error) {
         console.error("error fetching history data: ", error)
       }
     }
 
     getHistoryData()
-    console.log("historyData type:", typeof historyData);
-    console.log("historyData isArray:", Array.isArray(historyData));
-    console.log("historyData:", historyData);
-  }, [user])    
+  }, [user, dateSort, priceSort, historyData])   
+  
+  const filteredHistory = historyData.filter(item => 
+    item.product_name?.toLowerCase().includes(searchResult.toLowerCase())
+  )
 
   return (
     <div className='h-[68vh] bg-tertiary shadow-[0px_10px_10px_rgba(0,0,0,0.3)] p-5'>
-      {historyData.length > 0 ? (
+      {filteredHistory.length > 0 ? (
       <List
         height={600}
-        itemCount={historyData.length}
+        itemCount={filteredHistory.length}
         itemSize={50}
         width={"100%"}
-        itemData={historyData}
+        itemData={filteredHistory}
       >
         {Row}
       </List>

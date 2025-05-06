@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
-const Result = ({processImage, retry}) => {
+const Result = ({processImage, retry, firebaseImage}) => {
 
     const { user } = useAuth();
 
@@ -21,7 +22,7 @@ const Result = ({processImage, retry}) => {
     link_two: ""
   });
 
-  async function addHistory(user, data) {
+  async function addHistory(user, data, file) {
     if (!user) {
         console.log("not logged in");
         return
@@ -29,9 +30,17 @@ const Result = ({processImage, retry}) => {
     try {
         const userDocRef = doc(db, "users", user)
         const historyRef = collection(userDocRef, "history")
+
+        const storage = getStorage()
+        const imageRef = ref(storage, `history_images/${user}_${Date.now()}`)
+        await uploadBytes(imageRef, file)
+
+        const photoURL = await getDownloadURL(imageRef)
+
         const dataWithTimeStamp = {
             ...data,
             createdAt: serverTimestamp(),
+            photoURL: photoURL,
         }
         await addDoc(historyRef, dataWithTimeStamp)
     } catch (error) {
@@ -79,6 +88,8 @@ const Result = ({processImage, retry}) => {
   
   async function getSummary(){
     try {
+        console.log(processImage)
+
       const result = await geminiModel.generateContent([
         {
             inlineData: {
@@ -126,7 +137,7 @@ const Result = ({processImage, retry}) => {
       console.log(jsonResponse)
       setResult(jsonResponse);
 
-      await addHistory(user.uid, jsonResponse)
+      await addHistory(user.uid, jsonResponse, firebaseImage.file)
 
     } catch (error) {
       alert("didn't get the result, please try again");
