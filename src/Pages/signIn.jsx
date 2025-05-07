@@ -6,7 +6,15 @@ const SignIn = () => {
   return (
     <>
         <LoginLayout/>
-        <SigninLayout/>
+
+        <div className={`
+          flex
+          justify-center
+          items-center
+          h-screen
+          `}>
+          <SigninLayout/>
+        </div>
     </>
   )
 }

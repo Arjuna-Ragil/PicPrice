@@ -6,7 +6,14 @@ const SignUp = () => {
   return (
     <>
         <LoginLayout />
+        <div className={`
+        flex
+        justify-center
+        items-center
+        h-screen
+        `}>
         <SignUpLayout />
+        </div>
     </>
   )
 }
