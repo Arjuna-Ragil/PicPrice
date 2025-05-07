@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
-const Result = ({processImage, retry}) => {
+const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
     const { user } = useAuth();
 
@@ -21,7 +22,7 @@ const Result = ({processImage, retry}) => {
     link_two: ""
   });
 
-  async function addHistory(user, data) {
+  async function addHistory(user, data, file) {
     if (!user) {
         console.log("not logged in");
         return
@@ -29,11 +30,37 @@ const Result = ({processImage, retry}) => {
     try {
         const userDocRef = doc(db, "users", user)
         const historyRef = collection(userDocRef, "history")
+
+        const storage = getStorage()
+        let photoURL = ""
+        
+        if (file && file.file) {
+            const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
+            await uploadBytes(imageRef, file.file)
+
+            photoURL = await getDownloadURL(imageRef)
+        }
+
         const dataWithTimeStamp = {
             ...data,
             createdAt: serverTimestamp(),
+            photoURL: photoURL,
         }
         await addDoc(historyRef, dataWithTimeStamp)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  async function addWishlistHandler(user, data) {
+    if (!user) {
+        console.log("not logged in");
+        return
+    }
+    try {
+        const userDocRef = doc(db, "users", user.uid)
+        const wishlistRef = collection(userDocRef, "wishlist")
+        await addDoc(wishlistRef, data)
     } catch (error) {
         console.log(error)
     }
@@ -65,54 +92,60 @@ const Result = ({processImage, retry}) => {
   
   async function getSummary(){
     try {
-      const result = await geminiModel.generateContent([
-        {
-            inlineData: {
-                data: processImage.file,
-                mimeType: processImage.type,
-            }
-        },
-        `
-            What is the name of the product in the image? identify the exact product as specifically as possible,
-            if it's a character or variant, include it and avoid using "figure" or "toy" alone,
-            use all visible packaging, label, and unique traits to identify the product,
-            Return only the name of the product as a string 
-            and include price at the end of the product name, no other text
-        `,
-    ]);
+        let productName
+        if (firebaseSearch) {
+            productName = firebaseSearch
+        } else {
+            const result = await geminiModel.generateContent([
+                {
+                    inlineData: {
+                        data: processImage.file,
+                        mimeType: processImage.type,
+                    }
+                },
+                `
+                    What is the name of the product in the image? identify the exact product as specifically as possible,
+                    if it's a character or variant, include it and avoid using "figure" or "toy" alone,
+                    use all visible packaging, label, and unique traits to identify the product,
+                    Return only the name of the product as a string 
+                    and include price at the end of the product name, no other text
+                `,
+            ]);
+        
+            const productNameDetected = result.response.text().trim()
+            productName = productNameDetected
+        }
+        const search = await searchProduct(productName)
 
-    const productName = result.response.text().trim()
-    const search = await searchProduct(productName)
+        const summary = await geminiModel.generateContent([
+            `the product name is ${productName}, and here are real links to this product:`, JSON.stringify(search),
+            `based only on those links, give me the name of the product, detail of the product (30 words),
+            the average price, the lowest price, the highest price (from the snippets given) and make sure all
+            prices are in the same currency (change as needed),
+            and include two of the real links to the product from the search result given.
+            in a json format
+                {
+                "product_name": "string",
+                "detail": "string",
+                "average_price": "number",
+                "lowest_price": "number",
+                "highest_price": "number",
+                "link_one_shop_name: "string",
+                "link_one": "string",
+                "link_two_shop_name": "string",
+                "link_two": "string"
+                }
+            only return the json, no other text, explanation, code, or comment, 
+            just the json format that i gave you
+            every field must be filled`
+        ])
+        const raw = summary.response.text();
+        const clean = raw.replace(/```json|```/g, "").trim();
+        const jsonResponse = JSON.parse(clean);
+        console.log(jsonResponse)
+        setResult(jsonResponse);
 
-    const summary = await geminiModel.generateContent([
-        `the product name is ${productName}, and here are real links to this product:`, JSON.stringify(search),
-        `based only on those links, give me the name of the product, detail of the product (30 words),
-        the average price, the lowest price, the highest price (from the snippets given) and make sure all
-        prices are in the same currency (change as needed),
-        and include two of the real links to the product from the search result given.
-        in a json format
-            {
-            "product_name": "string",
-            "detail": "string",
-            "average_price": "number",
-            "lowest_price": "number",
-            "highest_price": "number",
-            "link_one_shop_name: "string",
-            "link_one": "string",
-            "link_two_shop_name": "string",
-            "link_two": "string"
-            }
-        only return the json, no other text, explanation, code, or comment, 
-        just the json format that i gave you
-        every field must be filled`
-    ])
-      const raw = summary.response.text();
-      const clean = raw.replace(/```json|```/g, "").trim();
-      const jsonResponse = JSON.parse(clean);
-      console.log(jsonResponse)
-      setResult(jsonResponse);
-
-      await addHistory(user.uid, jsonResponse)
+        await addHistory(user.uid, jsonResponse, firebaseImage)
 
     } catch (error) {
       alert("didn't get the result, please try again");
@@ -121,9 +154,9 @@ const Result = ({processImage, retry}) => {
   }
 
   useEffect(()=>{
-    if(!processImage) return;
+    if(!processImage && ! firebaseSearch) return;
     getSummary();
-  },[processImage, retry]);
+  },[processImage, retry, firebaseSearch]);
 
   return (
     <>
@@ -158,7 +191,7 @@ const Result = ({processImage, retry}) => {
                 `}>
                     {result.product_name}
                 </h3>
-                <img className='p-4' src={addWishlist} alt='add to wishlist'/>
+                <img className='p-4' src={addWishlist} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
             </div>
 
             <h4 className={`

@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const ControlBar = () => {
-    const [search, setSearch] = useState("")
+const ControlBarWishlist = ({search, setSearch}) => {
 
   return (
     <>
@@ -66,4 +65,4 @@ const ControlBar = () => {
   )
 }
 
-export default ControlBar
+export default ControlBarWishlist
