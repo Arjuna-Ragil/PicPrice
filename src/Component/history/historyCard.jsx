@@ -49,6 +49,7 @@ async function addWishlistHandler(user, data) {
         grid-cols-4
         items-center
         gap-5
+        mr-10
     `}>
         <p className='truncate'>{item.product_name}</p>
         <p className='truncate justify-self-center'>${item.average_price}</p>

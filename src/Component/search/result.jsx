@@ -32,10 +32,14 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const historyRef = collection(userDocRef, "history")
 
         const storage = getStorage()
-        const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
-        await uploadBytes(imageRef, file.file)
+        let photoURL = ""
+        
+        if (file && file.file) {
+            const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
+            await uploadBytes(imageRef, file.file)
 
-        const photoURL = await getDownloadURL(imageRef)
+            photoURL = await getDownloadURL(imageRef)
+        }
 
         const dataWithTimeStamp = {
             ...data,
