@@ -2,6 +2,7 @@ import React from 'react'
 import wishImage1 from '../../assets/home/wishImage1.svg'
 import wishImage2 from '../../assets/home/wishImage2.svg'
 import wishImage3 from '../../assets/home/wishImage3.svg'
+import MiniWishlistList from './miniWishlistList'
 
 const MiniWishlist = () => {
   return (
@@ -11,7 +12,7 @@ const MiniWishlist = () => {
             flex-col
             h-full
             items-center
-            justify-center
+            justify-start
             p-5
             gap-5
             bg-neutral
@@ -31,18 +32,7 @@ const MiniWishlist = () => {
                 <img className={``} src={wishImage2} alt='star 2'/>
             </div>
 
-            <div className={`
-                flex
-                flex-col
-                items-center
-                justify-center
-                gap-5
-            `}>
-                <p className={` font-poppins text-welcome-text`}>
-                    You don't have any whished items yet :C
-                </p>
-                <img className={``} src={wishImage3} alt='shopping list'/>
-            </div>
+            <MiniWishlistList />
         </section>
     </>
   )
