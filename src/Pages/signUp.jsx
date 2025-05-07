@@ -10,8 +10,7 @@ const SignUp = () => {
         flex
         justify-center
         items-center
-        min-h-screen
-        backdrop-blur-md
+        h-screen
         `}>
         <SignUpLayout />
         </div>

@@ -12,7 +12,6 @@ const SignIn = () => {
           justify-center
           items-center
           h-screen
-          backdrop-blur-md
           `}>
           <SigninLayout/>
         </div>
