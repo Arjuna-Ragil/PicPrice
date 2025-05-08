@@ -46,7 +46,7 @@ const Search = () => {
               row-start-7
               row-end-12
             `}>
-              <Control setRetryTrigger={setRetry} imageChange={setImageFile} previewChange={setChangePreview}/>
+              <Control setRetryTrigger={setRetry} imageChange={setImageFile} previewChange={setChangePreview} retryCheck={imageFile}/>
             </section>
         </div>
     </>

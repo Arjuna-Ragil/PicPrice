@@ -17,12 +17,8 @@ const History = () => {
           flex-col
           py-5
           px-35
-          gap-5
+          gap-15
         `}>
-          <header>
-            <Title title={"History"}/>
-          </header>
-
           <nav>
             <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort}/>
           </nav>

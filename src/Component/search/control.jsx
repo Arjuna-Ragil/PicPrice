@@ -4,7 +4,7 @@ import refreshIcon from '../../assets/search/refresh-ccw.svg'
 import changeIcon from '../../assets/search/image.svg'
 import historyIcon from '../../assets/search/search.svg'
 
-const Control = ({setRetryTrigger, imageChange, previewChange}) => {
+const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
 
   const [goToHistory, setGoToHistory] = useState(false)
   const [searchIconRotate, setSearchIconRotate] = useState(false)
@@ -12,6 +12,8 @@ const Control = ({setRetryTrigger, imageChange, previewChange}) => {
   const [changeIconAnim, setChangeIconAnim] = useState(false)
 
   const handleRetry = () => {
+    if (!retryCheck) return alert("input image first")
+
     setRetryTrigger(prev => prev + 1);
   }
 

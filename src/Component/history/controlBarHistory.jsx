@@ -29,11 +29,12 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
             grid
             grid-cols-2
             grid-rows-2
-            gap-y-3
+            gap-y-8
             gap-x-10
-            bg-control-bg
+            bg-control-container
+            rounded-lg
             p-5
-            shadow-[0px_10px_10px_rgba(0,0,0,0.3)]
+            shadow-[0px_2px_7px_rgba(0,0,0,0.3)]
         `}>
             <input
                 type='text'
@@ -43,19 +44,22 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                 className={`
                     col-span-2
                     w-full
-                    p-3
-                    bg-neutral
+                    p-4
+                    bg-white
                     border-2
-                    border-secondary    
+                    border-black
+                    rounded-4xl   
                 `}
             />
-            <div className='flex flex-row gap-3 items-start justify-start'>
+            <div className='flex flex-row w-full gap-3 items-center'>
                 <select 
                 value={priceSort}
                 onChange={(e) => setPriceSort(e.target.value)}
                 className={`
-                    bg-secondary
+                    bg-sort-btn
                     p-3
+                    rounded-3xl
+                    text-white
                 `}>
                     <option value={""}>Price</option>
                     <option value={"asc"}>Lowest to Highest</option>
@@ -66,8 +70,11 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                 value={dateSort}
                 onChange={(e) => setDateSort(e.target.value)}
                 className={`
-                    bg-secondary
-                    p-3`}>
+                    bg-sort-btn
+                    p-3
+                    rounded-3xl
+                    text-white
+                `}>
                     <option value={""}>Date</option>
                     <option value={"desc"}>Newest</option>
                     <option value={"asc"}>Oldest</option>
@@ -75,7 +82,7 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
             </div>
             <button 
             onClick={() => removeAllHistoryHandler(user, historydata)}
-            className='justify-self-end  bg-secondary p-3'>
+            className='justify-self-end  bg-delete-all p-3 rounded-2xl text-white active:bg-delete-all-press'>
                 Delete all history
             </button>
         </div>

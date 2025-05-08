@@ -50,7 +50,13 @@ const HistoryList = ({searchResult, priceSort, dateSort}) => {
   )
 
   return (
-    <div className='h-[68vh] bg-tertiary shadow-[0px_10px_10px_rgba(0,0,0,0.3)] p-5'>
+    <div className='flex flex-col gap-4 h-[68vh] bg-history-container rounded-2xl shadow-[0px_2px_7px_rgba(0,0,0,0.3)] p-7'>
+      <div className='grid grid-cols-4 gap-15 items-center p-3 bg-white rounded-xl border-2 border-gray-400'>
+        <p className='font-poppins font-semibold text-xl'>Product Name</p>
+        <p className='justify-self-center mr-2 font-semibold text-xl'>Price</p>
+        <p className='justify-self-center mr-10 font-semibold text-xl'>Date</p>
+        <p className='justify-self-end font-semibold text-xl'>Action Buttons</p>
+      </div>
       {filteredHistory.length > 0 ? (
       <List
         height={600}

@@ -1,6 +1,7 @@
 import React from 'react'
 import addWishlist from '../../assets/search/heart.svg'
 import addedWishlist from '../../assets/search/heartFilled.svg'
+import camera from '../../assets/search/camera.svg'
 import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
@@ -25,7 +26,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
   const [filledWishlistIconHandler, setFilledWishlistIconHandler] = useState(false)
   const [filledWishlistIcon, setFilledWishlistIcon] = useState(addWishlist)
-  const [showShop, setShowShop] = useState(false)
+  const [showDetail, setShowDetail] = useState(false)
 
   useEffect(() => {
     if (filledWishlistIconHandler) {    
@@ -157,7 +158,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const jsonResponse = JSON.parse(clean);
         console.log(jsonResponse)
         setResult(jsonResponse);
-        setShowShop(true)
+        setShowDetail(true)
 
         await addHistory(user.uid, jsonResponse, firebaseImage)
 
@@ -188,123 +189,132 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             border-black
             border-2
         `}>
-            <div className={`
-                col-span-2
-                row-start-1
-                row-end-2
-                flex
-                flex-row
-                items-center
-                w-full
-                bg-white
-                rounded-4xl
-            `}>
-                <h3 className={`
-                    w-full
-                    text-center
-                    p-2
-                `}>
-                    {result.product_name}
-                </h3>
-                <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
-            </div>
-            <div className={`
-                    row-start-2
-                    row-end-6
-                    flex
-                    flex-col
-                    rounded-2xl
-                    bg-white
-                    h-full
-                    p-7
-            `}>
-                <h4 className={`
-                    font-poppins
-                    font-medium
-                    text-xl
-                    text-black
-                    text-center
-                `}>
-                    Price
-                </h4>
-
-                <div className={`
-                    flex
-                    flex-col
-                    gap-2
-                    row-start-3
-                    row-end-6
-                    h-full
-                    justify-center
-                `}>
-                    <p className={`
-                        bg-average
-                        p-3
-                        rounded-2xl
+            {showDetail ?
+                <>
+                    <div className={`
+                        col-span-2
+                        row-start-1
+                        row-end-2
+                        flex
+                        flex-row
+                        items-center
+                        w-full
+                        bg-white
+                        rounded-4xl
                     `}>
-                        Average: $ {result.average_price}
-                    </p>
-                    <p className={`
-                        bg-lowest
-                        p-3
-                        rounded-2xl
-                    `}>
-                        Lowest: $ {result.lowest_price}
-                    </p>
-                    <p className={`
-                        bg-highest
-                        p-3
-                        rounded-2xl
-                    `}>
-                        Highest: $ {result.highest_price}
-                    </p>
-                </div>
-            </div>
-            
-            <div className={`
-                row-start-2
-                row-end-6
-                flex
-                flex-col
-                justify-between
-                rounded-2xl
-                gap-2
-                bg-white
-                h-full
-                p-7
-            `}>
-                <h4 className={`
-                    font-poppins
-                    font-medium
-                    text-xl
-                    text-black
-                    text-center
-                `}>
-                    Product Description
-                </h4>
-
-                <div className={`
-                    row-start-3
-                    row-end-6
-                    flex
-                    flex-col
-                    gap-3
-                    justify-evenly
-                    h-full
-                    p-5
-                    
-                `}>
-                    <p>{result.detail}</p>
-                    <div className='flex flex-row justify-evenly'>
-                        <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`${showShop ? 'bg-shop-btn' : 'hidden'} p-3 rounded-3xl`}>
-                            {result.link_one_shop_name}
-                        </a>
-                        <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`${showShop ? 'bg-shop-btn' : 'hidden'} p-3 rounded-3xl`}>
-                            {result.link_two_shop_name}
-                        </a>
+                        <h3 className={`
+                            w-full
+                            text-center
+                            p-2
+                        `}>
+                            {result.product_name}
+                        </h3>
+                        <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
                     </div>
+                    <div className={`
+                            row-start-2
+                            row-end-6
+                            flex
+                            flex-col
+                            rounded-2xl
+                            bg-white
+                            h-full
+                            p-7
+                    `}>
+                        <h4 className={`
+                            font-poppins
+                            font-medium
+                            text-xl
+                            text-black
+                            text-center
+                        `}>
+                            Price
+                        </h4>
+
+                        <div className={`
+                            flex
+                            flex-col
+                            gap-2
+                            row-start-3
+                            row-end-6
+                            h-full
+                            justify-center
+                        `}>
+                            <p className={`
+                                bg-average
+                                p-3
+                                rounded-2xl
+                            `}>
+                                Average: $ {result.average_price}
+                            </p>
+                            <p className={`
+                                bg-lowest
+                                p-3
+                                rounded-2xl
+                            `}>
+                                Lowest: $ {result.lowest_price}
+                            </p>
+                            <p className={`
+                                bg-highest
+                                p-3
+                                rounded-2xl
+                            `}>
+                                Highest: $ {result.highest_price}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div className={`
+                        row-start-2
+                        row-end-6
+                        flex
+                        flex-col
+                        justify-between
+                        rounded-2xl
+                        gap-2
+                        bg-white
+                        h-full
+                        p-7
+                    `}>
+                        <h4 className={`
+                            font-poppins
+                            font-medium
+                            text-xl
+                            text-black
+                            text-center
+                        `}>
+                            Product Description
+                        </h4>
+
+                        <div className={`
+                            row-start-3
+                            row-end-6
+                            flex
+                            flex-col
+                            gap-3
+                            justify-evenly
+                            h-full
+                            p-5
+                            
+                        `}>
+                            <p>{result.detail}</p>
+                            <div className='flex flex-row justify-evenly'>
+                                <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                    {result.link_one_shop_name}
+                                </a>
+                                <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                    {result.link_two_shop_name}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </>
+                :
+                <div className=' col-span-2 row-span-4 flex flex-col w-full items-center justify-center self-center'>
+                    <img src={camera} alt='camera' className='size-25'/>
+                    <p className='font-poppins font-medium text-2xl'>Upload Image First</p>
                 </div>
-            </div>
+            }
         </div>
     </>
   )

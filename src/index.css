@@ -29,6 +29,20 @@
   --color-history-btn-hover: #E9D5FF;
   --color-shop-btn: #ACCBE4;
 
+  /* historypage */
+  --color-history-container: #F9F9F9;
+  --color-sort-btn: #161E36;
+  --color-delete-all: #F87171;
+  --color-delete-all-press: #FF6065;
+  --color-search-btn: #C7E3F9;
+  --color-search-btn-press: #B6D7FF;
+  --color-buy-btn: #C7F9CC;
+  --color-buy-btn-press: #96FF7E;
+  --color-like-btn: #CAC7F9;
+  --color-like-btn-press: #BA55FF;
+  --color-delete-btn: #F9C7C8;
+  --color-delete-btn-press: #F94449;
+
   /* background */
   --color-backgroundOne: #FFFFFF;
   --color-backgroundTwo: #1AC4E1;
