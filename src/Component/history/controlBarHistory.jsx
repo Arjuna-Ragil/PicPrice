@@ -2,6 +2,7 @@ import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import React from 'react'
 import { db } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
+import dropDownArrow from '../../assets/history/chevron-down.svg'
 
 const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPriceSort, dateSort, setDateSort }) => {
     const { user } = useAuth() 
@@ -51,34 +52,51 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                     rounded-4xl   
                 `}
             />
-            <div className='flex flex-row w-full gap-3 items-center'>
-                <select 
-                value={priceSort}
-                onChange={(e) => setPriceSort(e.target.value)}
-                className={`
+            <div className='flex flex-row gap-3'>
+                <div className={`
+                    flex 
+                    flex-row 
                     bg-sort-btn
                     p-3
                     rounded-3xl
                     text-white
-                `}>
-                    <option value={""}>Price</option>
-                    <option value={"asc"}>Lowest to Highest</option>
-                    <option value={"desc"}>Highest to Lowest</option>
-                </select>
-
-                <select 
-                value={dateSort}
-                onChange={(e) => setDateSort(e.target.value)}
-                className={`
+                    '`}>
+                    <select 
+                    value={priceSort}
+                    onChange={(e) => setPriceSort(e.target.value)}
+                    className={`
+                        w-full
+                        appearance-none
+                    `}>
+                        <option value={""}>Price</option>
+                        <option value={"asc"}>Lowest to Highest</option>
+                        <option value={"desc"}>Highest to Lowest</option>
+                    </select>
+                    <img src={dropDownArrow} alt='drop down' />
+                </div>
+                
+                <div className={`
+                    flex 
+                    flex-row
                     bg-sort-btn
                     p-3
                     rounded-3xl
                     text-white
+                    w-1/3
                 `}>
-                    <option value={""}>Date</option>
-                    <option value={"desc"}>Newest</option>
-                    <option value={"asc"}>Oldest</option>
-                </select>
+                    <select 
+                    value={dateSort}
+                    onChange={(e) => setDateSort(e.target.value)}
+                    className={`
+                        w-full
+                        appearance-none
+                    `}>
+                        <option value={""}>Date</option>
+                        <option value={"desc"}>Newest</option>
+                        <option value={"asc"}>Oldest</option>
+                    </select>
+                    <img src={dropDownArrow} alt='drop down'/>
+                </div>
             </div>
             <button 
             onClick={() => removeAllHistoryHandler(user, historydata)}

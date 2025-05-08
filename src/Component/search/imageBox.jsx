@@ -110,7 +110,7 @@ const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage, setFirebas
                   Choose an image
                   <input
                     type='file'
-                    accept='.jpg, .jpeg, .png'
+                    accept='image/*'
                     onChange={fileReceive}
                     className='hidden'
                   />
