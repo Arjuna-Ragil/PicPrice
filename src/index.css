@@ -9,16 +9,25 @@
   --color-accent-dark: #0F172A;
   --color-neutral: #F8FAFC;
   --color-control-bg: #9CD6FF;
+  --color-primary-dark: #7db2de;
 
   /* homepage */
   --color-welcome-text: #1E205B;
   --color-welcome-main-outline: #327191;
 
   /* searchpage */
-  --color-searchpagetitle-text: #BEF2FF;
-  --color-average: #C99E59;
-  --color-lowest: #228B22;
-  --color-highest: #A52F2F;
+  --color-input-btn: #161E36;
+  --color-average: #DBEAFE;
+  --color-lowest: #C7F9CC;
+  --color-highest: #FFADAD;
+  --color-container: #F5F5F5;
+  --color-refresh-btn: #E0F2FE;
+  --color-refresh-btn-hover: #B2E0F0;
+  --color-change-btn: #FEF9C3;
+  --color-change-btn-hover: #FEEBC8;
+  --color-history-btn: #F3E8FF;
+  --color-history-btn-hover: #E9D5FF;
+  --color-shop-btn: #ACCBE4;
 
   /* background */
   --color-backgroundOne: #FFFFFF;

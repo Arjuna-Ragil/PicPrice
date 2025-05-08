@@ -1,5 +1,6 @@
 import React from 'react'
-import addWishlist from '../../assets/search/addWishlistIcon.svg'
+import addWishlist from '../../assets/search/heart.svg'
+import addedWishlist from '../../assets/search/heartFilled.svg'
 import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
@@ -21,6 +22,16 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
     link_two_shop_name: "",
     link_two: ""
   });
+
+  const [filledWishlistIconHandler, setFilledWishlistIconHandler] = useState(false)
+  const [filledWishlistIcon, setFilledWishlistIcon] = useState(addWishlist)
+  const [showShop, setShowShop] = useState(false)
+
+  useEffect(() => {
+    if (filledWishlistIconHandler) {    
+        setFilledWishlistIcon(addedWishlist)
+    }
+  }, [filledWishlistIconHandler])
 
   async function addHistory(user, data, file) {
     if (!user) {
@@ -61,6 +72,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const userDocRef = doc(db, "users", user.uid)
         const wishlistRef = collection(userDocRef, "wishlist")
         await addDoc(wishlistRef, data)
+        setFilledWishlistIconHandler(true)
     } catch (error) {
         console.log(error)
     }
@@ -122,7 +134,8 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             `based only on those links, give me the name of the product, detail of the product (30 words),
             the average price, the lowest price, the highest price (from the snippets given) and make sure all
             prices are in the same currency (change as needed),
-            and include two of the real links to the product from the search result given.
+            and include two of the real links to the product from the search result given,
+            for the store name, use the name of the e-commerce site (e.g. Amazon)
             in a json format
                 {
                 "product_name": "string",
@@ -144,6 +157,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const jsonResponse = JSON.parse(clean);
         console.log(jsonResponse)
         setResult(jsonResponse);
+        setShowShop(true)
 
         await addHistory(user.uid, jsonResponse, firebaseImage)
 
@@ -163,13 +177,16 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         <div className={`
             grid
             grid-cols-2
-            grid-rows-5
-            h-full
+            grid-rows-4
+            rounded-2xl
+            h-110   
             items-center
             gap-x-4
-            bg-tertiary
-            shadow-[5px_10px_5px_rgba(0,0,0,0.3)]
+            gap-y-10
+            bg-container
             p-5
+            border-black
+            border-2
         `}>
             <div className={`
                 col-span-2
@@ -179,90 +196,114 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                 flex-row
                 items-center
                 w-full
+                bg-white
+                rounded-4xl
             `}>
                 <h3 className={`
-                    bg-neutral
                     w-full
-                    p-2
-                    rounded-xl
-                    border-3
-                    border-primary
                     text-center
+                    p-2
                 `}>
                     {result.product_name}
                 </h3>
-                <img className='p-4' src={addWishlist} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
+                <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
             </div>
-
-            <h4 className={`
-                font-VictorMono
-                text-2xl
-                text-white
-                text-center
-            `}>
-                Price
-            </h4>
-
-            <h4 className={`
-                font-VictorMono
-                text-2xl
-                text-white
-                text-center
-            `}>
-                Product Detail
-            </h4>
-
             <div className={`
+                    row-start-2
+                    row-end-6
+                    flex
+                    flex-col
+                    rounded-2xl
+                    bg-white
+                    h-full
+                    p-7
+            `}>
+                <h4 className={`
+                    font-poppins
+                    font-medium
+                    text-xl
+                    text-black
+                    text-center
+                `}>
+                    Price
+                </h4>
+
+                <div className={`
+                    flex
+                    flex-col
+                    gap-2
+                    row-start-3
+                    row-end-6
+                    h-full
+                    justify-center
+                `}>
+                    <p className={`
+                        bg-average
+                        p-3
+                        rounded-2xl
+                    `}>
+                        Average: $ {result.average_price}
+                    </p>
+                    <p className={`
+                        bg-lowest
+                        p-3
+                        rounded-2xl
+                    `}>
+                        Lowest: $ {result.lowest_price}
+                    </p>
+                    <p className={`
+                        bg-highest
+                        p-3
+                        rounded-2xl
+                    `}>
+                        Highest: $ {result.highest_price}
+                    </p>
+                </div>
+            </div>
+            
+            <div className={`
+                row-start-2
+                row-end-6
                 flex
                 flex-col
-                gap-2
-                row-start-3
-                row-end-6
-            `}>
-                <p className={`
-                    bg-average
-                    p-3
-                    rounded-2xl
-                `}>
-                    Average: $ {result.average_price}
-                </p>
-                <p className={`
-                    bg-lowest
-                    p-3
-                    rounded-2xl
-                `}>
-                    Lowest: $ {result.lowest_price}
-                </p>
-                <p className={`
-                    bg-highest
-                    p-3
-                    rounded-2xl
-                `}>
-                    Highest: $ {result.highest_price}
-                </p>
-            </div>
-
-            <div className={`
-                row-start-3
-                row-end-6
-                flex
-                flex-col
-                justify-evenly
-                h-full
-                bg-neutral
-                border-2
-                border-primary
+                justify-between
                 rounded-2xl
-                p-5
-                
+                gap-2
+                bg-white
+                h-full
+                p-7
             `}>
-                <p>{result.detail}</p>
-                <a href={result.link_one} target='_blank' rel='noopener noreferer'>
-                    {result.link_one_shop_name}
-                </a>
-                <a href={result.link_two} target='_blank' rel='noopener noreferer'>
-                    {result.link_two_shop_name}
-                </a>
+                <h4 className={`
+                    font-poppins
+                    font-medium
+                    text-xl
+                    text-black
+                    text-center
+                `}>
+                    Product Description
+                </h4>
+
+                <div className={`
+                    row-start-3
+                    row-end-6
+                    flex
+                    flex-col
+                    gap-3
+                    justify-evenly
+                    h-full
+                    p-5
+                    
+                `}>
+                    <p>{result.detail}</p>
+                    <div className='flex flex-row justify-evenly'>
+                        <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`${showShop ? 'bg-shop-btn' : 'hidden'} p-3 rounded-3xl`}>
+                            {result.link_one_shop_name}
+                        </a>
+                        <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`${showShop ? 'bg-shop-btn' : 'hidden'} p-3 rounded-3xl`}>
+                            {result.link_two_shop_name}
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </>

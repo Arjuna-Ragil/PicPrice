@@ -1,6 +1,5 @@
 import React from 'react'
 import MainLayout from '../layout/mainLayout'
-import Title from '../Component/common/title'
 import ImageBox from '../Component/search/imageBox'
 import Result from '../Component/search/result'
 import Control from '../Component/search/control'
@@ -19,39 +18,31 @@ const Search = () => {
         <MainLayout/>
         <div className={`
             grid
-            grid-cols-5
+            grid-cols-7
             grid-rows-11
             gap-7
             px-35
             py-5
         `}>
-            <header className={`
-              col-start-1
-              col-end-2
-              row-start-1
-              row-end-2
-            `}>
-              <Title title={"Price Search"}/>
-            </header>
             <main className={`
-              col-start-2
-              col-end-5
-              row-start-2
+              col-start-1
+              col-end-8
+              row-start-1
               row-end-7
             `}>
               <ImageBox imageResult={setImageFile} changeImagePreview={changePreview} setFirebaseImage={setFirebaseImage} setFirebaseSearch={setFirebaseSearch}/>
             </main>
             <section className={`
               col-start-1
-              col-end-4
+              col-end-6
               row-start-7
               row-end-12
             `}>
               <Result processImage={imageFile} retry={retry} firebaseImage={firebaseImage} firebaseSearch={firebaseSearch}/>
             </section>
             <section className={`
-              col-start-4
-              col-end-6
+              col-start-6
+              col-end-8
               row-start-7
               row-end-12
             `}>

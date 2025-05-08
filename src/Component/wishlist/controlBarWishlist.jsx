@@ -37,29 +37,8 @@ const ControlBarWishlist = ({search, setSearch}) => {
                     <option>Lowest to Highest</option>
                     <option>Highest to Lowest</option>
                 </select>
-
-                <select className={`
-                    bg-secondary
-                    p-3`}>
-                    <option>Select Date</option>
-                    <option>Newest</option>
-                    <option>Oldest</option>
-                </select>
             </div>
 
-            <div className='flex flex-row items-end justify-end gap-5'>
-                <button className={`
-                    bg-primary
-                    p-3`}>
-                    List
-                </button>
-
-                <button className={`
-                    bg-secondary
-                    p-3`}>
-                    Grid
-                </button>
-            </div>
         </div>
     </>
   )

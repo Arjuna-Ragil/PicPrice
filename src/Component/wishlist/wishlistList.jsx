@@ -6,10 +6,11 @@ import { db } from '../../services/firebase'
 import WishlistCard from './wishlistCard'
  
 const Row = ({index, style, data}) => {
-  const item = data[index]
+  const item = data.data[index]
+  const refresh = data.refresh
   return (
     <div style={style}>
-      <WishlistCard item={item}/>
+      <WishlistCard item={item} refresh={refresh}/>
     </div>
   )
 }
@@ -17,22 +18,22 @@ const Row = ({index, style, data}) => {
 const WishlistList = ({searchResult}) => {
   const { user } = useAuth()
   const [wishlistData, setWishlistData] = useState([])
+  const [refresh, setrefresh] = useState(0)
 
   useEffect(() => {
     async function getWishlistData() {
       try {
-        const historyRef = collection(db, "users", user.uid, "wishlist");
-        const snapshot = await getDocs(historyRef);
-        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
+        const wishlistRef = collection(db, "users", user.uid, "wishlist");
+        const snapshot = await getDocs(wishlistRef);
+        const data = snapshot.docs.map(doc => ({ id2: doc.id, ...doc.data()}));
         setWishlistData(data)
-        console.log(data)
       } catch (error) {
         console.error("error fetching wishlist data: ", error)
       }
     }
 
-    getWishlistData()
-  }, [user])  
+    if (user) getWishlistData()
+  }, [user, refresh])  
   
   const filteredWishlist = wishlistData.filter(item =>
     item.product_name?.toLowerCase().includes(searchResult.toLowerCase())
@@ -46,7 +47,7 @@ const WishlistList = ({searchResult}) => {
         itemCount={filteredWishlist.length}
         itemSize={50}
         width={"100%"}
-        itemData={filteredWishlist}
+        itemData={{ data: filteredWishlist, refresh: () => setrefresh(prev => prev + 1)}}
       >
         {Row}
       </List>

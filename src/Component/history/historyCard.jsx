@@ -39,7 +39,6 @@ async function addWishlistHandler(user, data) {
   }
 
   function handleSearhAgain() {
-    console.log(item)
     navigate('/search', { state: { product: item}})
   }
 
@@ -58,7 +57,7 @@ async function addWishlistHandler(user, data) {
           <button onClick={handleSearhAgain}>Search</button>
           <div><a href={item.link_one}>buy</a></div>
           <button onClick={() => addWishlistHandler(user, item)}>like</button>
-          <button onClick={() => removeHistoryHandler(user, item.id)}>Remove</button>
+          <button onClick={() => removeHistoryHandler(user, item.id2)}>Remove</button>
         </div>
     </div>
   )
