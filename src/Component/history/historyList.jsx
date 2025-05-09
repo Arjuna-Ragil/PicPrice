@@ -6,10 +6,10 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
  
 const Row = ({index, style, data}) => {
-  const item = data[index]
+  const item = data.data[index]
   return (
     <div style={style}>
-      <HistoryCard item={item}/>
+      <HistoryCard item={item} setRefresh={data.refresh}/>
     </div>
   )
 }
@@ -17,33 +17,43 @@ const Row = ({index, style, data}) => {
 const HistoryList = ({searchResult, priceSort, dateSort}) => {
   const { user } = useAuth()
   const [historyData, setHistoryData] = useState([])
+  const [showLoading, setShowLoading] = useState(false)
+  const [refresh, setRefresh] = useState(false)
+
+  async function getHistoryData() {
+    try {
+      setShowLoading(true)
+      const historyRef = collection(db, "users", user.uid, "history");
+      let q = query(historyRef)
+
+      if (priceSort && dateSort) {
+        q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"),
+        orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
+      } else if (priceSort) {
+        q = query(historyRef, orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
+      } else if (dateSort) {
+        q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"))
+      }
+
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
+      setHistoryData(data)
+      setShowLoading(false)
+    } catch (error) {
+      console.error("error fetching history data: ", error)
+    }
+  }
   
+  useEffect(() => {
+    if (refresh) {
+      getHistoryData()
+      setRefresh(false)
+    }
+  }, [refresh])
 
   useEffect(() => {
-    async function getHistoryData() {
-      try {
-        const historyRef = collection(db, "users", user.uid, "history");
-        let q = query(historyRef)
-
-        if (priceSort && dateSort) {
-          q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"),
-          orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
-        } else if (priceSort) {
-          q = query(historyRef, orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
-        } else if (dateSort) {
-          q = query(historyRef, orderBy("createdAt", dateSort === "desc" ? "desc" : "asc"))
-        }
-
-        const snapshot = await getDocs(q);
-        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
-        setHistoryData(data)
-      } catch (error) {
-        console.error("error fetching history data: ", error)
-      }
-    }
-
     getHistoryData()
-  }, [user, dateSort, priceSort, historyData])   
+  }, [user, dateSort, priceSort])   
   
   const filteredHistory = historyData.filter(item => 
     item.product_name?.toLowerCase().includes(searchResult.toLowerCase())
@@ -57,19 +67,33 @@ const HistoryList = ({searchResult, priceSort, dateSort}) => {
         <p className='justify-self-center mr-10 font-semibold text-xl'>Date</p>
         <p className='justify-self-end font-semibold text-xl'>Action Buttons</p>
       </div>
-      {filteredHistory.length > 0 ? (
+      {showLoading ? 
+      <>
+        <div className="flex flex-col items-center space-y-4">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 rounded-full border-4 border-t-blue-500 border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+          <div className="absolute inset-3 bg-gray-900 rounded-full"></div>
+        </div>
+        <p className="text-lg font-semibold tracking-wider animate-pulse">
+          Loading, please wait...
+        </p>
+      </div>
+      </>
+      :
+      (filteredHistory.length > 0 ? (
       <List
         height={600}
         itemCount={filteredHistory.length}
         itemSize={50}
         width={"100%"}
-        itemData={filteredHistory}
+        itemData={{data: filteredHistory, refresh: setRefresh}}
       >
         {Row}
       </List>
       ) : (
         <p>No History found</p>
-      )}
+      ))
+    }
     </div>
   )
 }

@@ -27,6 +27,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
   const [filledWishlistIconHandler, setFilledWishlistIconHandler] = useState(false)
   const [filledWishlistIcon, setFilledWishlistIcon] = useState(addWishlist)
   const [showDetail, setShowDetail] = useState(false)
+  const [showLoading, setShowLoading] = useState(false)
 
   useEffect(() => {
     if (filledWishlistIconHandler) {    
@@ -105,6 +106,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
   
   async function getSummary(){
     try {
+        setShowLoading(true)
         let productName
         if (firebaseSearch) {
             productName = firebaseSearch
@@ -159,6 +161,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         console.log(jsonResponse)
         setResult(jsonResponse);
         setShowDetail(true)
+        setShowLoading(false)
 
         await addHistory(user.uid, jsonResponse, firebaseImage)
 
@@ -189,132 +192,162 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             border-black
             border-2
         `}>
-            {showDetail ?
+            {showLoading ? 
                 <>
                     <div className={`
                         col-span-2
                         row-start-1
                         row-end-2
-                        flex
-                        flex-row
-                        items-center
+                        h-10
                         w-full
-                        bg-white
+                        bg-skeleton-load
                         rounded-4xl
+                        animate-pulse
                     `}>
-                        <h3 className={`
-                            w-full
-                            text-center
-                            p-2
-                        `}>
-                            {result.product_name}
-                        </h3>
-                        <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
+                        <h3 className={`w-full text-center p-2`}></h3>
                     </div>
-                    <div className={`
+                    <div className={`row-start-2 row-end-6 flex flex-col rounded-2xl bg-white h-full p-7`}>
+                        <h4 className={`bg-skeleton-load rounded-2xl h-12 w-full animate-pulse`}></h4>
+                        <div className={`flex flex-col gap-2 row-start-3 row-end-6 h-full justify-center`}>
+                            <p className={`bg-skeleton-load p-3 rounded-2xl h-12 animate-pulse`}></p>
+                            <p className={`bg-skeleton-load p-3 rounded-2xl h-12 animate-pulse`}></p>
+                            <p className={`bg-skeleton-load p-3 rounded-2xl h-12 animate-pulse`}></p>
+                        </div>
+                    </div>
+                    
+                    <div className={`row-start-2 row-end-6 flex flex-col justify-between rounded-2xl gap-4 bg-white h-full p-7`}>
+                        <h4 className={`bg-skeleton-load rounded-2xl h-11 w-full animate-pulse`}></h4>
+                        <div className=' bg-skeleton-load rounded-2xl h-50 w-full animate-pulse'></div>
+                    </div>
+                </>
+                :
+                (showDetail ?
+                    <>
+                        <div className={`
+                            col-span-2
+                            row-start-1
+                            row-end-2
+                            flex
+                            flex-row
+                            items-center
+                            w-full
+                            bg-white
+                            rounded-4xl
+                        `}>
+                            <h3 className={`
+                                w-full
+                                text-center
+                                p-2
+                            `}>
+                                {result.product_name}
+                            </h3>
+                            <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
+                        </div>
+                        <div className={`
+                                row-start-2
+                                row-end-6
+                                flex
+                                flex-col
+                                rounded-2xl
+                                bg-white
+                                h-full
+                                p-7
+                        `}>
+                            <h4 className={`
+                                font-poppins
+                                font-medium
+                                text-xl
+                                text-black
+                                text-center
+                            `}>
+                                Price
+                            </h4>
+
+                            <div className={`
+                                flex
+                                flex-col
+                                gap-2
+                                row-start-3
+                                row-end-6
+                                h-full
+                                justify-center
+                            `}>
+                                <p className={`
+                                    bg-average
+                                    p-3
+                                    rounded-2xl
+                                `}>
+                                    Average: $ {result.average_price}
+                                </p>
+                                <p className={`
+                                    bg-lowest
+                                    p-3
+                                    rounded-2xl
+                                `}>
+                                    Lowest: $ {result.lowest_price}
+                                </p>
+                                <p className={`
+                                    bg-highest
+                                    p-3
+                                    rounded-2xl
+                                `}>
+                                    Highest: $ {result.highest_price}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div className={`
                             row-start-2
                             row-end-6
                             flex
                             flex-col
+                            justify-between
                             rounded-2xl
+                            gap-2
                             bg-white
                             h-full
                             p-7
-                    `}>
-                        <h4 className={`
-                            font-poppins
-                            font-medium
-                            text-xl
-                            text-black
-                            text-center
                         `}>
-                            Price
-                        </h4>
+                            <h4 className={`
+                                font-poppins
+                                font-medium
+                                text-xl
+                                text-black
+                                text-center
+                            `}>
+                                Product Description
+                            </h4>
 
-                        <div className={`
-                            flex
-                            flex-col
-                            gap-2
-                            row-start-3
-                            row-end-6
-                            h-full
-                            justify-center
-                        `}>
-                            <p className={`
-                                bg-average
-                                p-3
-                                rounded-2xl
+                            <div className={`
+                                row-start-3
+                                row-end-6
+                                flex
+                                flex-col
+                                gap-3
+                                justify-evenly
+                                h-full
+                                p-5
+                                
                             `}>
-                                Average: $ {result.average_price}
-                            </p>
-                            <p className={`
-                                bg-lowest
-                                p-3
-                                rounded-2xl
-                            `}>
-                                Lowest: $ {result.lowest_price}
-                            </p>
-                            <p className={`
-                                bg-highest
-                                p-3
-                                rounded-2xl
-                            `}>
-                                Highest: $ {result.highest_price}
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div className={`
-                        row-start-2
-                        row-end-6
-                        flex
-                        flex-col
-                        justify-between
-                        rounded-2xl
-                        gap-2
-                        bg-white
-                        h-full
-                        p-7
-                    `}>
-                        <h4 className={`
-                            font-poppins
-                            font-medium
-                            text-xl
-                            text-black
-                            text-center
-                        `}>
-                            Product Description
-                        </h4>
-
-                        <div className={`
-                            row-start-3
-                            row-end-6
-                            flex
-                            flex-col
-                            gap-3
-                            justify-evenly
-                            h-full
-                            p-5
-                            
-                        `}>
-                            <p>{result.detail}</p>
-                            <div className='flex flex-row justify-evenly'>
-                                <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
-                                    {result.link_one_shop_name}
-                                </a>
-                                <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
-                                    {result.link_two_shop_name}
-                                </a>
+                                <p>{result.detail}</p>
+                                <div className='flex flex-row justify-evenly'>
+                                    <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                        {result.link_one_shop_name}
+                                    </a>
+                                    <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                        {result.link_two_shop_name}
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </>
+                    :
+                    <div className=' col-span-2 row-span-4 flex flex-col w-full items-center justify-center self-center'>
+                        <img src={camera} alt='camera' className='size-25'/>
+                        <p className='font-poppins font-medium text-2xl'>Upload Image First</p>
                     </div>
-                </>
-                :
-                <div className=' col-span-2 row-span-4 flex flex-col w-full items-center justify-center self-center'>
-                    <img src={camera} alt='camera' className='size-25'/>
-                    <p className='font-poppins font-medium text-2xl'>Upload Image First</p>
-                </div>
-            }
+                )
+        }
         </div>
     </>
   )

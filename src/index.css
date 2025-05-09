@@ -43,6 +43,9 @@
   --color-delete-btn: #F9C7C8;
   --color-delete-btn-press: #F94449;
 
+  /* loading */
+  --color-skeleton-load: #C9C7C6;
+
   /* background */
   --color-backgroundOne: #FFFFFF;
   --color-backgroundTwo: #1AC4E1;

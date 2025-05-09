@@ -4,7 +4,7 @@ import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 
-const HistoryCard = ({item}) => {
+const HistoryCard = ({item, setRefresh}) => {
 
 if (!item) return null
 const { user } = useAuth()
@@ -33,6 +33,7 @@ async function addWishlistHandler(user, data) {
         const itemRef = doc(db, "users", user.uid, "history", data)
         await deleteDoc(itemRef)
         console.log("item deleted")
+        setRefresh(true)
     } catch (error) {
         console.log(error)
     }
