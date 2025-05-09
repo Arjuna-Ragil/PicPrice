@@ -5,7 +5,7 @@ import SigninLayout from '../Component/login/signinLayout'
 const SignIn = () => {
   return (
     <>
-        <LoginLayout/>
+        <LoginLayout direction={"bl"}/>
 
         <div className={`
           flex

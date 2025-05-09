@@ -1,10 +1,10 @@
 import React from 'react'
-import Logo from "../../assets/sidebar/Logo.svg"
-import HomeIcon from "../../assets/sidebar/Home.svg"
-import SearchIcon from "../../assets/sidebar/Search.svg"
-import WishlistIcon from "../../assets/sidebar/Wishlist.svg"
-import SettingIcon from "../../assets/sidebar/Setting.svg"
-import ProfileIcon from "../../assets/sidebar/Profile.svg"
+import home from "../../assets/sidebar/home.svg"
+import ProfileIcon from "../../assets/sidebar/user.svg"
+import hamburger from "../../assets/sidebar/hamburger.png"
+import search from "../../assets/sidebar/search.svg"
+import heart from "../../assets/sidebar/heart.svg"
+import setting from "../../assets/sidebar/settings.svg"
 import SidebarButton from './sidebarButton'
 
 const Sidebar = () => {
@@ -19,26 +19,27 @@ const Sidebar = () => {
           items-center
           justify-between
           fixed
-          top-0
+          rounded-r-2xl
           min-h-screen
-          bg-gradient-to-b from-primary to-accent-dark
+          bg-[#161E36]
           shadow-lg
           transition-all
           duration-300
           p-2
           py-6
           z-50
-          ${isOpen ? "w-75" : "w-16"}`}
+          ${isOpen ? "w-61" : "w-16"}`}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
             <div className={`
               flex 
               flex-row 
-              gap-4
+              gap-5
+              px-
               items-center`}
               >
-                <img className={` size-12`} src={Logo} alt='PicPrice Logo'/>
+                <img className={` size-8 mr-1 `} src={hamburger} alt='PicPrice Logo'/>
                 <h2 className={` font-bold text-3xl text-neutral ${isOpen ? "flex" : "hidden"}`}>PicPrice</h2>
             </div>
 
@@ -46,20 +47,20 @@ const Sidebar = () => {
             flex
             flex-col
             w-full
+            gap-5
             items-center
             justify-center
-            gap-14
             transition-all
             duration-300
             ${isOpen ? "px-4" : "px-0"}`}
             >
-              <SidebarButton icon={HomeIcon} name={"Home"} isOpen={isOpen} destination={"/"}/>
+              <SidebarButton icon={home} name={"Home"} isOpen={isOpen} destination={"/"}/>
 
-              <SidebarButton icon={SearchIcon} name={"Search Price"} isOpen={isOpen} destination={"/search"}/>
+              <SidebarButton icon={search} name={"Search Price"} isOpen={isOpen} destination={"/search"}/>
               
-              <SidebarButton icon={WishlistIcon} name={"Wishlist"} isOpen={isOpen} destination={"/wishlist"}/>
+              <SidebarButton icon={heart} name={"Wishlist"} isOpen={isOpen} destination={"/wishlist"}/>
 
-              <SidebarButton icon={SettingIcon} name={"Settings"} isOpen={isOpen} destination={"/setting"}/>
+              <SidebarButton icon={setting} name={"Settings"} isOpen={isOpen} destination={"/setting"}/>
             </div>
             
             <div className={` 
@@ -69,19 +70,20 @@ const Sidebar = () => {
             items-center 
             justify-start 
             rounded-full 
-            ${isOpen ? "bg-neutral p-1" : "bg-transparent"}`}
+            ${isOpen ? "bg-white p-1" : "bg-transparent"}`}
             >
-              <img className={` size-12 rounded-full ${isOpen ? "bg-accent-dark" : "bg-transparent"}`} src={ProfileIcon} alt='ProfilePic'/>
+              <img className={` size-11 p-1 rounded-full ${isOpen ? "" : "invert bg-transparent"}`} src={ProfileIcon} alt='ProfilePic'/>
               <div className={`
                 flex 
                 flex-col 
-                w-full 
-                items-center 
-                justify-center 
-                ${isOpen ? "flex" : "hidden"}`}
+                w-full
+                items-start
+                justify-center
+                ml-3
+                ${isOpen ? "" : "hidden"}`}
               >
-                <label>Username</label>
-                <label>arjunaragilputera@gmail.com</label>
+                <label className='text-[13px] font-semibold'>Username</label>
+                <label className='text-[11px]'>arjunaragilputera@gmail.com</label>
               </div>
             </div>
         </nav>

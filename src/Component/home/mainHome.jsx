@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import picPrice from '../../assets/sidebar/picPrice(2).png';
 
 const Main = () => {
   return (
@@ -7,42 +8,70 @@ const Main = () => {
         <main 
         className={`
           flex 
-          items-center 
-          justify-center 
+          items-center
+          justify-center
           bg-[#F9F9F9]
           border-2 
           rounded-xl 
-          overflow-hidden
           h-60
+          mt-4
         `}>
 
           {/* keterangan */}
-          <div>
-          <h2 
-            className={`
-              flex
-              flex-col
-              items-center 
-              justify-center 
-              font-poppins 
-              text-[40px]
-              font-medium
-            `}>
-                Take A Picture, Get The Best Price
+          <div
+          className={`
+            flex
+            flex-col
+            items-start
+            mb-2
+          `}>
+
+            <h2 
+              className={`
+                font-poppins 
+                text-[33px]
+                font-medium
+              `}>
+                Snap a Photo. Find the Best Price.
             </h2>
 
+            <p
+            className={`
+              font-poppins
+              font-normal
+            `}>
+              Upload a picture to discover the lowest price online.
+            </p>
+
             <Link className={`
-            col-start-3 col-end-4 row-start-2 row-end-4 z-10 bg-accent text-white font-poppins font-semibold px-6 py-4 rounded-full shadow-lg hover:scale-105 hover:translate-y-[-2px] transition-transform duration-300 border-2 border-transparent hover:border-white
+            bg-[#ACCBE4] 
+            font-poppins 
+            px-5 
+            py-2
+            mt-3
+            rounded-xl
+            hover:scale-105
+            hover:translate-y-[-2px] 
+            transition-transform 
+            duration-300 
             `}
             to={"/search"}
             >
-                Get the price NOW!
+              Find my Price
             </Link>
           </div>
 
+
           {/* untuk icon camera */}
           <div>
-
+            <img
+            src={picPrice}
+            alt='picPrice'
+            className={`
+              w-70
+              h-auto
+              ml-30
+            `}/>
           </div>
 
             

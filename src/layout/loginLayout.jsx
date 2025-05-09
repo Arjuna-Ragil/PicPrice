@@ -1,11 +1,10 @@
 import React from 'react'
+import BackgroundLogin from '../Component/login/background'
 
-import Background from '../Component/main/background'
-
-const LoginLayout = () => {
+const LoginLayout = ({direction}) => {
   return (
     <>
-        <Background />
+        <BackgroundLogin direction={direction}/>
     </>
   )
 }
