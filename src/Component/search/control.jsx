@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import ControlButtonLayout from './controlButton'
+import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import refreshIcon from '../../assets/search/refresh-ccw.svg'
+import changeIcon from '../../assets/search/image.svg'
+import historyIcon from '../../assets/search/search.svg'
 
-const Control = ({setRetryTrigger, imageChange, previewChange}) => {
+const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
 
   const [goToHistory, setGoToHistory] = useState(false)
+  const [searchIconRotate, setSearchIconRotate] = useState(false)
+  const [historyIconBounce, setHistoryIconBounce] = useState(false)
+  const [changeIconAnim, setChangeIconAnim] = useState(false)
 
   const handleRetry = () => {
+    if (!retryCheck) return alert("input image first")
+
     setRetryTrigger(prev => prev + 1);
   }
 
@@ -40,46 +47,90 @@ const Control = ({setRetryTrigger, imageChange, previewChange}) => {
         <div className={`
             flex
             flex-col
-            h-full
+            rounded-2xl
+            h-110
             items-center
             justify-evenly
-            bg-control-bg
-            shadow-[5px_10px_5px_rgba(0,0,0,0.3)]
+            bg-container
+            border-black
+            border-2
             p-7
         `}>
             <h3 className={`
-                font-VictorMono
-                font-semibold
+                font-poppins
+                font-medium
                 text-4xl
             `}>
               Controls
             </h3>
 
-            <button onClick={handleRetry}>
-              <ControlButtonLayout use={"Retry Search"} bg={"accent"}/>
+            <button onClick={handleRetry} className={`
+              w-full
+              p-5
+              rounded-2xl
+              bg-refresh-btn
+              font-poppins
+              hover:scale-105
+              active:bg-refresh-btn-hover
+              transition-all
+              duration-300  
+              
+            `}
+            onMouseEnter={() => setSearchIconRotate(true)}
+            onMouseLeave={() => setSearchIconRotate(false)}
+            >
+              <div className='flex flex-row w-full items-center justify-center gap-11'>
+                <img src={refreshIcon} alt='refresh' className={`transition-all duration-300 ${searchIconRotate ? 'rotate-180' : ''}`}/>
+                <p className='font-poppins text-2xl'>Retry Search</p>
+              </div>
             </button>
             
-            <input
-              type='file'
-              accept='.jpg, .jpeg, .png'
-              onChange={fileChange}
-              className={`
+            <label className={`
                 w-full
                 p-5
                 rounded-2xl
-                bg-secondary
-                border-2
-                border-black
+                bg-change-btn
                 font-poppins
                 hover:scale-105
-                hover:border-white
+                active:bg-change-btn-hover
+                transition-all
+                duration-300  
+            `}
+            onMouseEnter={() => setChangeIconAnim(true)}
+            onMouseLeave={() => setChangeIconAnim(false)}
+            >
+              <div className='flex flex-row w-full items-center justify-center gap-5'>
+                <img src={changeIcon} alt='change image' className={`transition-all duration-300 ${changeIconAnim ? 'animate-pulse' : ''}`}/>
+                <p className='font-poppins text-2xl'>Change Image</p>
+              </div>
+              <input
+                type='file'
+                accept='.jpg, .jpeg, .png'
+                onChange={fileChange}
+                className={`
+                  hidden
+                `}
+              />
+            </label>
+
+            <button onClick={() => setGoToHistory(true) } className={`
+                w-full
+                p-5
+                rounded-2xl
+                bg-history-btn
+                font-poppins
+                hover:scale-105
+                active:bg-history-btn-hover
                 transition-all
                 duration-300  
               `}
-            />
-
-            <button onClick={() => setGoToHistory(true)}>
-              <ControlButtonLayout use={"Search History"} bg={"secondary"}/>
+              onMouseEnter={() => setHistoryIconBounce(true)}
+              onMouseLeave={() => setHistoryIconBounce(false)}
+              >
+              <div className='flex flex-row w-full items-center justify-center gap-6'>
+                <img src={historyIcon} alt='Go to history' className={`transition-all duration-300 ${historyIconBounce ? 'animate-bounce' : ''}`}/>
+                <p className='font-poppins text-2xl'>Search History</p>
+              </div>
             </button>
         </div>
     </>

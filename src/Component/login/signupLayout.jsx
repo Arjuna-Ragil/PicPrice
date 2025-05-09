@@ -1,7 +1,7 @@
-import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import React, { useState } from 'react'
 import { auth, db } from '../../services/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
@@ -14,6 +14,44 @@ const [emailU, setEmailU] = useState("")
 const [passwordU, setPasswordU] = useState("")
 const [confirmPassword, setConfirmPassword] = useState("");
 const [showPassword, setShowPassword] = useState(false);
+
+function handleSignInWithGoogle() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider()
+      signInWithPopup(auth, provider)
+      .then(async (result) => {
+        if (!result) return console.log("no result")
+
+          const credential = GoogleAuthProvider.credentialFromResult(result)
+          const token = credential.accessToken
+          const user = result.user;
+
+          if (token && user) {
+
+            const retrieveDoc = getDoc(doc(db, "users", user.uid))
+
+            if (!(await retrieveDoc).exists()) {
+              await setDoc(doc(db, "users", user.uid), {
+                email: user.email,
+                name: user.displayName,
+                profilePicture: user.photoURL
+              });
+            }
+  
+            await getDoc(doc(db, "users", user.uid))
+  
+            
+          } else {
+            return 
+          }
+      }).catch((error) => {
+        
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        
+        console.log("failed to get account", errorMessage || errorCode || error)
+    });
+  }
 
 function handleSignUp() {
   if (passwordU !== confirmPassword) {
@@ -314,7 +352,7 @@ return (
 
       {/* button continue with google */}
       <button
-        onClick={() => console.log("Login with Google")}
+        onClick={handleSignInWithGoogle}
         className={`
           w-80
           flex

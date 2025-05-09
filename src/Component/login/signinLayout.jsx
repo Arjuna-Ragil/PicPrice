@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { auth, db } from '../../services/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { Navigate, Link } from 'react-router-dom'
 import { Eye, EyeOff } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
@@ -15,6 +15,46 @@ const SigninLayout = () => {
     const [passwordI, setPasswordI] = useState("")
     const [showPassword, setShowPassword] = useState(false);
     const [successLogin, setSuccessLogin] = useState(false)
+
+    function handleSignInWithGoogle() {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider()
+        signInWithPopup(auth, provider)
+        .then(async (result) => {
+          if (!result) return console.log("no result")
+
+            const credential = GoogleAuthProvider.credentialFromResult(result)
+            const token = credential.accessToken
+            const user = result.user;
+  
+            if (token && user) {
+  
+              const retrieveDoc = getDoc(doc(db, "users", user.uid))
+  
+              if (!(await retrieveDoc).exists()) {
+                await setDoc(doc(db, "users", user.uid), {
+                  email: user.email,
+                  name: user.displayName,
+                  profilePicture: user.photoURL
+                });
+              }
+    
+              await getDoc(doc(db, "users", user.uid))
+    
+              console.log("account retrieve")
+    
+              setSuccessLogin(true)
+            } else {
+              return 
+            }
+        }).catch((error) => {
+          
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          
+          console.log("failed to get account", errorMessage || errorCode || error)
+      });
+    }
 
     function handleSignIn(){
         signInWithEmailAndPassword(auth, emailI, passwordI)
@@ -249,7 +289,7 @@ const SigninLayout = () => {
 
           {/* google button */}
           <button
-            onClick={() => console.log("Login with Google")}
+            onClick={handleSignInWithGoogle}
             className={`
             w-80
             flex

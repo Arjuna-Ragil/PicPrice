@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import MainLayout from '../layout/mainLayout'
-import Title from '../Component/common/title'
 import WishlistList from '../Component/wishlist/wishlistList'
 import ControlBarWishlist from '../Component/wishlist/controlBarWishlist'
 
 const Wishlist = () => {
   const [search, setSearch] = useState("")
+  const [priceSort, setPriceSort] = useState("")
 
   return (
     <>
@@ -17,16 +17,12 @@ const Wishlist = () => {
           px-35
           gap-5
         `}>
-          <header>
-            <Title title={"Wishlist"}/>
-          </header>
-
           <nav>
-            <ControlBarWishlist search={search} setSearch={setSearch}/>
+            <ControlBarWishlist search={search} setSearch={setSearch} priceSort={priceSort} setPriceSort={setPriceSort}/>
           </nav>
 
           <main>
-            <WishlistList searchResult={search}/>
+            <WishlistList searchResult={search} priceSort={priceSort}/>
           </main>
         </div>
     </>
