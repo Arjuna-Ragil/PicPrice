@@ -48,22 +48,28 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             flex
             flex-col
             rounded-2xl
-            h-110
+            lg:h-110
+            h-40
             items-center
             justify-evenly
             bg-container
             border-black
             border-2
-            p-7
+            lg:p-7
+            p-3
         `}>
             <h3 className={`
                 font-poppins
                 font-medium
-                text-4xl
+                2xl:text-4xl
+                xl:text-3xl
+                lg:text-2xl
+                md:text-xl
             `}>
               Controls
             </h3>
-
+            
+            <div className='flex flex-row lg:flex-col items-center w-full h-full justify-evenly gap-3'>
             <button onClick={handleRetry} className={`
               w-full
               p-5
@@ -79,13 +85,13 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             onMouseEnter={() => setSearchIconRotate(true)}
             onMouseLeave={() => setSearchIconRotate(false)}
             >
-              <div className='flex flex-row w-full items-center justify-center gap-11'>
+              <div className='flex flex-row w-full items-center justify-center xl:gap-11 lg:gap-5 gap-4'>
                 <img src={refreshIcon} alt='refresh' className={`transition-all duration-300 ${searchIconRotate ? 'rotate-180' : ''}`}/>
-                <p className='font-poppins text-2xl'>Retry Search</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Retry Search</p>
               </div>
             </button>
             
-            <label className={`
+            <button className={`
                 w-full
                 p-5
                 rounded-2xl
@@ -101,7 +107,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             >
               <div className='flex flex-row w-full items-center justify-center gap-5'>
                 <img src={changeIcon} alt='change image' className={`transition-all duration-300 ${changeIconAnim ? 'animate-pulse' : ''}`}/>
-                <p className='font-poppins text-2xl'>Change Image</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Change Image</p>
               </div>
               <input
                 type='file'
@@ -111,7 +117,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
                   hidden
                 `}
               />
-            </label>
+            </button>
 
             <button onClick={() => setGoToHistory(true) } className={`
                 w-full
@@ -129,9 +135,10 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
               >
               <div className='flex flex-row w-full items-center justify-center gap-6'>
                 <img src={historyIcon} alt='Go to history' className={`transition-all duration-300 ${historyIconBounce ? 'animate-bounce' : ''}`}/>
-                <p className='font-poppins text-2xl'>Search History</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Search History</p>
               </div>
             </button>
+            </div>
         </div>
     </>
   )

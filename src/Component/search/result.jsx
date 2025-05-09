@@ -183,7 +183,8 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             grid-cols-2
             grid-rows-4
             rounded-2xl
-            h-110   
+            lg:h-110   
+            h-170
             items-center
             gap-x-4
             gap-y-10
@@ -326,10 +327,10 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                                 gap-3
                                 justify-evenly
                                 h-full
-                                p-5
+                                xl:p-5
                                 
                             `}>
-                                <p>{result.detail}</p>
+                                <p className='2xl:text-xl xl:text-base lg:text-xs'>{result.detail}</p>
                                 <div className='flex flex-row justify-evenly'>
                                     <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
                                         {result.link_one_shop_name}
