@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../layout/mainLayout'
 import Title from '../Component/common/title'
-import ControlBar from '../Component/wishlist/controlBar'
 import WishlistList from '../Component/wishlist/wishlistList'
+import ControlBarWishlist from '../Component/wishlist/controlBarWishlist'
 
 const Wishlist = () => {
+  const [search, setSearch] = useState("")
+
   return (
     <>
         <MainLayout/>
@@ -20,11 +22,11 @@ const Wishlist = () => {
           </header>
 
           <nav>
-            <ControlBar/>
+            <ControlBarWishlist search={search} setSearch={setSearch}/>
           </nav>
 
           <main>
-            <WishlistList/>
+            <WishlistList searchResult={search}/>
           </main>
         </div>
     </>

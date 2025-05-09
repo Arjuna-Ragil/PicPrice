@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { auth } from '../../services/firebase'
 import { signOut } from 'firebase/auth'
-import photoProfile from "../../assets/settings/sung.svg"
+import photoProfile from "../../assets/settings/image.svg"
 
 const Navbar = ({selected,setSelected}) => {
 

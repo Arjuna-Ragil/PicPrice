@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../layout/mainLayout'
 import Title from '../Component/common/title'
-import ControlBar from '../Component/wishlist/controlBar'
-import WishlistList from '../Component/wishlist/wishlistList'
 import HistoryList from '../Component/history/historyList'
+import ControlBarHistory from '../Component/history/controlBarHistory'
 
 const History = () => {
+  const [search, setSearch] = useState("")
+  const [priceSort, setPriceSort] = useState("")
+  const [dateSort, setDateSort] = useState("")
+
   return (
     <>
         <MainLayout/>
@@ -21,11 +24,11 @@ const History = () => {
           </header>
 
           <nav>
-            <ControlBar/>
+            <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort}/>
           </nav>
 
           <main>
-            <HistoryList/>
+            <HistoryList searchResult={search} priceSort={priceSort} dateSort={dateSort}/>
           </main>
         </div>
     </>
