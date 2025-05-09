@@ -115,6 +115,7 @@ return (
             transition-all
           `}/>
 
+        {username === "" && (
         <label
           placeholder="username"
           className={`
@@ -132,7 +133,7 @@ return (
             peer-focus:text-[#bbbbbb]
           `}>
             Username
-        </label>
+        </label>)}
       </div>
 
 
@@ -163,6 +164,7 @@ return (
             transition-all
           `}/>
 
+        {emailU === "" && (
         <label 
           placeholder="email"
           className={`
@@ -180,7 +182,7 @@ return (
             peer-focus:text-[#bbbbbb]
           `}>
             Email
-        </label>
+        </label>)}
       </div>
 
 
@@ -223,6 +225,7 @@ return (
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
         </span>
 
+        {passwordU === "" && (
         <label
           placeholder="password"
           className={`
@@ -240,7 +243,7 @@ return (
             peer-focus:text-[#bbbbbb]
           `}>
             Password
-        </label>
+        </label>)}
       </div>
 
 
@@ -270,6 +273,7 @@ return (
             transition-all
           `}/>
 
+        {confirmPassword === "" && (
         <label
           placeholder="password"
           className={`
@@ -287,7 +291,7 @@ return (
             peer-focus:text-[#bbbbbb]
           `}>
             Confirm Password
-        </label>
+        </label>)}
       </div>
 
 

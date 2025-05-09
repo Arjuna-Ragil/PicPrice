@@ -7,16 +7,29 @@ const MiniWishlist = () => {
   return (
     <>
         <section className={`
-             flex flex-col h-full w-full items-center justify-center p-6 gap-6 bg-gradient-to-br from-neutral to-gray-800 rounded-2xl shadow-2xl border border-gray-200 transition-transform duration-300
+        bg-[#F9F9F9]
+          border-2 
+          rounded-xl
+          w-130
+          h-57
         `}>
-            <div className={`
-                flex items-center gap-3"
+            <div 
+            className={`
+                flex 
+                items-center 
+                gap-3
             `}>
-                <h3 className={`font-VictorMono text-3xl font-semibold text-white`}>
+
+                <h3 
+                className={`
+                    font-VictorMono 
+                    text-3xl 
+                    font-semibold
+                `}>
                     Your Wishlist
                 </h3>
 
-                <span className="text-sm text-gray-300 font-poppins">
+                <span className="text-sm font-poppins">
                     (0 Items)
                 </span>
             </div>
@@ -24,7 +37,7 @@ const MiniWishlist = () => {
             <div className={`
                 flex flex-col items-center justify-center gap-4 text-center
             `}>
-                <p className={`font-poppins text-white text-lg`}>
+                <p className={`font-poppins text-lg`}>
                     You don't have any whished items yet :C
                 </p>
 

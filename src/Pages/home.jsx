@@ -13,14 +13,13 @@ const Home = () => {
       <div className={`
         flex
         flex-col
-        mx-22
+        ml-7
         h-lvh
         items-center
         `}>
 
           <div 
           className={`
-            h-full
             w-270
           `}>
             <Main />
@@ -32,15 +31,17 @@ const Home = () => {
             justify-between
             items-center
             w-270
+            mt-10
           `}>
+
+            <div className={``}>
+              <Tips />
+            </div>
 
             <div className={``}>
               <MiniWishlist />
             </div>
 
-            <div className={``}>
-              <Tips />
-            </div>
 
           </div>
       </div>

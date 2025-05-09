@@ -1,48 +1,33 @@
-import React, { useState } from 'react'
-import MainLayout from '../layout/mainLayout'
-import Title from '../Component/common/title'
-import { auth } from '../services/firebase'
-import { signOut } from 'firebase/auth'
-import { Navigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import MiniNavbar from '../Component/settings/mininavbar'
+import Setting  from '../Component/settings/setting'
+import MainLayout from '../layout/mainLayout';
 
-const Setting = () => {
-
-  const [logout, setLogout] = useState(false)
-
-  function handleSignOut() {
-    signOut(auth).then(() => {
-      console.log("signOut Successfull")
-      setLogout(true)
-
-    }).catch((error) => {
-      console.log(`error: ${error}`)
-    })
-  }
-
-  if (logout) {
-    return <Navigate to={"/signin"} replace/>
-  }
+const Settings = () => {
+  const [selected, setSelected] = useState('profile');
 
   return (
     <>
-        <MainLayout/>
-        <div className={`
-          flex
-          flex-col
-          py-5
-          px-35
-          gap-5
-        `}>
-          <header>
-            <Title title={"Settings"}/>
-          </header>
+    <MainLayout />
 
-          <button onClick={handleSignOut}>
-            Logout
-          </button>
-        </div>
+    <div
+    className={`
+      flex
+      justify-center
+      w-auto
+      h-lvh
+      items-center
+    `}>
+      <div>
+        <MiniNavbar selected={selected} setSelected={setSelected}/>
+      </div>
+
+      <div>
+        <Setting Selected={selected}/>
+      </div>
+    </div>
     </>
-  )
-}
+  );
+};
 
-export default Setting
+export default Settings

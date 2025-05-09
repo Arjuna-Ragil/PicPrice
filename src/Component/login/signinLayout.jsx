@@ -145,6 +145,7 @@ const SigninLayout = () => {
               transition-all 
             `}/>
 
+            {emailI === "" && (
             <label
               className={`
                 absolute 
@@ -162,7 +163,7 @@ const SigninLayout = () => {
               `}
             > 
             Email 
-            </label>
+            </label>)}
 
           </div>
           
@@ -206,6 +207,7 @@ const SigninLayout = () => {
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </span>
 
+            {passwordI === "" && (
             <label
             className={`
               absolute 
@@ -223,7 +225,7 @@ const SigninLayout = () => {
               `}
             > 
             Password
-            </label>
+            </label>)}
 
           </div>
           

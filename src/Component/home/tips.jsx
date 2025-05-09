@@ -2,23 +2,42 @@ import React from 'react'
 
 const Tips = () => {
   const tipsList = [
-    "Ambil gambar dengan pencahayaan yang baik.",
-    "Pastikan seluruh produk terlihat jelas.",
-    "Gunakan latar belakang yang bersih.",
-    "Hindari efek atau filter berlebihan.",
-    "Unggah gambar dari berbagai sudut pandang."
+    "Take photos with good lighting.",
+    "Ensure the entire product is clearly visible.",
+    "Use a clean background.",
+    "Avoid excessive effects or filters.",
+    "Upload images from the good angles"
   ]
 
   return (
     <section className={`
-        flex flex-col w-full h-full items-center justify-center px-6 py-8 gap-6 bg-secondary rounded-2xl shadow-xl border border-gray-200
+        bg-[#F9F9F9]
+          border-2 
+          rounded-xl
+          w-130
+          h-57
+          py-2
+          px-6
     `}>
 
-      <h3 className="text-2xl font-VictorMono font-semibold text-white text-center">
-        Helpful Tips
+      <h3 className={`
+        font-poppins 
+        text-2xl
+        font-medium
+        text-center
+      `}>
+        Tips for use this website 
       </h3>
 
-      <ol className="list-decimal list-inside text-left space-y-2 max-w-md text-white font-poppins text-base leading-relaxed">
+      <ol 
+      className={`
+        list-decimal 
+        mt-4
+        list-inside 
+        text-left 
+        space-y-2 
+        font-poppins 
+      `}>
         {tipsList.map((tip, index) => (
           <li key={index}>{tip}</li>
         ))}
