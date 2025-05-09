@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import MainLayout from '../layout/mainLayout'
-import Title from '../Component/common/title'
 import HistoryList from '../Component/history/historyList'
 import ControlBarHistory from '../Component/history/controlBarHistory'
 
@@ -17,12 +16,8 @@ const History = () => {
           flex-col
           py-5
           px-35
-          gap-5
+          gap-15
         `}>
-          <header>
-            <Title title={"History"}/>
-          </header>
-
           <nav>
             <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort}/>
           </nav>

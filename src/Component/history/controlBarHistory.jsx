@@ -2,6 +2,7 @@ import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import React from 'react'
 import { db } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
+import dropDownArrow from '../../assets/history/chevron-down.svg'
 
 const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPriceSort, dateSort, setDateSort }) => {
     const { user } = useAuth() 
@@ -29,11 +30,12 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
             grid
             grid-cols-2
             grid-rows-2
-            gap-y-3
+            gap-y-8
             gap-x-10
-            bg-control-bg
+            bg-control-container
+            rounded-lg
             p-5
-            shadow-[0px_10px_10px_rgba(0,0,0,0.3)]
+            shadow-[0px_2px_7px_rgba(0,0,0,0.3)]
         `}>
             <input
                 type='text'
@@ -43,39 +45,62 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                 className={`
                     col-span-2
                     w-full
-                    p-3
-                    bg-neutral
+                    p-4
+                    bg-white
                     border-2
-                    border-secondary    
+                    border-black
+                    rounded-4xl   
                 `}
             />
-            <div className='flex flex-row gap-3 items-start justify-start'>
-                <select 
-                value={priceSort}
-                onChange={(e) => setPriceSort(e.target.value)}
-                className={`
-                    bg-secondary
+            <div className='flex flex-row gap-3'>
+                <div className={`
+                    flex 
+                    flex-row 
+                    bg-sort-btn
                     p-3
+                    rounded-3xl
+                    text-white
+                    '`}>
+                    <select 
+                    value={priceSort}
+                    onChange={(e) => setPriceSort(e.target.value)}
+                    className={`
+                        w-full
+                        appearance-none
+                    `}>
+                        <option value={""}>Price</option>
+                        <option value={"asc"}>Lowest to Highest</option>
+                        <option value={"desc"}>Highest to Lowest</option>
+                    </select>
+                    <img src={dropDownArrow} alt='drop down' />
+                </div>
+                
+                <div className={`
+                    flex 
+                    flex-row
+                    bg-sort-btn
+                    p-3
+                    rounded-3xl
+                    text-white
+                    w-1/3
                 `}>
-                    <option value={""}>Price</option>
-                    <option value={"asc"}>Lowest to Highest</option>
-                    <option value={"desc"}>Highest to Lowest</option>
-                </select>
-
-                <select 
-                value={dateSort}
-                onChange={(e) => setDateSort(e.target.value)}
-                className={`
-                    bg-secondary
-                    p-3`}>
-                    <option value={""}>Date</option>
-                    <option value={"desc"}>Newest</option>
-                    <option value={"asc"}>Oldest</option>
-                </select>
+                    <select 
+                    value={dateSort}
+                    onChange={(e) => setDateSort(e.target.value)}
+                    className={`
+                        w-full
+                        appearance-none
+                    `}>
+                        <option value={""}>Date</option>
+                        <option value={"desc"}>Newest</option>
+                        <option value={"asc"}>Oldest</option>
+                    </select>
+                    <img src={dropDownArrow} alt='drop down'/>
+                </div>
             </div>
             <button 
             onClick={() => removeAllHistoryHandler(user, historydata)}
-            className='justify-self-end  bg-secondary p-3'>
+            className='justify-self-end  bg-delete-all p-3 rounded-2xl text-white active:bg-delete-all-press'>
                 Delete all history
             </button>
         </div>
