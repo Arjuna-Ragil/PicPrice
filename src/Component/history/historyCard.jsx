@@ -60,7 +60,7 @@ async function addWishlistHandler(user, data) {
           <button onClick={handleSearhAgain} className='bg-search-btn px-3 py-1 rounded-md active:bg-search-btn-press font-poppins font-medium text-sm'>Search</button>
           <div className='bg-buy-btn px-3 rounded-md active:bg-buy-btn-press font-poppins font-medium text-sm py-1'><a href={item.link_one}>buy</a></div>
           <button onClick={() => addWishlistHandler(user, item)} className='bg-like-btn px-3 rounded-md active:bg-like-btn-press font-poppins font-medium text-sm py-1'>like</button>
-          <button onClick={() => removeHistoryHandler(user, item.id)} className='bg-delete-btn px-3 rounded-md active:bg-delete-btn-press font-poppins font-medium text-sm py-1'>Remove</button>
+          <button onClick={() => removeHistoryHandler(user, item.id)} className='bg-delete-btn px-3 rounded-md active:bg-delete-btn-press font-poppins font-medium text-sm py-1'>Delete</button>
         </div>
     </div>
   )
