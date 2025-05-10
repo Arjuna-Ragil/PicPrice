@@ -14,8 +14,9 @@ const Settings = () => {
     className={`
       flex
       justify-center
-      w-auto
-      h-lvh
+      w-full
+      gap-10
+      min-h-screen
       items-center
     `}>
       <div>

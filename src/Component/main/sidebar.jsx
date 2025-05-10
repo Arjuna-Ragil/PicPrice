@@ -36,7 +36,6 @@ const Sidebar = () => {
               flex 
               flex-row 
               gap-5
-              px-
               items-center`}
               >
                 <img className={` size-8 mr-1 `} src={hamburger} alt='PicPrice Logo'/>

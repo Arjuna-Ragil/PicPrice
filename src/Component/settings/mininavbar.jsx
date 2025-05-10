@@ -22,7 +22,6 @@ const Navbar = ({selected,setSelected}) => {
         return <Navigate to={"/signin"} replace/>
     }
 
-
     const menuItems = [
         { id: 'profile', label: 'Profile' },
         { id: 'appearance', label: 'Appearance' },
@@ -34,9 +33,10 @@ const Navbar = ({selected,setSelected}) => {
         <div 
         className={`
             w-full 
-            bg-gray-100 
+            bg-[#F9F9F9]
             p-6 
-            border-r 
+            border-b-2
+            border-x-1 
             border-gray-300
             rounded-2xl
         `}>

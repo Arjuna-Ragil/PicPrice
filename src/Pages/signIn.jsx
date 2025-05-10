@@ -6,7 +6,6 @@ const SignIn = () => {
   return (
     <>
         <LoginLayout direction={"bl"}/>
-
         <div className={`
           flex
           justify-center
