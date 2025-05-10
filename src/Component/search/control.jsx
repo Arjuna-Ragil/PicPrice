@@ -53,6 +53,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             items-center
             justify-evenly
             bg-container
+            dark:bg-container-dark
             border-black
             border-2
             lg:p-7
@@ -65,6 +66,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
                 xl:text-3xl
                 lg:text-2xl
                 md:text-xl
+                dark:text-white
             `}>
               Controls
             </h3>
@@ -87,7 +89,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             >
               <div className='flex flex-row w-full items-center justify-center xl:gap-11 lg:gap-5 gap-4'>
                 <img src={refreshIcon} alt='refresh' className={`transition-all duration-300 ${searchIconRotate ? 'rotate-180' : ''}`}/>
-                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Retry Search</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm text-xs max-sm:hidden'>Retry Search</p>
               </div>
             </button>
             
@@ -107,7 +109,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             >
               <div className='flex flex-row w-full items-center justify-center gap-5'>
                 <img src={changeIcon} alt='change image' className={`transition-all duration-300 ${changeIconAnim ? 'animate-pulse' : ''}`}/>
-                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Change Image</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm text-xs max-sm:hidden'>Change Image</p>
               </div>
               <input
                 type='file'
@@ -135,7 +137,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
               >
               <div className='flex flex-row w-full items-center justify-center gap-6'>
                 <img src={historyIcon} alt='Go to history' className={`transition-all duration-300 ${historyIconBounce ? 'animate-bounce' : ''}`}/>
-                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm'>Search History</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm text-xs max-sm:hidden'>Search History</p>
               </div>
             </button>
             </div>

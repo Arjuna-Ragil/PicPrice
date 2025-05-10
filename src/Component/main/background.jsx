@@ -5,6 +5,7 @@ const Background = () => {
     <div className={`
         fixed
         bg-[#FFFFFF]
+        dark:bg-background-dark
         h-full
         w-full
         -z-10

@@ -4,11 +4,12 @@ import { FixedSizeList as List } from 'react-window'
 import { useAuth } from '../../hooks/authContext'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
+import { useResizeDetector } from 'react-resize-detector'
  
 const Row = ({index, style, data}) => {
   const item = data.data[index]
   return (
-    <div style={style}>
+    <div style={style} className='border-b-2 border-gray-500'>
       <HistoryCard item={item} setRefresh={data.refresh}/>
     </div>
   )
@@ -19,6 +20,10 @@ const HistoryList = ({searchResult, priceSort, dateSort}) => {
   const [historyData, setHistoryData] = useState([])
   const [showLoading, setShowLoading] = useState(false)
   const [refresh, setRefresh] = useState(false)
+
+  const { width, ref} = useResizeDetector()
+  const itemHeightFirst = width && width < 690 ? 90 : 50
+  const itemHeightSecond = width && width < 560 ? 120 : itemHeightFirst
 
   async function getHistoryData() {
     try {
@@ -60,12 +65,14 @@ const HistoryList = ({searchResult, priceSort, dateSort}) => {
   )
 
   return (
-    <div className='flex flex-col gap-4 h-[68vh] bg-history-container rounded-2xl shadow-[0px_2px_7px_rgba(0,0,0,0.3)] p-7'>
-      <div className='grid grid-cols-4 gap-15 items-center p-3 bg-white rounded-xl border-2 border-gray-400'>
-        <p className='font-poppins font-semibold text-xl'>Product Name</p>
-        <p className='justify-self-center mr-2 font-semibold text-xl'>Price</p>
-        <p className='justify-self-center mr-10 font-semibold text-xl'>Date</p>
-        <p className='justify-self-end font-semibold text-xl'>Action Buttons</p>
+    <div className='flex flex-col gap-4 h-[68vh] bg-history-container dark:bg-container-dark rounded-2xl shadow-[0px_2px_7px_rgba(0,0,0,0.3)] p-7' ref={ref}>
+      <div className='grid sm:grid-cols-4 grid-cols-2 gap-15 items-center p-3 bg-white dark:bg-subcontainer-dark rounded-xl border-2 border-gray-400 dark:border-0 dark:text-white'>
+        <p className='font-poppins font-semibold lg:text-xl sm:text-base text-sm'>Product Name</p>
+        <p className='font-poppins justify-self-center mr-2 font-semibold lg:text-xl text-base max-sm:hidden'>Price</p>
+        <p className='font-poppins justify-self-center mr-10 font-semibold lg:text-xl text-base max-sm:hidden'>Date</p>
+        <p className='font-poppins justify-self-end font-semibold lg:text-xl text-base max-sm:hidden'>Action Buttons</p>
+
+        <p className='font-poppins sm:hidden justify-self-end font-semibold sm:text-base text-sm'>Price & Date</p>
       </div>
       {showLoading ? 
       <>
@@ -84,7 +91,7 @@ const HistoryList = ({searchResult, priceSort, dateSort}) => {
       <List
         height={600}
         itemCount={filteredHistory.length}
-        itemSize={50}
+        itemSize={itemHeightSecond}
         width={"100%"}
         itemData={{data: filteredHistory, refresh: setRefresh}}
       >

@@ -10,7 +10,7 @@ import { useAuth } from '../../hooks/authContext'
 import { db } from '../../services/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 
-const Sidebar = () => {
+const Sidebar = ({setBlur}) => {
   const { user } = useAuth()
 
   const [isOpen, setIsOpen] = React.useState(false);
@@ -41,6 +41,7 @@ const Sidebar = () => {
           rounded-r-2xl
           min-h-screen
           bg-[#161E36]
+          dark:bg-sidebar-dark
           shadow-lg
           transition-all
           duration-300
@@ -48,8 +49,8 @@ const Sidebar = () => {
           py-6
           z-50
           ${isOpen ? "w-61" : "w-16"}`}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
+          onMouseEnter={() => [setIsOpen(true), setBlur(true)]}
+          onMouseLeave={() => [setIsOpen(false),setBlur(false)]}
         >
             <div className={`
               flex 

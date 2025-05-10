@@ -15,7 +15,7 @@ const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage, setFirebas
     if (productFromHistory) {
       setContent(true)
       setPreview(productFromHistory.photoURL)
-      setFirebaseSearch(productFromHistory.product_name)
+      setFirebaseSearch(productFromHistory)
     }
   }, [productFromHistory])
 
@@ -84,8 +84,9 @@ const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage, setFirebas
             flex-col
             w-full
             h-[500px]
+            max-sm:h-90
             rounded-2xl
-            ${dragActive ? 'bg-gray-400' : 'bg-container'}
+            ${dragActive ? 'bg-gray-400' : 'bg-container dark:bg-container-dark'}
             border-black
             border-2
             justify-center
@@ -99,14 +100,15 @@ const ImageBox = ({imageResult, changeImagePreview, setFirebaseImage, setFirebas
             {content ? 
               <img className='max-h-full max-w-full object-contain' src={preview} alt='Uploaded Image'/>
               : 
-              <div className='flex flex-col gap-7'>
+              <div className='flex flex-col gap-7 items-center'>
                 <div className='flex flex-col'>
                   <img src={upload} alt='upload' className={`
-                      size-20 self-center
+                      size-20 self-center 
                     `}/>
-                  <h3 className='text-2xl font-medium font-poppins'>Drag & drop an image or</h3>
+                  <h3 className='text-2xl max-sm:text-sm font-medium font-poppins max-lg:hidden dark:text-white'>Drag & drop an image or</h3>
+                  <h3 className='text-2xl max-sm:text-sm font-medium font-poppins lg:hidden dark:text-white'>Take a picture or</h3>
                 </div>
-                <label className={`bg-input-btn p-5 px-10 rounded-4xl text-2xl font-medium font-poppins self-center text-white`}>
+                <label className={`bg-input-btn p-5 lg:px-10 rounded-4xl text-2xl max-sm:text-sm font-medium font-poppins self-center text-white`}>
                   Choose an image
                   <input
                     type='file'

@@ -22,7 +22,8 @@ const Search = () => {
             grid-rows-11
             ml-10
             gap-7
-            px-35
+            lg:px-35
+            px-3
             py-5
             flex
             flex-col

@@ -46,20 +46,32 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
         const storage = getStorage()
         let photoURL = ""
-        
-        if (file && file.file) {
-            const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
-            await uploadBytes(imageRef, file.file)
+        if (!firebaseSearch) {
+            if (file && file.file) {
+                const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
+                await uploadBytes(imageRef, file.file)
 
-            photoURL = await getDownloadURL(imageRef)
-        }
+                photoURL = await getDownloadURL(imageRef)
+            }
 
-        const dataWithTimeStamp = {
-            ...data,
-            createdAt: serverTimestamp(),
-            photoURL: photoURL,
+            const dataWithTimeStamp = {
+                ...data,
+                createdAt: serverTimestamp(),
+                photoURL: photoURL,
+            }
+            
+            await addDoc(historyRef, dataWithTimeStamp)
+        } else {
+            photoURL = firebaseSearch.photoURL
+
+            const dataWithTimeStamp = {
+                ...data,
+                createdAt: serverTimestamp(),
+                photoURL: photoURL
+            }
+
+            await addDoc(historyRef, dataWithTimeStamp)
         }
-        await addDoc(historyRef, dataWithTimeStamp)
     } catch (error) {
         console.log(error)
     }
@@ -109,7 +121,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         setShowLoading(true)
         let productName
         if (firebaseSearch) {
-            productName = firebaseSearch
+            productName = firebaseSearch.product_name
         } else {
             const result = await geminiModel.generateContent([
                 {
@@ -137,7 +149,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             `based only on those links, give me the name of the product, detail of the product (30 words),
             the average price, the lowest price, the highest price (from the snippets given) and make sure all
             prices are in the same currency (change as needed),
-            and include two of the real links to the product from the search result given,
+            and include two of the real links to the product from the search result given and make sure the links that is included has the average price,
             for the store name, use the name of the e-commerce site (e.g. Amazon)
             in a json format
                 {
@@ -180,15 +192,19 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
     <>
         <div className={`
             grid
-            grid-cols-2
-            grid-rows-4
+            lg:grid-cols-2
+            lg:grid-rows-4
+            grid-cols-1
+            grid-rows-5
             rounded-2xl
             lg:h-110   
-            h-170
+            h-200
             items-center
-            gap-x-4
-            gap-y-10
+            lg:gap-x-4
+            lg:gap-y-10
+            gap-y-3
             bg-container
+            dark:bg-container-dark
             p-5
             border-black
             border-2
@@ -196,9 +212,10 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             {showLoading ? 
                 <>
                     <div className={`
-                        col-span-2
+                        lg:col-span-2
                         row-start-1
                         row-end-2
+                        col-span-1
                         h-10
                         w-full
                         bg-skeleton-load
@@ -207,7 +224,8 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                     `}>
                         <h3 className={`w-full text-center p-2`}></h3>
                     </div>
-                    <div className={`row-start-2 row-end-6 flex flex-col rounded-2xl bg-white h-full p-7`}>
+
+                    <div className={`row-start-2 lg:row-end-6 row-end-4 flex flex-col rounded-2xl bg-white h-full p-7`}>
                         <h4 className={`bg-skeleton-load rounded-2xl h-12 w-full animate-pulse`}></h4>
                         <div className={`flex flex-col gap-2 row-start-3 row-end-6 h-full justify-center`}>
                             <p className={`bg-skeleton-load p-3 rounded-2xl h-12 animate-pulse`}></p>
@@ -215,8 +233,8 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                             <p className={`bg-skeleton-load p-3 rounded-2xl h-12 animate-pulse`}></p>
                         </div>
                     </div>
-                    
-                    <div className={`row-start-2 row-end-6 flex flex-col justify-between rounded-2xl gap-4 bg-white h-full p-7`}>
+        
+                    <div className={`lg:row-start-2 row-start-4 row-end-6 flex flex-col justify-between rounded-2xl gap-4 bg-white h-full p-7`}>
                         <h4 className={`bg-skeleton-load rounded-2xl h-11 w-full animate-pulse`}></h4>
                         <div className=' bg-skeleton-load rounded-2xl h-50 w-full animate-pulse'></div>
                     </div>
@@ -225,7 +243,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                 (showDetail ?
                     <>
                         <div className={`
-                            col-span-2
+                            lg:col-span-2
                             row-start-1
                             row-end-2
                             flex
@@ -233,24 +251,29 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                             items-center
                             w-full
                             bg-white
+                            dark:bg-subcontainer-dark
                             rounded-4xl
                         `}>
                             <h3 className={`
                                 w-full
                                 text-center
                                 p-2
+                                truncate
+                                dark:text-white
                             `}>
                                 {result.product_name}
                             </h3>
                             <img className='p-4' src={filledWishlistIcon} alt='add to wishlist' onClick={() => addWishlistHandler(user, result)}/>
                         </div>
                         <div className={`
+                                lg:row-end-6
                                 row-start-2
-                                row-end-6
+                                row-end-4
                                 flex
                                 flex-col
                                 rounded-2xl
                                 bg-white
+                                dark:bg-subcontainer-dark
                                 h-full
                                 p-7
                         `}>
@@ -259,6 +282,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                                 font-medium
                                 text-xl
                                 text-black
+                                dark:text-white
                                 text-center
                             `}>
                                 Price
@@ -268,7 +292,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                                 flex
                                 flex-col
                                 gap-2
-                                row-start-3
+                                row-start-2
                                 row-end-6
                                 h-full
                                 justify-center
@@ -298,7 +322,8 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                         </div>
                         
                         <div className={`
-                            row-start-2
+                            lg:row-start-2
+                            row-start-4
                             row-end-6
                             flex
                             flex-col
@@ -306,6 +331,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                             rounded-2xl
                             gap-2
                             bg-white
+                            dark:bg-subcontainer-dark
                             h-full
                             p-7
                         `}>
@@ -314,6 +340,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                                 font-medium
                                 text-xl
                                 text-black
+                                dark:text-white
                                 text-center
                             `}>
                                 Product Description
@@ -330,12 +357,12 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                                 xl:p-5
                                 
                             `}>
-                                <p className='2xl:text-xl xl:text-base lg:text-xs'>{result.detail}</p>
-                                <div className='flex flex-row justify-evenly'>
-                                    <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                <p className='2xl:text-lg xl:text-sm text-xs dark:text-white'>{result.detail}</p>
+                                <div className='flex flex-row justify-evenly gap-2'>
+                                    <a href={result.link_one} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl `}>
                                         {result.link_one_shop_name}
                                     </a>
-                                    <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl`}>
+                                    <a href={result.link_two} target='_blank' rel='noopener noreferer' className={`bg-shop-btn p-3 rounded-3xl `}>
                                         {result.link_two_shop_name}
                                     </a>
                                 </div>
@@ -345,7 +372,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
                     :
                     <div className=' col-span-2 row-span-4 flex flex-col w-full items-center justify-center self-center'>
                         <img src={camera} alt='camera' className='size-25'/>
-                        <p className='font-poppins font-medium text-2xl'>Upload Image First</p>
+                        <p className='font-poppins font-medium text-2xl max-sm:text-xl dark:text-white'>Upload Image First</p>
                     </div>
                 )
         }
