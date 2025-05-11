@@ -4,7 +4,7 @@ import { db } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
 import dropDownArrow from '../../assets/history/chevron-down.svg'
 
-const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPriceSort, dateSort, setDateSort }) => {
+const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPriceSort, dateSort, setDateSort, setRefresh }) => {
     const { user } = useAuth() 
 
     async function removeAllHistoryHandler(user) {
@@ -19,6 +19,7 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                 deleteDoc(doc(db, "users", user.uid, "history", docSnap.id))
             })
             await Promise.all(deletePromises)
+            setRefresh(true)
             console.log("item deleted")
         } catch (error) {
             console.log(error)

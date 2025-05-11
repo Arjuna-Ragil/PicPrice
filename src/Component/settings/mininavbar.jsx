@@ -4,7 +4,7 @@ import { auth } from '../../services/firebase'
 import { signOut } from 'firebase/auth'
 import photoProfile from "../../assets/settings/image.svg"
 
-const Navbar = ({selected,setSelected}) => {
+const Navbar = ({selected,setSelected, userInfo}) => {
 
     const [logout, setLogout] = useState(false)
 
@@ -43,11 +43,15 @@ const Navbar = ({selected,setSelected}) => {
             <div
             className={`
                 text-center
+                flex
+                flex-col
+                items-center
+                justify-center
             `}>
-                <img src={photoProfile}/>
+                <img src={userInfo.profilePictureURL || photoProfile} className="size-50 rounded-full"/>
                 <p
-                className="font-medium text-[15px]">username</p>
-                <p className="text-[12px] mb-10">username@gmail.com</p>
+                className="font-medium text-[15px]">{userInfo.username}</p>
+                <p className="text-[12px] mb-10">{userInfo.email}</p>
             </div>
 
             <ul className="space-y-1">

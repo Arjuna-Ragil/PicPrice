@@ -7,6 +7,7 @@ const History = () => {
   const [search, setSearch] = useState("")
   const [priceSort, setPriceSort] = useState("")
   const [dateSort, setDateSort] = useState("")
+  const [refresh, setRefresh] = useState(false)
 
   return (
     <>
@@ -23,11 +24,11 @@ const History = () => {
           gap-15
         `}>
           <nav>
-            <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort}/>
+            <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort} setRefresh={setRefresh}/>
           </nav>
 
           <main>
-            <HistoryList searchResult={search} priceSort={priceSort} dateSort={dateSort}/>
+            <HistoryList searchResult={search} priceSort={priceSort} dateSort={dateSort} refresh={refresh} setRefresh={setRefresh}/>
           </main>
         </div>
     </>

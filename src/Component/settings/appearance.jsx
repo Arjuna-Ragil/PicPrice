@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 
 const Appearance = () => {
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        // Cek localStorage agar tetap tersimpan
         const storedTheme = localStorage.getItem('theme');
         return storedTheme === 'dark';
       });
@@ -44,8 +43,8 @@ const Appearance = () => {
                 <div className="absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full transition-transform peer-checked:translate-x-full"></div>
               </label>
             </div>
-          </div>
-        );
+          </div>
+       );
 }
 
 export default Appearance

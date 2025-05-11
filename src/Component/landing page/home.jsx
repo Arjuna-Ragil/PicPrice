@@ -39,9 +39,9 @@ const Home = () => {
       >
         {/* Left: Text Section */}
         <div className="w-1/2 text-left space-y-4 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold">Welcome to Our Platform</h1>
+          <h1 className="text-4xl md:text-5xl font-bold">Shop Smarter with Just a Photo</h1>
           <p className="text-lg md:text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Snap it. Search it. Compare prices instantly across your favorite stores—all powered by AI.
           </p>
         </div>
 
