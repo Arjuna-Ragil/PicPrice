@@ -4,12 +4,13 @@ import { useAuth } from '../../hooks/authContext'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 import WishlistCard from './wishlistCard'
+import { useResizeDetector } from 'react-resize-detector'
  
 const Row = ({index, style, data}) => {
-  const item = data[index]
+  const item = data.data[index]
   return (
     <div style={style}>
-      <WishlistCard item={item}/>
+      <WishlistCard item={item} setRefresh={data.refresh}/>
     </div>
   )
 }
@@ -17,48 +18,55 @@ const Row = ({index, style, data}) => {
 const WishlistList = ({searchResult, priceSort}) => {
   const { user } = useAuth()
   const [wishlistData, setWishlistData] = useState([])
+  const [refresh, setRefresh] = useState(false)
 
-  useEffect(() => {
-    async function getWishlistData() {
-      try {
-        const wishlistRef = collection(db, "users", user.uid, "wishlist");
-        let q = query(wishlistRef)
-        if (priceSort) {
-          q = query(wishlistRef, orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
-        }
-        const snapshot = await getDocs(q);
-        const data = snapshot.docs.map(doc => ({ id2: doc.id, ...doc.data()}));
-        setWishlistData(data)
-      } catch (error) {
-        console.error("error fetching wishlist data: ", error)
+  const { width, ref} = useResizeDetector()
+  const itemHeight = width && width > 600 ? 50 : 130
+
+  async function getWishlistData() {
+    try {
+      const wishlistRef = collection(db, "users", user.uid, "wishlist");
+      let q = query(wishlistRef)
+      if (priceSort) {
+        q = query(wishlistRef, orderBy("average_price", priceSort === "desc" ? "desc" : "asc"))
       }
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({ id2: doc.id, ...doc.data()}));
+      setWishlistData(data)
+    } catch (error) {
+      console.error("error fetching wishlist data: ", error)
     }
-
-    if (user) getWishlistData()
-  }, [user, wishlistData, priceSort])  
+  }
   
   const filteredWishlist = wishlistData.filter(item =>
     item.product_name?.toLowerCase().includes(searchResult.toLowerCase())
   )
 
+  useEffect(() => {
+      if (refresh) {
+        getWishlistData()
+        setRefresh(false)
+      }
+  }, [refresh])
+
+  useEffect(() => {
+      getWishlistData()
+    }, [user, priceSort])  
+
   return (
-    <div className='flex flex-col gap-4 h-[68vh] bg-history-container rounded-2xl shadow-[0px_2px_7px_rgba(0,0,0,0.3)] p-7'>
-      <div className='grid grid-cols-3 gap-15 items-center p-3 bg-white rounded-xl border-2 border-gray-400'>
-        <p className='font-poppins font-semibold text-xl'>Product Name</p>
-        <div className='grid grid-cols-3 font-semibold text-xl'>
-          <p>Average</p>
-          <p>Lowest</p>
-          <p>Highest</p>
-        </div>
-        <p className='justify-self-end font-semibold text-xl'>Action Buttons</p>
+    <div className='flex flex-col gap-4 h-[68vh] bg-history-container dark:bg-container-dark rounded-2xl shadow-[0px_2px_7px_rgba(0,0,0,0.3)] p-7' ref={ref}>
+      <div className='grid md:grid-cols-3 grid-cols-2 gap-15 items-center p-3 bg-white dark:bg-subcontainer-dark rounded-xl border-2 border-gray-400 dark:border-0 dark:text-white'>
+        <p className='font-poppins font-semibold lg:text-xl md:text-base text-xs'>Product Name</p>
+        <p className='md:justify-self-center justify-self-end font-semibold lg:text-xl md:text-base text-xs'>Price</p>
+        <p className='justify-self-end font-semibold lg:text-xl text-base max-md:hidden'>Action Buttons</p>
       </div>
       {filteredWishlist.length > 0 ? (
       <List
         height={600}
         itemCount={filteredWishlist.length}
-        itemSize={50}
+        itemSize={itemHeight}
         width={"100%"}
-        itemData={filteredWishlist}
+        itemData={{ data:filteredWishlist, refresh: setRefresh}}
       >
         {Row}
       </List>

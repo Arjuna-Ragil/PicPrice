@@ -17,12 +17,16 @@ const Search = () => {
     <>
         <MainLayout/>
         <div className={`
-            grid
+            lg:grid
             grid-cols-7
             grid-rows-11
+            ml-10
             gap-7
-            px-35
+            lg:px-35
+            px-3
             py-5
+            flex
+            flex-col
         `}>
             <main className={`
               col-start-1
@@ -33,20 +37,20 @@ const Search = () => {
               <ImageBox imageResult={setImageFile} changeImagePreview={changePreview} setFirebaseImage={setFirebaseImage} setFirebaseSearch={setFirebaseSearch}/>
             </main>
             <section className={`
-              col-start-1
-              col-end-6
-              row-start-7
-              row-end-12
-            `}>
-              <Result processImage={imageFile} retry={retry} firebaseImage={firebaseImage} firebaseSearch={firebaseSearch}/>
-            </section>
-            <section className={`
               col-start-6
               col-end-8
               row-start-7
               row-end-12
             `}>
               <Control setRetryTrigger={setRetry} imageChange={setImageFile} previewChange={setChangePreview} retryCheck={imageFile}/>
+            </section>
+            <section className={`
+              col-start-1
+              col-end-6
+              row-start-7
+              row-end-12
+            `}>
+              <Result processImage={imageFile} retry={retry} firebaseImage={firebaseImage} firebaseSearch={firebaseSearch}/>
             </section>
         </div>
     </>

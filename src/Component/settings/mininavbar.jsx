@@ -21,7 +21,6 @@ const Navbar = ({selected,setSelected}) => {
     if (logout) {
         return <Navigate to={"/signin"} replace/>
     }
-
     const menuItems = [
         { id: 'profile', label: 'Profile' },
         { id: 'appearance', label: 'Appearance' },

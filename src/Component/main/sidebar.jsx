@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import home from "../../assets/sidebar/home.svg"
 import ProfileIcon from "../../assets/sidebar/user.svg"
 import hamburger from "../../assets/sidebar/hamburger.png"
@@ -6,11 +6,30 @@ import search from "../../assets/sidebar/search.svg"
 import heart from "../../assets/sidebar/heart.svg"
 import setting from "../../assets/sidebar/settings.svg"
 import SidebarButton from './sidebarButton'
+import { useAuth } from '../../hooks/authContext'
+import { db } from '../../services/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 
-const Sidebar = () => {
+const Sidebar = ({setBlur}) => {
+  const { user } = useAuth()
 
   const [isOpen, setIsOpen] = React.useState(false);
+  const [userInfo, setUserInfo] = useState([])
 
+  async function getUserInfo() {
+    try {
+      const accountRef = doc(db, "users", user.uid)
+      const getAccount = await getDoc(accountRef)
+      setUserInfo(getAccount.data())
+    } catch (error) {
+      console.log("failed", error)
+    }
+  }
+
+  useEffect(() => {
+    getUserInfo()
+  }, []) 
+ 
   return (
     <>
         <nav className={`
@@ -22,6 +41,7 @@ const Sidebar = () => {
           rounded-r-2xl
           min-h-screen
           bg-[#161E36]
+          dark:bg-sidebar-dark
           shadow-lg
           transition-all
           duration-300
@@ -29,8 +49,8 @@ const Sidebar = () => {
           py-6
           z-50
           ${isOpen ? "w-61" : "w-16"}`}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
+          onMouseEnter={() => [setIsOpen(true), setBlur(true)]}
+          onMouseLeave={() => [setIsOpen(false),setBlur(false)]}
         >
             <div className={`
               flex 
@@ -81,8 +101,8 @@ const Sidebar = () => {
                 ml-3
                 ${isOpen ? "" : "hidden"}`}
               >
-                <label className='text-[13px] font-semibold'>Username</label>
-                <label className='text-[11px]'>arjunaragilputera@gmail.com</label>
+                <label className='text-[13px] font-semibold'>{userInfo.name}</label>
+                <label className='text-[11px]'>{userInfo.email}</label>
               </div>
             </div>
         </nav>

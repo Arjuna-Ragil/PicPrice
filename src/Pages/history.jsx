@@ -15,7 +15,11 @@ const History = () => {
           flex
           flex-col
           py-5
-          px-35
+          xl:px-35
+          lg:pr-10
+          pr-5
+          md:pl-20
+          px-3
           gap-15
         `}>
           <nav>
