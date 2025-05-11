@@ -8,7 +8,7 @@ const AuthRoute = ({ children }) => {
     if (loading) return <Loading/>
 
     if (!user) {
-        return <Navigate to={'/signin'} replace/>
+        return <Navigate to={'/landingpage'} replace/>
     }
 
     return children

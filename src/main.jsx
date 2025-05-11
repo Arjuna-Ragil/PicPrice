@@ -12,6 +12,7 @@ import SignIn from './Pages/signIn'
 import AuthRoute from './hooks/authRoute'
 import AuthLoginRoute from './hooks/authLoginRoute'
 import History from './Pages/history'
+import LandingPage from './Pages/landingPage'
 
 const router = createBrowserRouter([
   { path: '/', element:
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
   <AuthLoginRoute>
     <SignIn/>
   </AuthLoginRoute>
+  },
+  { path: '/landingpage', element: 
+    <AuthLoginRoute>
+      <LandingPage/>
+    </AuthLoginRoute>
   }
 ])
 
