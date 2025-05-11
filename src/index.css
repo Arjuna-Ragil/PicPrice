@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Color */
   --color-primary: #1E3A8A;
@@ -21,6 +23,8 @@
   --color-lowest: #C7F9CC;
   --color-highest: #FFADAD;
   --color-container: #F5F5F5;
+  --color-container-dark: #7C84A1;
+  --color-subcontainer-dark: #565F7E;
   --color-refresh-btn: #E0F2FE;
   --color-refresh-btn-hover: #B2E0F0;
   --color-change-btn: #FEF9C3;
@@ -29,7 +33,7 @@
   --color-history-btn-hover: #E9D5FF;
   --color-shop-btn: #ACCBE4;
 
-  /* historypage */
+  /* history and wishlist page */
   --color-history-container: #F9F9F9;
   --color-sort-btn: #161E36;
   --color-delete-all: #F87171;
@@ -42,13 +46,18 @@
   --color-like-btn-press: #BA55FF;
   --color-delete-btn: #F9C7C8;
   --color-delete-btn-press: #F94449;
+  --color-average-price: #8BAAFF;
+  --color-lowest-price: #37F17C;
+  --color-highest-price: #FF7D7D;
 
   /* loading */
   --color-skeleton-load: #C9C7C6;
 
   /* background */
-  --color-backgroundOne: #FFFFFF;
-  --color-backgroundTwo: #1AC4E1;
+  --color-background-dark: #161E36;
+
+  /* sidebar */
+  --color-sidebar-dark: #7C84A1;
 
   /* Typografy */
   --font-VictorMono: "VictorMono", monospace;

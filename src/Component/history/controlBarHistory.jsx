@@ -33,6 +33,7 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
             gap-y-8
             gap-x-10
             bg-control-container
+            dark:bg-container-dark
             rounded-lg
             p-5
             shadow-[0px_2px_7px_rgba(0,0,0,0.3)]
@@ -47,6 +48,8 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                     w-full
                     p-4
                     bg-white
+                    dark:bg-subcontainer-dark
+                    dark:text-white
                     border-2
                     border-black
                     rounded-4xl   
@@ -60,6 +63,7 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                     p-3
                     rounded-3xl
                     text-white
+                    max-sm:hidden
                     '`}>
                     <select 
                     value={priceSort}
@@ -82,7 +86,6 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
                     p-3
                     rounded-3xl
                     text-white
-                    w-1/3
                 `}>
                     <select 
                     value={dateSort}

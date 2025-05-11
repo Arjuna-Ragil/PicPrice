@@ -13,8 +13,11 @@ const Wishlist = () => {
         <div className={`
           flex
           flex-col
+          xl:px-35
+          lg:pr-10
+          md:pl-20
           py-5
-          px-35
+          px-3
           gap-5
         `}>
           <nav>

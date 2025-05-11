@@ -5,7 +5,7 @@ import SignUpLayout from '../Component/login/signupLayout'
 const SignUp = () => {
   return (
     <>
-        <LoginLayout direction={"br"}/>
+        <LoginLayout direction={"bg-gradient-to-br"}/>
         <div className={`
         flex
         justify-center

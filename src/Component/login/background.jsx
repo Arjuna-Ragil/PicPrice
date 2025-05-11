@@ -7,7 +7,7 @@ const BackgroundLogin = ({direction}) => {
         h-full
         w-full
         -z-10
-        bg-gradient-to-${direction} from-[#ACCBE4] to-[#E4F3FF]
+        ${direction} from-[#ACCBE4] to-[#E4F3FF]
     `}>
     
     </div>
