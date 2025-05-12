@@ -39,6 +39,7 @@ const Navbar = ({selected,setSelected}) => {
             border-gray-300
             rounded-2xl
         `}>
+
             {/* untuk foto profile */}
             <div
             className={`
@@ -50,6 +51,7 @@ const Navbar = ({selected,setSelected}) => {
                 <p className="text-[12px] mb-10">username@gmail.com</p>
             </div>
 
+              
             <ul className="space-y-1">
               {menuItems.map(item => (
                 <li key={item.id}>
