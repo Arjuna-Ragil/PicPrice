@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import home from "../../assets/sidebar/home.svg"
 import ProfileIcon from "../../assets/sidebar/user.svg"
-import search from "../../assets/sidebar/search.svg"
-import heart from "../../assets/sidebar/heart.svg"
-import setting from "../../assets/sidebar/settings.svg"
+import activehome from "../../assets/sidebar/home.svg"
+import deactivehome from "../../assets/sidebar/homeWhite.svg"
+import activesearch from "../../assets/sidebar/search.svg"
+import deactivesearch from "../../assets/sidebar/searchWhite.svg"
+import activeheart from "../../assets/sidebar/heart.svg"
+import deactiveheart from "../../assets/sidebar/heartWhite.svg"
+import activesetting from "../../assets/sidebar/settings.svg"
+import deactivesetting from "../../assets/sidebar/settingWhite.svg"
 import SidebarButton from './sidebarButton'
 import { useAuth } from '../../hooks/authContext'
 import { db } from '../../services/firebase'
@@ -73,13 +77,13 @@ const Sidebar = ({setBlur}) => {
             duration-300
             ${isOpen ? "px-4" : "px-0"}`}
             >
-              <SidebarButton icon={home} name={"Home"} isOpen={isOpen} destination={"/"}/>
+              <SidebarButton activeIcon={activehome} deactiveIcon={deactivehome} name={"Home"} isOpen={isOpen} destination={"/"}/>
 
-              <SidebarButton icon={search} name={"Search Price"} isOpen={isOpen} destination={"/search"}/>
+              <SidebarButton activeIcon={activesearch} deactiveIcon={deactivesearch} name={"Search Price"} isOpen={isOpen} destination={"/search"}/>
               
-              <SidebarButton icon={heart} name={"Wishlist"} isOpen={isOpen} destination={"/wishlist"}/>
+              <SidebarButton activeIcon={activeheart} deactiveIcon={deactiveheart} name={"Wishlist"} isOpen={isOpen} destination={"/wishlist"}/>
 
-              <SidebarButton icon={setting} name={"Settings"} isOpen={isOpen} destination={"/setting"}/>
+              <SidebarButton activeIcon={activesetting} deactiveIcon={deactivesetting} name={"Settings"} isOpen={isOpen} destination={"/setting"}/>
             </div>
             
             <div className={` 
