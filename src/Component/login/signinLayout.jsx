@@ -82,46 +82,50 @@ const SigninLayout = () => {
       flex 
       items-center 
       justify-center 
+      sm:gap-10 xl:gap- 2xl:gap-10
     `}>
 
-      {/* buat ikon kamera */}
+      {/* camera icon */}
       <div>
         <img
         src={kamera}
         alt='kamera'
         className={`
-          w-full
-          h-full
+          hidden sm:block
+          w-full 2xl:w-260
+          h-135 2xl:h-300
           object-contain
         `}
         />
       </div>
 
-      {/* login form */}
+      {/* login form container */}
       <div
       className={`
         flex 
         flex-col 
         items-center 
         justify-center 
-        gap-4 
-        w-full
-        mr-20
-        h-130
-        bg-[#ffffff]
-        bg-opacity-95 
-        p-10 
-        rounded-3xl 
-        shadow-2xl
-        shadow-blue-900/30 
+        gap-4 2xl:gap-8
+        w-auto lg:w-120 xl:w-180 2xl:w-260
+        sm:h-120 lg:h-125 xl:h-125 2xl:h-300
+        lg:mr-10 xl:mr-15 
+        2xl:ml-80
+        bg-transparent sm:bg-[#ffffff]
+        lg:py-8
+        
+        sm:rounded-none lg:rounded-3xl 
+        sm:shadow-2xl 
         transition-all 
         duration-300
       `}>
 
+
         <div
           className={`
-          my-5
-          mt-15
+          sm:my-5
+          2xl:mt-0 
+          mb-5 2xl:mb-20
         `}>
 
           {/* picprice */}
@@ -137,14 +141,13 @@ const SigninLayout = () => {
               src={logo}
               alt="logo"
               className={`
-                w-12
-                h-12
+                size-6 sm:size-9 lg:size-11 2xl:size-25
                 object-contain
             `}/>
             
             <h2
               className={`
-                text-2xl
+                text-[16px] sm:text-lg lg:text-2xl 2xl:text-5xl
                 font-semibold
                 font-poppins
               `}>
@@ -154,51 +157,54 @@ const SigninLayout = () => {
             <h2 
               className={`
                 font-semibold 
-                text-[40px]
+                text-[20px] sm:text-2xl 2xl:text-7xl
                 font-poppins
               `}>
                 Welcome Back!</h2>
         </div>
         
 
-        {/* untuk email */}
+        {/* email form */}
         <div className={`
           relative 
         `}>
 
           <input 
-            type='email'
-            placeholder='Email'
-            onChange={(e) => setEmailI(e.target.value)}
-            className= {` 
-              peer 
-              w-80
-              pl-6
-              pr-4 
-              py-2 
-              bg-[#F0F0F0]
-              rounded-full
-              placeholder-transparent 
-              focus:outline-none 
-              focus:inset-ring-1
-              focus:inset-ring-[#8d8b8b]
-              transition-all 
+          id='email'
+          type='email'
+          placeholder='Email'
+          onChange={(e) => setEmailI(e.target.value)}
+          className= {` 
+            peer 
+            w-60 sm:w-80 xl:w-100 2xl:w-180
+            pl-6 2xl:pl-12
+            pr-4 2xl:pr-10
+            py-1 sm:py-2 2xl:py-7
+            bg-[#F0F0F0]
+            rounded-full
+            placeholder-transparent 
+            text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+            focus:outline-none 
+            focus:inset-ring-1
+            focus:inset-ring-[#8d8b8b]
+            transition-all 
             `}/>
 
             {emailI === "" && (
             <label
-              className={`
+            htmlFor='email'
+            className={`
                 absolute 
                 text-[#bbbbbb]
-                left-6
+                left-6 2xl:left-12
                 font-poppins 
-                text-[16px]
+                text-[16px] 2xl:text-2xl
                 transition-all 
-                peer-placeholder-shown:top-2 
-                peer-placeholder-shown:text-base
+                peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+                peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
               peer-placeholder-shown:text-[#bbbbbb] 
-                peer-focus:-top-4 
-                peer-focus:text-[12px]
+                peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-5 2xl:peer-focus:-top-8
+                peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
               peer-focus:text-[#bbbbbb]
               `}
             > 
@@ -207,24 +213,26 @@ const SigninLayout = () => {
 
           </div>
           
-          {/* untuk password */}
+          {/* password form */}
           <div 
           className={`
             relative
           `}>
 
             <input
+            id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               onChange={(e) => setPasswordI(e.target.value)}
               className= {`
                 peer 
-                w-80
-                pl-6
-                pr-10
-                py-2 
+                w-60 sm:w-80 xl:w-100 2xl:w-180
+                pl-6 2xl:pl-12
+                pr-11 2xl:pr-10
+                py-1 sm:py-2 2xl:py-7
                 bg-[#F0F0F0]
                 rounded-full
+                text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
                 placeholder-transparent 
                 focus:outline-none 
                 focus:inset-ring-1
@@ -237,30 +245,31 @@ const SigninLayout = () => {
               onClick = {() => setShowPassword(!showPassword)}
               className={`
                 absolute 
-                right-4 
+                right-4 2xl:right-10
                 top-1/2 
                 -translate-y-1/2 
                 text-[#bbbbbb]
                 cursor-pointer
               `}
             >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              {showPassword ? <EyeOff className='size-4 sm:size-6 2xl:size-13'  /> : <Eye className='size-4 sm:size-6 2xl:size-13' />}
             </span>
 
             {passwordI === "" && (
             <label
+            htmlFor='password'
             className={`
               absolute 
               text-[#bbbbbb]
-              left-6
+              left-6 2xl:left-12
               font-poppins 
-              text-[16px] 
+              text-[16px] 2xl:text-xl
               transition-all 
-              peer-placeholder-shown:top-2 
-              peer-placeholder-shown:text-base
+              peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+              peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
               peer-placeholder-shown:text-[#bbbbbb] 
-              peer-focus:-top-4 
-              peer-focus:text-[12px] 
+              peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-5 2xl:peer-focus:-top-8
+              peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
               peer-focus:text-[#bbbbbb]
               `}
             > 
@@ -274,10 +283,11 @@ const SigninLayout = () => {
           onClick={handleSignIn}
           className={`
             bg-[#ACCBE4]
-            hover:bg-blue-700
+            hover:bg-[#95cfff]
             font-semibold
-            w-80
-            py-2
+            w-60 sm:w-80 xl:w-100 2xl:w-180
+            py-1 sm:py-1.5 lg:py-2 2xl:py-5
+            text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
             font-poppins
             rounded-full
             transition 
@@ -291,24 +301,25 @@ const SigninLayout = () => {
           <button
             onClick={handleSignInWithGoogle}
             className={`
-            w-80
+            w-60 sm:w-80 xl:w-100 2xl:w-180
             flex
             font-poppins 
+            text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
             items-center 
             justify-center 
             gap-5 
             bg-[#ACCBE4]
+            hover:bg-[#95cfff]
             font-semibold
-            py-2 
+            py-1 sm:py-1.5 lg:py-2 2xl:py-4 
             rounded-full
             transition 
             duration-300 
-            shadow-md 
-            hover:shadow-lg
+            
           `}>
             <FcGoogle 
             className={`
-              text-2xl
+              text-lg sm:text-2xl 2xl:text-6xl
             `}/>
               Continue with Google
           </button>
@@ -317,8 +328,8 @@ const SigninLayout = () => {
           {/* sign up redirect */}
           <div 
             className={`
-              text-sm 
-              mb-4
+              text-[10px] sm:text-[12px] lg:text-sm 2xl:text-2xl
+              mb-4 2xl:mb-8
               font-poppins 
             text-[#5E5E5E]
             `}>
