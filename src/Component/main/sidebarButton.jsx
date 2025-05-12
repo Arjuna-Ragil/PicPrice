@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const SidebarButton = ({icon, name, isOpen, destination}) => {
 
-    const [isHovered, setIsHovered] = React.useState(false);
     const location = useLocation();
 
     const isActive = location.pathname === destination;

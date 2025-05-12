@@ -32,18 +32,29 @@ const Settings = () => {
 
     <div
     className={`
+      lg:grid
+      lg:grid-cols-3
+      lg:grid-rows-5
       flex
-      justify-center
+      flex-col
+      lg:h-screen
+      lg:w-screen
+      h-full
       w-full
-      gap-10
-      min-h-screen
+      md:gap-10
+      gap-5
+      justify-center
       items-center
+      lg:p-30
+      md:pl-10
+      sm:p-10
+    
     `}>
-      <div>
+      <div className='lg:row-start-2 lg:row-end-5 max-md:mt-25'>
         <MiniNavbar selected={selected} setSelected={setSelected} userInfo={userInfo}/>
       </div>
 
-      <div>
+      <div className='lg:col-span-2 lg:row-start-2 lg:row-end-5'>
         <Setting Selected={selected} userInfo={userInfo}/>
       </div>
     </div>

@@ -23,7 +23,7 @@ const History = () => {
           px-3
           gap-15
         `}>
-          <nav>
+          <nav className='max-md:mt-20'>
             <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort} setRefresh={setRefresh}/>
           </nav>
 

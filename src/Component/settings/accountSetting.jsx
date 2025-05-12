@@ -4,7 +4,7 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../services/firebase";
 import { useAuth } from "../../hooks/authContext";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { deleteUser } from "firebase/auth";
+import { deleteUser, updateEmail } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 
 const AccountSetting = ({userInfo}) => {
@@ -18,7 +18,7 @@ const AccountSetting = ({userInfo}) => {
   const [signOut, setSignOut] = useState(false)
 
   async function handleSubmit(username, email, firstName, lastName) {
-    try {
+      updateEmail(user, email).then(async ()=> {
       const accountRef = doc(db, "users", user.uid) 
       const updateData = {
         firstName: firstName,
@@ -28,9 +28,9 @@ const AccountSetting = ({userInfo}) => {
       }
       await updateDoc(accountRef, updateData)
       console.log("successfully updated")
-    } catch (error) {
+      }).catch ((error) => {
         console.log("failed to update", error)
-    }
+    })
   }
 
   async function handleProfilePicture(event) {
@@ -82,25 +82,31 @@ const AccountSetting = ({userInfo}) => {
   }
 
     return (
-        <div className="w-150 h-115 px-5 pt-3">
-            <h2 className="text-2xl font-semibold font-poppins">Account Settings</h2>
-            <p className="font-poppins text[10px] text-[#565656]">Profile Picture </p>
+        <div className="flex flex-col w-full h-full px-5 pt-3 gap-5 ">
+            <div>
+              <h2 className="text-2xl font-semibold font-poppins dark:text-white">Account Settings</h2>
+              <p className="font-poppins text[10px] text-[#565656] dark:text-white">Profile Picture </p>
+            </div>
 
             {/* profile picture */}
             <div
             className={`
               flex
-              my-5
+              sm:flex-row
+              flex-col
+              justify-center
+              gap-5
             `}>
-              <img src={profilePicture || Profile} className="size-17 rounded-full"/>
+              <div className="max-sm:flex max-sm:justify-center max-sm:items-center max-sm:w-full">
+                <img src={profilePicture || Profile} className="size-17 rounded-full"/>
+              </div>
 
               <div
               className={`
                 flex
-                justify-center
+                flex-row
                 items-center
                 gap-2
-                ml-7
               `}>
                 <label className="
                   bg-[#161E36]
@@ -108,7 +114,8 @@ const AccountSetting = ({userInfo}) => {
                     py-2
                     rounded-sm
                     text-white
-                    text-[11px]">
+                    text-center
+                    max-sm:text-xs">
                   <input
                   type="file"
                   accept="image/*"
@@ -126,18 +133,19 @@ const AccountSetting = ({userInfo}) => {
                   py-2
                   rounded-sm
                   text-white
-                  text-[11px]
+                  max-sm:text-xs
                 `}>
                   Delete Avatar 
                 </button>
               </div>
             </div>
 
-            <div className="space-y-3 max-w-xl">
+            <div className="flex flex-col gap-5">
               {/* first and last name */}
               <div
               className={`
                 flex
+                max-sm:flex-col
                 justify-start
                 items-center
                 gap-5

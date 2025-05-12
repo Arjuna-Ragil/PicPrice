@@ -33,10 +33,13 @@ const Settings = ({Selected, userInfo}) => {
 
   return (
     <div
-    className={`  
+    className={` 
       w-full
       h-full
       bg-[#F9F9F9]
+      dark:bg-container-dark
+      justify-center
+      items-center
       p-6
       border-x-1  
       border-b-2 

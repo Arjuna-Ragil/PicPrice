@@ -8,12 +8,10 @@ import SidebarButton from './sidebarButton'
 import { useAuth } from '../../hooks/authContext'
 import { db } from '../../services/firebase'
 import { doc, getDoc } from 'firebase/firestore'
-import logo from '../../assets/sidebar/picPriceLogo.svg'
 
-const Sidebar = ({setBlur}) => {
+const SidebarSmall = ({isOpen}) => {
   const { user } = useAuth()
 
-  const [isOpen, setIsOpen] = React.useState(false);
   const [userInfo, setUserInfo] = useState([])
 
   async function getUserInfo() {
@@ -48,9 +46,7 @@ const Sidebar = ({setBlur}) => {
           p-2
           py-6
           z-50
-          ${isOpen ? "w-61" : "w-16"}`}
-          onMouseEnter={() => [setIsOpen(true), setBlur(true)]}
-          onMouseLeave={() => [setIsOpen(false),setBlur(false)]}
+          ${isOpen ? "w-61" : "w-0 bg-transparent dark:bg-transparent"}`}
         >
             <div className={`
               flex 
@@ -58,7 +54,6 @@ const Sidebar = ({setBlur}) => {
               gap-5
               items-center`}
               >
-                <img className={` size-10 mr-1 `} src={logo} alt='PicPrice Logo'/>
                 <h2 className={` font-bold text-3xl text-neutral ${isOpen ? "flex" : "hidden"}`}>PicPrice</h2>
             </div>
 
@@ -110,4 +105,4 @@ const Sidebar = ({setBlur}) => {
   )
 }
 
-export default Sidebar
+export default SidebarSmall

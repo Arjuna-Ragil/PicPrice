@@ -24,15 +24,15 @@ const ChangePassword = () => {
     className={`
       space-y-4
       font-poppins
-      w-150 
-      h-115
-      px-5
+      w-full
+      h-full
     `}>
       <h2 
       className={`
         text-2xl 
         font-semibold 
         pt-3
+        dark:text-white
       `}>
         Change Password</h2>
 
@@ -40,7 +40,6 @@ const ChangePassword = () => {
           <label 
           htmlFor="newPassword" 
           className={`
-            block 
             text-sm 
             font-medium 
             text-[#565656]
@@ -66,7 +65,6 @@ const ChangePassword = () => {
           <label 
           htmlFor="confirmPassword" 
           className={`
-            block 
             text-sm 
             font-medium 
             text-[#565656]
