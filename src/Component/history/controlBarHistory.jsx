@@ -9,7 +9,7 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
 
     async function removeAllHistoryHandler(user) {
         if (!user) {
-            console.log("not logged in");
+            alert("not logged in");
             return
         }
         try {
@@ -20,9 +20,8 @@ const ControlBarHistory = ({ historydata, search, setSearch, priceSort, setPrice
             })
             await Promise.all(deletePromises)
             setRefresh(true)
-            console.log("item deleted")
         } catch (error) {
-            console.log(error)
+            alert("failed to delete history")
         }
     }
   return (

@@ -37,7 +37,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
   async function addHistory(user, data, file) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -79,16 +79,15 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             }
 
             await updateDoc(historyRef, dataWithTimeStamp)
-            console.log("item updated")
         }
     } catch (error) {
-        console.log(error)
+        alert("failed to add to history", error)
     }
   }
 
   async function addWishlistHandler(user, data) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -97,7 +96,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         await addDoc(wishlistRef, data)
         setFilledWishlistIconHandler(true)
     } catch (error) {
-        console.log(error)
+        alert("failed to add wishlist", error)
     }
   }
 
@@ -121,7 +120,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
         return links
     } catch (error) {
-        console.log("error when searching product: ", error)
+        alert("error when searching product: ", error)
     }
   }
   
@@ -179,7 +178,6 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const raw = summary.response.text();
         const clean = raw.replace(/```json|```/g, "").trim();
         const jsonResponse = JSON.parse(clean);
-        console.log(jsonResponse)
         setResult(jsonResponse);
         setShowDetail(true)
         setShowLoading(false)
@@ -187,8 +185,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         await addHistory(user.uid, jsonResponse, firebaseImage)
 
     } catch (error) {
-      alert("didn't get the result, please try again");
-      console.log(error);
+      alert("didn't get the result, please try again", error)
     }
   }
 

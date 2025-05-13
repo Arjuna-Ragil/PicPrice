@@ -18,7 +18,7 @@ const Settings = () => {
         const getAccount = await getDoc(accountRef)
         setUserInfo(getAccount.data())
       } catch (error) {
-        console.log("failed", error)
+        alert("failed to get user", error)
       }
     }
   
