@@ -33,8 +33,8 @@ function handleSignInWithGoogle() {
             if (!(await retrieveDoc).exists()) {
               await setDoc(doc(db, "users", user.uid), {
                 email: user.email,
-                name: user.displayName,
-                profilePicture: user.photoURL
+                username: user.displayName,
+                profilePictureURL: user.photoURL
               });
             }
   
@@ -64,7 +64,7 @@ function handleSignUp() {
 
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
-        name: username,
+        username: username,
       });
 
       console.log("Account created")

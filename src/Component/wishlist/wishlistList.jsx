@@ -5,6 +5,7 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 import WishlistCard from './wishlistCard'
 import { useResizeDetector } from 'react-resize-detector'
+import wishImage3 from '../../assets/home/wishImage3.svg'
  
 const Row = ({index, style, data}) => {
   const item = data.data[index]
@@ -71,7 +72,10 @@ const WishlistList = ({searchResult, priceSort}) => {
         {Row}
       </List>
       ) : (
-        <p>No Wishlist found</p>
+        <div className="text-center h-full mt-5">
+          <p className="font-poppins dark:text-white">You don't have any wished items yet :C</p>
+          <img src={wishImage3} alt="shopping list" className="mx-auto w-1/3 mt-2"/>
+        </div>
       )}
     </div>
   )

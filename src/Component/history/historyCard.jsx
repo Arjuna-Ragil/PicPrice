@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../hooks/authContext';
 import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { db, storage } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 import search from '../../assets/history/searchIconSmall.svg'
 import buy from '../../assets/history/shopping-cart.svg'
 import like from '../../assets/history/heartIconSmall.svg'
 import trash from '../../assets/history/trash-2.svg'
+import { deleteObject, ref } from 'firebase/storage';
 
 const HistoryCard = ({item, setRefresh}) => {
 
@@ -29,7 +30,7 @@ async function addWishlistHandler(user, data) {
     }
   }
 
-  async function removeHistoryHandler(user, data) {
+  async function removeHistoryHandler(user, data, imagePath) {
     if (!user) {
         console.log("not logged in");
         return
@@ -37,8 +38,15 @@ async function addWishlistHandler(user, data) {
     try {
         const itemRef = doc(db, "users", user.uid, "history", data)
         await deleteDoc(itemRef)
-        console.log("item deleted")
-        setRefresh(true)
+
+        if (imagePath && typeof imagePath === 'string' && imagePath.trim() !== "") {
+          const imageRef = ref(storage, imagePath)
+          await deleteObject(imageRef)
+          console.log("item deleted")
+          setRefresh(true)
+        } else {
+          console.log("imagePath is not valid")
+        }
     } catch (error) {
         console.log(error)
     }
@@ -83,8 +91,8 @@ async function addWishlistHandler(user, data) {
           <button onClick={() => addWishlistHandler(user, item)} className='bg-like-btn px-3 rounded-md active:bg-like-btn-press font-poppins font-medium text-sm py-1 max-xl:hidden'>like</button>
           <img src={like} alt='like' onClick={() => addWishlistHandler(user, item)} className='xl:hidden bg-like-btn px-3 py-1 h-6.5 rounded-md active:bg-like-btn-press' />
 
-          <button onClick={() => removeHistoryHandler(user, item.id)} className='bg-delete-btn px-3 rounded-md active:bg-delete-btn-press font-poppins font-medium text-sm py-1 max-xl:hidden'>Delete</button>
-          <img src={trash} alt='delete' onClick={() => removeHistoryHandler(user, item.id)} className='xl:hidden bg-delete-btn px-3 py-1 rounded-md active:bg-delete-btn-press'/>
+          <button onClick={() => removeHistoryHandler(user, item.id, item.imagePath)} className='bg-delete-btn px-3 rounded-md active:bg-delete-btn-press font-poppins font-medium text-sm py-1 max-xl:hidden'>Delete</button>
+          <img src={trash} alt='delete' onClick={() => removeHistoryHandler(user, item.id, item.imagePath)} className='xl:hidden bg-delete-btn px-3 py-1 rounded-md active:bg-delete-btn-press'/>
         </div>
     </div>
   )

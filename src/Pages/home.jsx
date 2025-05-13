@@ -13,10 +13,10 @@ const Home = () => {
       <div className={`
         flex
         flex-col
-        sm:ml-14 lg:ml-11 xl:ml-15
+        sm:pl-12 xl:pl-10
         h-200 sm:h-lvh 
         items-center
-        w-184 sm:w-177 lg:w-247 xl:w-300 2xl:min-w-screen
+        min-w-screen 
         `}>
 
           <div>
@@ -29,7 +29,7 @@ const Home = () => {
             flex-col sm:flex-row
             justify-between
             items-center
-            w-160 lg:w-220 xl:w-270 2xl:w-500
+            sm:w-160 lg:w-220 xl:w-270 2xl:w-500
             mt-6 2xl:mt-20
             gap-7 sm:gap-0 
           `}>
@@ -41,8 +41,6 @@ const Home = () => {
             <div>
               <MiniWishlist />
             </div>
-
-
           </div>
       </div>
     </>
