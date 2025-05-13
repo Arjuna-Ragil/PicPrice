@@ -13,9 +13,9 @@ const Main = () => {
           bg-history-container
           border-2 
           rounded-xl 
-          w-100 sm:w-160 lg:w-220 xl:w-270 2xl:w-500
-          h-40 sm:h-45 lg:h-60 2xl:h-140
-          mt-10 sm:mt-12 lg:mt-10 xl:mt-4 2xl:mt-30
+          w-90 sm:w-160 lg:w-220 xl:w-270 2xl:w-500
+          h-37 sm:h-45 lg:h-60 2xl:h-140
+          mt-25 sm:mt-12 lg:mt-10 xl:mt-4 2xl:mt-30
         `}>
 
           {/* introduction */}
@@ -47,7 +47,7 @@ const Main = () => {
               font-poppins 
               px-3 sm:px-4 lg:px-5 2xl:px-10
               py-0.5 sm:py-2 2xl:py-4
-              mt-2 sm:mt-3
+              mt-4 sm:mt-3
               rounded-sm sm:rounded-xl
               text-sm 2xl:text-2xl
               hover:scale-105

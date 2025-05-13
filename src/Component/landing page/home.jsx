@@ -63,7 +63,7 @@ const Home = () => {
             <div 
             className={`
                 w-full lg:w-1/2 
-                px-6 
+                px-15 sm:px-6 
                 py-4 sm:py-0
                 text-center lg:text-left 
                 space-y-2 lg:space-y-2  2xl:space-y-10
@@ -93,67 +93,68 @@ const Home = () => {
             <div className={`
                 w-full sm:w-1/2 
                 flex 
-                justify-end sm:justify-center
-                mr-15 sm:mr-0
+                justify-center
+                
             `}>
-            <img
-            src={Laptop}
-            alt="Laptop Illustration"
-            className={`
-                hidden sm:block
-                w-full 
-                max-w-[250px] 
-                sm:max-w-[380px] 
-                lg:max-w-[550px] 
-                xl:max-w-[600px] 
-                2xl:max-w-[1080px]
-                h-auto
-            `}
-            />
+                <img
+                src={Laptop}
+                alt="Laptop Illustration"
+                className={`
+                    hidden sm:block
+                    w-full 
+                    max-w-[250px] 
+                    sm:max-w-[380px] 
+                    lg:max-w-[550px] 
+                    xl:max-w-[600px] 
+                    2xl:max-w-[1080px]
+                    h-auto
+                `}
+                />
 
-            <button
-            onClick={handleLoginClick}
-            className={`
-                sm:hidden
-                relative
-                bg-white dark:bg-background-dark
-                text-black dark:text-white
-                text-[10px] sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
-                font-bold 
-                px-2 sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
-                py-0.5 sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
-                rounded-full 
-                overflow-hidden
-                transition-all 
-                duration-500 
-                shadow-md
-                hover:text-white
-                hover:bg-button
-                hover:shadow-lg
-                group
-            `}
-            >
-            <span
-            className={`
-                absolute 
-                inset-0 
-                bg-button
-                scale-x-0 
-                origin-left 
-                transition-transform 
-                duration-300 
-                ease-in-out 
-                group-hover:scale-x-100 
-                z-0 
-                rounded-full
-            `}></span>
+                <button
+                onClick={handleLoginClick}
+                className={`
+                    sm:hidden
+                    relative
+                    bg-white dark:bg-background-dark
+                    text-black dark:text-white
+                    text-[10px] sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
+                    font-bold 
+                    px-3 sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
+                    py-1.5 sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
+                    rounded-full 
+                    overflow-hidden
+                    transition-all 
+                    duration-500 
+                    shadow-md
+                    hover:text-white
+                    hover:bg-button
+                    hover:shadow-lg
+                    group
+                `}
+                >
+                    <span
+                    className={`
+                        absolute 
+                        inset-0 
+                        bg-button
+                        scale-x-0 
+                        origin-left 
+                        transition-transform 
+                        duration-300 
+                        ease-in-out 
+                        group-hover:scale-x-100 
+                        z-0 
+                        rounded-full
+                    `}></span>
 
-            <span 
-            className={`
-                relative 
-                z-10
-            `}>Log in</span>
-            </button>
+                    <span 
+                    className={`
+                        relative 
+                        z-10
+                    `}>Log in</span>
+                </button>
+
             </div>
         </div>
     </section>
