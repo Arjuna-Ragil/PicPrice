@@ -101,7 +101,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
   }
 
   async function searchProduct(productName) {
-    const apiKey = "AIzaSyAxmryC-1v1vW7udIv3UpuNyNxdxD3BIAY"
+    const apiKey = import.meta.env.VITE_SEARCH_ENGINE_API_KEY
     const searchEngineId = "533bce3e3f5b848be"
     const query = encodeURIComponent(productName)
     const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${query}`
@@ -117,7 +117,6 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             source: new URL(item.link).hostname,
             snippet: item.snippet
         }))
-
         return links
     } catch (error) {
         alert("error when searching product: ", error)
