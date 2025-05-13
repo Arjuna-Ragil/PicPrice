@@ -50,6 +50,7 @@ const About = () => {
           xl:space-y-2 
           2xl:space-y-5
           dark:text-white
+          px-8 sm:px-0
         `}>
           
           <p 
