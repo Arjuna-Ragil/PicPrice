@@ -15,11 +15,10 @@ const Row = ({index, style, data}) => {
   )
 }
 
-const HistoryList = ({searchResult, priceSort, dateSort}) => {
+const HistoryList = ({searchResult, priceSort, dateSort, refresh, setRefresh}) => {
   const { user } = useAuth()
   const [historyData, setHistoryData] = useState([])
   const [showLoading, setShowLoading] = useState(false)
-  const [refresh, setRefresh] = useState(false)
 
   const { width, ref} = useResizeDetector()
   const itemHeightFirst = width && width < 690 ? 90 : 50

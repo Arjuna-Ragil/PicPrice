@@ -1,59 +1,151 @@
-import React from "react";
+import React, { useState } from "react";
 import Profile from  "../../assets/settings/image.svg"
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { db, storage } from "../../services/firebase";
+import { useAuth } from "../../hooks/authContext";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { deleteUser, updateEmail } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
-const AccountSetting = () => {
+const AccountSetting = ({userInfo}) => {
+
+  const { user } = useAuth()
+  const [username, setUsername] = useState(userInfo?.username || "")
+  const [email, setEmail] = useState(userInfo?.email || "")
+  const [firstName, setFirstName] = useState(userInfo?.firstName || "")
+  const [lastName, setLastName] = useState(userInfo?.lastName || "")
+  const [profilePicture, setProfilePicture] = useState(userInfo?.profilePictureURL || "")
+  const [signOut, setSignOut] = useState(false)
+
+  async function handleSubmit(username, email, firstName, lastName) {
+      updateEmail(user, email).then(async ()=> {
+      const accountRef = doc(db, "users", user.uid) 
+      const updateData = {
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email
+      }
+      await updateDoc(accountRef, updateData)
+      console.log("successfully updated")
+      }).catch ((error) => {
+        console.log("failed to update", error)
+    })
+  }
+
+  async function handleProfilePicture(event) {
+    try{
+      const image = event.target.files[0]
+
+      const timeStamp = Date.now()
+      const imageRef = ref(storage, `${user.uid}/profilePicture/${timeStamp}`)
+      await uploadBytes(imageRef, image)
+      const profilePictureURL = await getDownloadURL(imageRef)
+
+      const accountRef = doc(db, "users", user.uid)
+      const updateImage = {
+        profilePictureURL: profilePictureURL
+      }
+
+      await updateDoc(accountRef, updateImage)
+      setProfilePicture(profilePictureURL)
+    } catch (error) {
+      console.log("failed to change profile picture", error)
+    }
+  }
+
+  async function handleDeleteProfilePicture() {
+    try {
+      const accountRef = doc(db, "users", user.uid)
+      const updateImage = {
+        profilePictureURL: ""
+      }
+      await updateDoc(accountRef, updateImage)
+      setProfilePicture("")
+    } catch (error) {
+      console.log("failed to delete profile picture", error)
+    }
+  }
+
+  async function handleDeleteAccount() {
+    deleteUser(user).then( async () => {
+      const accountRef = doc(db, "users", user.uid)
+      await deleteDoc(accountRef)
+      setSignOut(true)
+    }).catch((error) => {
+      console.log("failed to delete account", error)
+    })
+  }
+
+  if (signOut) {
+    return <Navigate to={"/landingpage"} replace/>
+  }
+
     return (
-        <div className="w-150 h-115 px-5 pt-3">
-            <h2 className="text-2xl font-semibold font-poppins">Account Settings</h2>
-            <p className="font-poppins text[10px] text-[#565656]">Profile Picture </p>
+        <div className="flex flex-col w-full h-full px-5 pt-3 gap-5 ">
+            <div>
+              <h2 className="text-2xl font-semibold font-poppins dark:text-white">Account Settings</h2>
+              <p className="font-poppins text[10px] text-[#565656] dark:text-white">Profile Picture </p>
+            </div>
 
             {/* profile picture */}
             <div
             className={`
               flex
-              my-5
+              sm:flex-row
+              flex-col
+              justify-center
+              gap-5
             `}>
-              <img src={Profile} className="size-17"/>
+              <div className="max-sm:flex max-sm:justify-center max-sm:items-center max-sm:w-full">
+                <img src={profilePicture || Profile} className="size-17 rounded-full"/>
+              </div>
 
               <div
               className={`
                 flex
-                justify-center
+                flex-row
                 items-center
                 gap-2
-                ml-7
               `}>
-                <button
-                className={`
+                <label className="
                   bg-[#161E36]
+                    px-7
+                    py-2
+                    rounded-sm
+                    text-white
+                    text-center
+                    max-sm:text-xs">
+                  <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePicture}
+                  className={`hidden`}>
+                  </input>
+                  upload new Avatar
+                </label>
+    
+                <button
+                onClick={handleDeleteProfilePicture}
+                className={`
+                  bg-red-500
                   px-7
                   py-2
                   rounded-sm
                   text-white
-                  text-[11px]
-                `}>
-                  Upload New
-                </button>
-    
-                <button
-                className={`
-                bg-[#B1B1B1]
-                  px-7
-                  py-2
-                  rounded-sm
-                  text-[#565656]
-                  text-[11px]
+                  max-sm:text-xs
                 `}>
                   Delete Avatar 
                 </button>
               </div>
             </div>
 
-            <form className="space-y-3 max-w-xl">
+            <div className="flex flex-col gap-5">
               {/* first and last name */}
               <div
               className={`
                 flex
+                max-sm:flex-col
                 justify-start
                 items-center
                 gap-5
@@ -76,6 +168,8 @@ const AccountSetting = () => {
 
                   <input 
                   type="text" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className={`
                     w-full 
                     px-4 
@@ -103,6 +197,8 @@ const AccountSetting = () => {
 
                   <input 
                   type="text" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className={`
                     w-full 
                     px-4 
@@ -128,6 +224,8 @@ const AccountSetting = () => {
 
                 <input 
                 type="text" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className={`
                   w-full 
                   px-4 
@@ -152,6 +250,8 @@ const AccountSetting = () => {
 
                 <input 
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className={`
                     w-full 
                     px-4 
@@ -174,7 +274,7 @@ const AccountSetting = () => {
               `}>
 
                 <button 
-                type="submit" 
+                onClick={() => handleSubmit(username, email, firstName, lastName)}
                 className={`
                   px-6
                   py-2 
@@ -189,7 +289,7 @@ const AccountSetting = () => {
                   Save Changes</button>
 
                 <button 
-                type="button" 
+                onClick={handleDeleteAccount}
                 className={`
                   px-6
                   py-2.5 
@@ -203,7 +303,7 @@ const AccountSetting = () => {
                 `}>
                   Delete Account</button>
               </div>
-            </form>
+            </div>
           </div>
     );
 }

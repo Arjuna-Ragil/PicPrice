@@ -5,7 +5,7 @@ import camera from '../../assets/search/camera.svg'
 import { useState, useEffect } from "react";
 import { db, geminiModel } from '../../services/firebase';
 import { useAuth } from '../../hooks/authContext';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
 const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
@@ -46,31 +46,40 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
         const storage = getStorage()
         let photoURL = ""
+        let imagePath = ""
+        const timeStamp = Date.now()
         if (!firebaseSearch) {
             if (file && file.file) {
-                const imageRef = ref(storage, `history_images/${user}/${Date.now()}`)
+                const imageRef = ref(storage, `history_images/${user}/${timeStamp}`)
                 await uploadBytes(imageRef, file.file)
 
                 photoURL = await getDownloadURL(imageRef)
+                imagePath = `history_images/${user}/${timeStamp}`
             }
 
             const dataWithTimeStamp = {
                 ...data,
                 createdAt: serverTimestamp(),
                 photoURL: photoURL,
+                imagePath: imagePath
             }
             
             await addDoc(historyRef, dataWithTimeStamp)
         } else {
+            const historyRef = doc(db, "users", user, "history", firebaseSearch.id);
+
             photoURL = firebaseSearch.photoURL
+            imagePath = firebaseSearch.imagePath
 
             const dataWithTimeStamp = {
                 ...data,
                 createdAt: serverTimestamp(),
-                photoURL: photoURL
+                photoURL: photoURL,
+                imagePath: imagePath
             }
 
-            await addDoc(historyRef, dataWithTimeStamp)
+            await updateDoc(historyRef, dataWithTimeStamp)
+            console.log("item updated")
         }
     } catch (error) {
         console.log(error)
