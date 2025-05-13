@@ -4,7 +4,7 @@ import { auth } from '../../services/firebase'
 import { signOut } from 'firebase/auth'
 import photoProfile from "../../assets/settings/image.svg"
 
-const Navbar = ({selected,setSelected}) => {
+const Navbar = ({selected,setSelected, userInfo}) => {
 
     const [logout, setLogout] = useState(false)
 
@@ -32,35 +32,37 @@ const Navbar = ({selected,setSelected}) => {
         <div 
         className={`
             w-full 
-            bg-[#F9F9F9]
+            bg-container
+            dark:bg-container-dark
             p-6 
-            border-b-2
-            border-x-1 
-            border-gray-300
-            rounded-2xl
+            rounded-xl
         `}>
 
             {/* untuk foto profile */}
             <div
             className={`
                 text-center
+                flex
+                flex-col
+                items-center
+                justify-center
+                gap-2
             `}>
-                <img src={photoProfile}/>
+                <img src={userInfo.profilePictureURL || photoProfile} className="size-50 rounded-full"/>
                 <p
-                className="font-medium text-[15px]">username</p>
-                <p className="text-[12px] mb-10">username@gmail.com</p>
+                className="font-medium 2xl:text-2xl text-base dark:text-white">{userInfo.username}</p>
+                <p className="2xl:text-2xl text-base mb-10 dark:text-white">{userInfo.email}</p>
             </div>
 
-              
-            <ul className="space-y-1">
+            <ul className="sm:flex lg:flex-col sm:flex-row grid grid-cols-2 grid-rows-2 space-x-4 lg:gap-3 dark:text-white">
               {menuItems.map(item => (
                 <li key={item.id}>
                   <button
                     onClick={() => setSelected(item.id)}
-                    className={`w-full text-left px-3 py-2 rounded-full font-semibold transition font-poppins ${
+                    className={`w-full text-center px-3 py-2 rounded-full sm:font-semibold transition font-poppins max-md:text-xs ${
                       selected === item.id
-                        ? 'bg-[#C4C4C4]'
-                        : 'hover:bg-[#dfdfdf]'
+                        ? 'bg-[#C4C4C4] dark:bg-subcontainer-dark'
+                        : 'hover:bg-gray-300'
                     }`}
                   >
                     {item.label}
@@ -81,7 +83,8 @@ const Navbar = ({selected,setSelected}) => {
                 rounded-full
                 w-full
                 font-semibold
-                hover:bg-[#dfdfdf]
+                hover:bg-red-500
+                dark:text-white
             `}>
                 Logout
             </button>

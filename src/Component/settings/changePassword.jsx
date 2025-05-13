@@ -1,84 +1,45 @@
+import { updatePassword } from 'firebase/auth';
 import { React, useState } from 'react';
+import { useAuth } from '../../hooks/authContext';
 
 const ChangePassword = () => {
-  const [oldPassword, setOldPassword] = useState('');
+
+  const { user } = useAuth()
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  function handleChangePassword(newPassword, confirmPassword) {
     if (newPassword !== confirmPassword) {
-      setError('New password and confirm password do not match');
-      return;
+      return alert("Passwords is not the same")
     }
-
-    // Simulate password change
-    console.log('Old Password:', oldPassword);
-    console.log('New Password:', newPassword);
-    // Here, add logic to handle password change (e.g., API call, etc.)
-    setError('');
-    alert('Password changed successfully');
-  };
+    updatePassword(user, newPassword).then(() => {
+      console.log("password changed successfully")
+    }).catch((error) => {
+      console.log("failed to change password", error)
+    })
+  }
 
   return (
     <div 
     className={`
       space-y-4
       font-poppins
-      w-150 
-      h-115
-      px-5
+      w-full
+      h-full
     `}>
       <h2 
       className={`
         text-2xl 
         font-semibold 
         pt-3
+        dark:text-white
       `}>
         Change Password</h2>
-
-      {error && (
-        <p className="text-red-500 text-sm mb-2">{error}</p>
-      )}
-
-      <form 
-      onSubmit={handleSubmit} 
-      className={`
-        space-y-4
-      `}>
-        <div>
-          <label 
-          htmlFor="oldPassword" 
-          className={`
-            block 
-            text-sm 
-            font-medium 
-            text-[#565656]
-          `}>
-            Old Password
-          </label>
-          <input
-            type="password"
-            id="oldPassword"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-            required
-            className={`
-              mt-1 
-              p-2 
-              w-full 
-              bg-[#DFDFDF]
-              rounded-md 
-          `}/>
-        </div>
 
         <div>
           <label 
           htmlFor="newPassword" 
           className={`
-            block 
             text-sm 
             font-medium 
             text-[#565656]
@@ -104,7 +65,6 @@ const ChangePassword = () => {
           <label 
           htmlFor="confirmPassword" 
           className={`
-            block 
             text-sm 
             font-medium 
             text-[#565656]
@@ -128,7 +88,7 @@ const ChangePassword = () => {
 
         <div className="mt-5">
           <button
-            type="submit"
+            onClick={() => handleChangePassword(newPassword, confirmPassword)}
             className={`
               w-1/4
               text-[12px]
@@ -142,7 +102,6 @@ const ChangePassword = () => {
             Save Changes
           </button>
         </div>
-      </form>
     </div>
   );
 };

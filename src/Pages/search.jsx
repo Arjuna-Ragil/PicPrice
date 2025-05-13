@@ -20,9 +20,9 @@ const Search = () => {
             lg:grid
             grid-cols-7
             grid-rows-11
-            ml-10
             gap-7
             lg:px-35
+            md:pl-20
             px-3
             py-5
             flex
@@ -33,6 +33,7 @@ const Search = () => {
               col-end-8
               row-start-1
               row-end-7
+              max-md:mt-20
             `}>
               <ImageBox imageResult={setImageFile} changeImagePreview={changePreview} setFirebaseImage={setFirebaseImage} setFirebaseSearch={setFirebaseSearch}/>
             </main>

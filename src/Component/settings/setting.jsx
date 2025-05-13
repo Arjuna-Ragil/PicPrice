@@ -4,13 +4,13 @@ import ChangePassword from './changePassword';
 import AccountSetting from './accountSetting'
 import Appearance from './appearance';
 
-const Settings = ({Selected}) => {
+const Settings = ({Selected, userInfo}) => {
 
   const renderContent = () => {
     switch (Selected) {
       case 'profile':
         return (
-          <AccountSetting />
+          <AccountSetting userInfo={userInfo}/>
         );
 
       case 'appearance':
@@ -33,10 +33,13 @@ const Settings = ({Selected}) => {
 
   return (
     <div
-    className={`  
+    className={` 
       w-full
       h-full
       bg-[#F9F9F9]
+      dark:bg-container-dark
+      justify-center
+      items-center
       p-6
       border-x-1  
       border-b-2 

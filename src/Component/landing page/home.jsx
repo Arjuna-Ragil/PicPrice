@@ -154,7 +154,6 @@ const Home = () => {
                 z-10
             `}>Log in</span>
             </button>
-
             </div>
         </div>
     </section>

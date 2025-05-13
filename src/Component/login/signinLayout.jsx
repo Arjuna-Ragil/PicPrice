@@ -34,8 +34,8 @@ const SigninLayout = () => {
               if (!(await retrieveDoc).exists()) {
                 await setDoc(doc(db, "users", user.uid), {
                   email: user.email,
-                  name: user.displayName,
-                  profilePicture: user.photoURL
+                  username: user.displayName,
+                  profilePictureURL: user.photoURL
                 });
               }
     

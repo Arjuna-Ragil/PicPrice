@@ -20,7 +20,7 @@ const Wishlist = () => {
           px-3
           gap-5
         `}>
-          <nav>
+          <nav className='max-md:mt-20'>
             <ControlBarWishlist search={search} setSearch={setSearch} priceSort={priceSort} setPriceSort={setPriceSort}/>
           </nav>
 

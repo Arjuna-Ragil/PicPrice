@@ -42,8 +42,8 @@ const LanguageAndRegion = () => {
   };
   
   return (
-  <div className="flex flex-col font-poppins w-150 h-115 pt-3 pl-5">
-    <h2 className="text-2xl font-semibold mb-4">Language & Region</h2>
+  <div className="flex flex-col font-poppins w-full h-full pt-3 pl-5">
+    <h2 className="text-2xl font-semibold mb-4 dark:text-white">Language & Region</h2>
 
     {/* Language */}
     <div className="flex justify-between">
@@ -58,6 +58,7 @@ const LanguageAndRegion = () => {
         <h2
         className={`
           text-[15px]
+          dark:text-white
         `}>
           Language Selector
         </h2>
@@ -65,6 +66,7 @@ const LanguageAndRegion = () => {
         <p
         className={`
           text-[10px]
+          dark:text-white
         `}>
           Select your preferred language, this will affect interface text
         </p>
@@ -170,6 +172,7 @@ const LanguageAndRegion = () => {
         <h2
         className={`
           text-[15px]
+          dark:text-white
         `}>
           Region
         </h2>
@@ -177,6 +180,7 @@ const LanguageAndRegion = () => {
         <p
         className={`  
           text-[10px]
+          dark:text-white
         `}>
           Your selected region determines currency, date format, and some localization features.
         </p>
