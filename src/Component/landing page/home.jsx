@@ -1,55 +1,161 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Laptop from '../../assets/landingPage/laptop.svg';
-import TopBackground from '../../assets/landingPage/topBackground.png';
+import LightBackground from '../../assets/landingPage/topBackground.png';
+import DarkBackground from '../../assets/landingPage/darkNavbar.png'
 
 const Home = () => {
-  return (
+    const navigate = useNavigate();
+    const [isDark, setIsDark] = useState(false);
+
+    useEffect(() => {
+        const checkDark = () => {
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        setIsDark(isDarkMode);
+        };
+
+        checkDark(); 
+
+        const observer = new MutationObserver(checkDark);
+        observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleLoginClick = () => {
+        navigate('/signin');
+    };
+
+    return (
     <section
-      id="home"
-      className={`
+    id="home"
+    className={`
         w-full 
-        min-h-screen 
-        mb-20
+        h-55 sm:h-135 lg:h-155 xl:h-200 2xl:h-350
         font-poppins 
-        pb-30
         bg-cover
         bg-center
-        relative
         bg-no-repeat
-        lg:bg-cover
-        2xl:pb-70
-        2xl:bg-cover
-      `}
-      style={{ backgroundImage: `url(${TopBackground})` }}
+    `}
+      style={{ backgroundImage: `url(${isDark ? DarkBackground : LightBackground })` }}
     >
-      <div
+        {/* container */}
+        <div
         className={`
-          flex
-          flex-row 
-          items-center 
-          justify-center
-          relative
-          px-4 md:px-10 lg:px-20
-          w-full
-          z-10
-          min-h-screen
-          max-w-screen-2xl
-          mx-auto
+            flex 
+            flex-col lg:flex-row
+            items-center 
+            justify-center
+            relative
+            w-full
+            z-10
+            sm:h-100 xl:h-140 2xl:h-250
+            mx-auto
+            gap-2 lg:gap-18 2xl:gap-36
+            sm:px-20 xl:px-25 2xl:px-45
         `}
-      >
-        {/* Left: Text Section */}
-        <div className="w-1/2 text-left space-y-4 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold">Shop Smarter with Just a Photo</h1>
-          <p className="text-lg md:text-xl">
-            Snap it. Search it. Compare prices instantly across your favorite stores—all powered by AI.
-          </p>
-        </div>
+        >
 
-        {/* Right: Image Section */}
-        <div className="w-1/2 ">
-          <img src={Laptop} alt="Laptop Illustration" className="w-full h-auto max-w-md lg:max-w-lg xl:max-w-xl mx-auto" />
+            {/* Text Section */}
+            <div 
+            className={`
+                w-full lg:w-1/2 
+                px-6 
+                py-4 sm:py-0
+                text-center lg:text-left 
+                space-y-2 lg:space-y-2  2xl:space-y-10
+                text-white
+                
+            `}>
+                <h1 
+                className={`
+                    font-medium sm:font-bold 
+                    leading-tight
+                    text-sm sm:text-xl lg:text-4xl xl:text-5xl 2xl:text-8xl 
+                    dark:text-black
+                `}>
+                    Shop Smarter with Just a Photo
+                </h1>
+
+                <p 
+                className={`
+                    text-[10px] sm:text-xs lg:text-sm xl:text-xl 2xl:text-4xl 
+                    dark:text-black
+                `}>
+                    Snap it. Search it. Compare prices instantly across your favorite stores—all powered by AI.
+                </p>
+            </div>
+
+            {/* Image Section */}
+            <div className={`
+                w-full sm:w-1/2 
+                flex 
+                justify-end sm:justify-center
+                mr-15 sm:mr-0
+            `}>
+            <img
+            src={Laptop}
+            alt="Laptop Illustration"
+            className={`
+                hidden sm:block
+                w-full 
+                max-w-[250px] 
+                sm:max-w-[380px] 
+                lg:max-w-[550px] 
+                xl:max-w-[600px] 
+                2xl:max-w-[1080px]
+                h-auto
+            `}
+            />
+
+            <button
+            onClick={handleLoginClick}
+            className={`
+                sm:hidden
+                relative
+                bg-white dark:bg-background-dark
+                text-black dark:text-white
+                text-[10px] sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
+                font-bold 
+                px-2 sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
+                py-0.5 sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
+                rounded-full 
+                overflow-hidden
+                transition-all 
+                duration-500 
+                shadow-md
+                hover:text-white
+                hover:bg-button
+                hover:shadow-lg
+                group
+            `}
+            >
+            <span
+            className={`
+                absolute 
+                inset-0 
+                bg-button
+                scale-x-0 
+                origin-left 
+                transition-transform 
+                duration-300 
+                ease-in-out 
+                group-hover:scale-x-100 
+                z-0 
+                rounded-full
+            `}></span>
+
+            <span 
+            className={`
+                relative 
+                z-10
+            `}>Log in</span>
+            </button>
+            </div>
         </div>
-      </div>
     </section>
   );
 };

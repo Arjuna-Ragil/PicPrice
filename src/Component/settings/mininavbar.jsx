@@ -37,6 +37,7 @@ const Navbar = ({selected,setSelected, userInfo}) => {
             p-6 
             rounded-xl
         `}>
+
             {/* untuk foto profile */}
             <div
             className={`

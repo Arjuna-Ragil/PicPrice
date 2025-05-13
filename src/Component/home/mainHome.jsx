@@ -10,57 +10,54 @@ const Main = () => {
           flex 
           items-center
           justify-center
-          bg-[#F9F9F9]
+          bg-history-container
           border-2 
           rounded-xl 
-          h-60
-          mt-4
+          w-100 sm:w-160 lg:w-220 xl:w-270 2xl:w-500
+          h-40 sm:h-45 lg:h-60 2xl:h-140
+          mt-10 sm:mt-12 lg:mt-10 xl:mt-4 2xl:mt-30
         `}>
 
-          {/* keterangan */}
+          {/* introduction */}
           <div
           className={`
             flex
             flex-col
-            items-start
-            mb-2
+            items-center sm:items-start
+            lg:mb-2
+            2xl:space-y-3
           `}>
 
             <h2 
               className={`
                 font-poppins 
-                text-[33px]
+                text-lg sm:text-xl lg:text-2xl xl:text-[33px] 2xl:text-6xl
                 font-medium
-              `}>
-                Snap a Photo. Find the Best Price.
-            </h2>
+              `}>Snap a Photo. Find the Best Price.</h2>
 
             <p
             className={`
+              text-[11px] lg:text-sm 2xl:text-3xl
               font-poppins
-              font-normal
-            `}>
-              Upload a picture to discover the lowest price online.
-            </p>
+            `}>Upload a picture to discover the lowest price online.</p>
 
-            <Link className={`
-            bg-[#ACCBE4] 
-            font-poppins 
-            px-5 
-            py-2
-            mt-3
-            rounded-xl
-            hover:scale-105
-            hover:translate-y-[-2px] 
-            transition-transform 
-            duration-300 
+            <Link 
+            className={`
+              bg-shop-btn
+              font-poppins 
+              px-3 sm:px-4 lg:px-5 2xl:px-10
+              py-0.5 sm:py-2 2xl:py-4
+              mt-2 sm:mt-3
+              rounded-sm sm:rounded-xl
+              text-sm 2xl:text-2xl
+              hover:scale-105
+              hover:translate-y-[-2px] 
+              transition-transform 
+              duration-300 
             `}
             to={"/search"}
-            >
-              Find my Price
-            </Link>
+            >Find my Price</Link>
           </div>
-
 
           {/* untuk icon camera */}
           <div>
@@ -68,13 +65,12 @@ const Main = () => {
             src={picPrice}
             alt='picPrice'
             className={`
-              w-70
+              hidden sm:block
+              w-40 lg:w-60 xl:w-70 2xl:w-150
               h-auto
-              ml-30
+              ml-15 lg:ml-25 xl:ml-30 2xl:ml-60
             `}/>
           </div>
-
-            
         </main>
     </>
   )

@@ -9,12 +9,14 @@ import Footer from '../Component/landing page/footer';
 const LandingPage = () => {
   return (
     <>
-      <Navbar />
-      <Home />
-      <About />
-      <Features />
-      <Team />
-      <Footer />
+      <div className='dark:bg-[#161E36]'>
+        <Navbar />
+        <Home />
+        <About />
+        <Features />
+        <Team />
+        <Footer />
+      </div>
     </>
   );
 };

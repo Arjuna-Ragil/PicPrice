@@ -50,6 +50,30 @@
   --color-lowest-price: #37F17C;
   --color-highest-price: #FF7D7D;
 
+  /* landing page */
+  --color-border: #E0F2FE;
+  --color-border-dark: #93a0cf;
+  --color-feature: #E0F2FE;
+  --color-feature-dark: #BEC6E2;
+  --color-card: #E6E6E6;
+  --color-position: #9E9E9E;
+  --color-position-dark: #9a9b9e;
+
+  /* login page */
+  --color-linear: #ACCBE4;
+  --color-to-linear: #E4F3FF;
+  --color-container-dark: #7C84A1;
+  --color-input: #F0F0F0;
+  --color-input-dark: #BEC6E2;
+  --color-inset-input: #8d8b8b;
+  --color-placeholder: #bbbbbb;
+  --color-placeholder-dark: #9a9b9e;
+  --color-focus-dark: #a4a4a4;
+  --color-hover-button: #95cfff;
+  --color--hover-button-dark: #9fa8c9;
+  --color-redirect: #5E5E5E;
+  --color-hover-redirect: #9a9a9a;
+
   /* loading */
   --color-skeleton-load: #C9C7C6;
 
@@ -58,6 +82,14 @@
 
   /* sidebar */
   --color-sidebar-dark: #7C84A1;
+
+  /* hover */
+  --color-navbar: #a9bfff;
+  --color-button: #677dc1;
+  --color-button-dark: #beccff;
+
+  /* navbar */
+  --color-mobile:#c4e7ff;
 
   /* Typografy */
   --font-VictorMono: "VictorMono", monospace;
@@ -69,4 +101,5 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 

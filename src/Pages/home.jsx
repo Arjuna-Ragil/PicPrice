@@ -13,32 +13,32 @@ const Home = () => {
       <div className={`
         flex
         flex-col
-        ml-7
-        h-lvh
+        sm:ml-14 lg:ml-11 xl:ml-15
+        h-200 sm:h-lvh 
         items-center
+        w-184 sm:w-177 lg:w-247 xl:w-300 2xl:min-w-screen
         `}>
 
-          <div 
-          className={`
-            w-270
-          `}>
+          <div>
             <Main />
           </div>
         
           <div
           className={`
             flex
+            flex-col sm:flex-row
             justify-between
             items-center
-            w-270
-            mt-10
+            w-160 lg:w-220 xl:w-270 2xl:w-500
+            mt-6 2xl:mt-20
+            gap-7 sm:gap-0 
           `}>
 
-            <div className={``}>
+            <div>
               <Tips />
             </div>
 
-            <div className={``}>
+            <div>
               <MiniWishlist />
             </div>
 

@@ -25,15 +25,30 @@ const MiniWishlistList = () => {
   }, [user])
 
   return (
-    <div className="w-full max-h-[200px] overflow-y-auto bg-white p-4 shadow-md rounded-md">
+    <div 
+    className={`
+      w-full 
+      max-w-128 2xl:max-w-236
+      max-h-[100px] sm:max-h-[135px] lg:max-h-[167px] xl:max-h-[199px] 2xl:max-h-[312px]
+      overflow-y-auto 
+      bg-history-container
+      px-4
+      pb-2 
+      rounded-b-xl
+    `}>
       {wishlistData.length > 0 ? (
         wishlistData.map((item) => (
           <WishlistCard key={item.id} item={item} form="mini" />
         ))
       ) : (
         <div className="text-center">
-          <p className="font-poppins text-welcome-text">You don't have any wished items yet :C</p>
-          <img src={wishImage3} alt="shopping list" className="mx-auto w-1/3 mt-2"/>
+          <p 
+          className="font-poppins text-welcome-text">You don't have any wished items yet :C</p>
+          
+          <img 
+          src={wishImage3} 
+          alt="shopping list" 
+          className="mx-auto w-1/3 mt-2"/>
         </div>
       )}
     </div>
