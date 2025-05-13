@@ -20,7 +20,7 @@ function handleSignInWithGoogle() {
     const provider = new GoogleAuthProvider()
       signInWithPopup(auth, provider)
       .then(async (result) => {
-        if (!result) return console.log("no result")
+        if (!result) return alert("failed to sign in")
 
           const credential = GoogleAuthProvider.credentialFromResult(result)
           const token = credential.accessToken
@@ -49,7 +49,7 @@ function handleSignInWithGoogle() {
         const errorCode = error.code;
         const errorMessage = error.message;
         
-        console.log("failed to get account", errorMessage || errorCode || error)
+        alert("failed to get account", errorMessage || errorCode || error)
     });
   }
 
@@ -66,11 +66,9 @@ function handleSignUp() {
         email: user.email,
         username: username,
       });
-
-      console.log("Account created")
     })
-    .catch((error) => {
-      console.log(error.message)
+    .catch(() => {
+      alert("failed to sign up")
     })  
 }
 

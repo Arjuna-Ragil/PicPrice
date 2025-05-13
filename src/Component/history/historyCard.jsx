@@ -18,7 +18,7 @@ const [toShop, setToShop] = useState(false)
 
 async function addWishlistHandler(user, data) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -26,13 +26,13 @@ async function addWishlistHandler(user, data) {
         const wishlistRef = collection(userDocRef, "wishlist")
         await addDoc(wishlistRef, data)
     } catch (error) {
-        console.log(error)
+        alert("failed to add to wishlist")
     }
   }
 
   async function removeHistoryHandler(user, data, imagePath) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -42,13 +42,12 @@ async function addWishlistHandler(user, data) {
         if (imagePath && typeof imagePath === 'string' && imagePath.trim() !== "") {
           const imageRef = ref(storage, imagePath)
           await deleteObject(imageRef)
-          console.log("item deleted")
           setRefresh(true)
         } else {
-          console.log("imagePath is not valid")
+          alert("imagePath is not valid")
         }
     } catch (error) {
-        console.log(error)
+        alert("failed to delete history")
     }
   }
 

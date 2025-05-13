@@ -27,9 +27,9 @@ const AccountSetting = ({userInfo}) => {
         email: email
       }
       await updateDoc(accountRef, updateData)
-      console.log("successfully updated")
+      alert("successfully updated")
       }).catch ((error) => {
-        console.log("failed to update", error)
+        alert("failed to update", error)
     })
   }
 
@@ -49,8 +49,9 @@ const AccountSetting = ({userInfo}) => {
 
       await updateDoc(accountRef, updateImage)
       setProfilePicture(profilePictureURL)
+      alert("profile picture updated")
     } catch (error) {
-      console.log("failed to change profile picture", error)
+      alert("failed to change profile picture", error)
     }
   }
 
@@ -63,7 +64,7 @@ const AccountSetting = ({userInfo}) => {
       await updateDoc(accountRef, updateImage)
       setProfilePicture("")
     } catch (error) {
-      console.log("failed to delete profile picture", error)
+      alert("failed to delete profile picture", error)
     }
   }
 
@@ -72,8 +73,9 @@ const AccountSetting = ({userInfo}) => {
       const accountRef = doc(db, "users", user.uid)
       await deleteDoc(accountRef)
       setSignOut(true)
+      alert("account deleted")
     }).catch((error) => {
-      console.log("failed to delete account", error)
+      alert("failed to delete account", error)
     })
   }
 

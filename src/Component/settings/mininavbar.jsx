@@ -10,11 +10,10 @@ const Navbar = ({selected,setSelected, userInfo}) => {
 
     function handleSignOut() {
         signOut(auth).then(() => {
-        console.log("signOut Successfull")
         setLogout(true)
 
         }).catch((error) => {
-        console.log(`error: ${error}`)
+        alert(`failed to sign out: ${error}`)
         })
     }
 

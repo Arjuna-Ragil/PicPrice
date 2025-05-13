@@ -21,16 +21,15 @@ function handleSearhAgain() {
 
 async function removeWishlistHandler(user, data) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
         const itemRef = doc(db, "users", user.uid, "wishlist", data)
         await deleteDoc(itemRef)
         setRefresh(true)
-        console.log("item deleted")
     } catch (error) {
-        console.log(error)
+        alert("failed to remove wishlist: ",error)
     }
   }
 

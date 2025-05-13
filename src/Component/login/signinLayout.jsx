@@ -21,7 +21,7 @@ const SigninLayout = () => {
       const provider = new GoogleAuthProvider()
         signInWithPopup(auth, provider)
         .then(async (result) => {
-          if (!result) return console.log("no result")
+          if (!result) return alert("failed to sign in")
 
             const credential = GoogleAuthProvider.credentialFromResult(result)
             const token = credential.accessToken
@@ -39,10 +39,7 @@ const SigninLayout = () => {
                 });
               }
     
-              await getDoc(doc(db, "users", user.uid))
-    
-              console.log("account retrieve")
-    
+              await getDoc(doc(db, "users", user.uid)) 
               setSuccessLogin(true)
             } else {
               return 
@@ -52,7 +49,7 @@ const SigninLayout = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           
-          console.log("failed to get account", errorMessage || errorCode || error)
+          alert("failed to get account", errorMessage || errorCode || error)
       });
     }
 
@@ -60,15 +57,11 @@ const SigninLayout = () => {
         signInWithEmailAndPassword(auth, emailI, passwordI)
         .then(async (userCredential) => {
             const user = userCredential.user
-            
             await getDoc(doc(db, "users", user.uid))
-
-            console.log("account retrieve")
-
             setSuccessLogin(true)
         })
         .catch((error) => {
-            console.log("failed to retrieve account" + error.message)
+            alert("failed to retrieve account" + error.message)
         })
     }
   

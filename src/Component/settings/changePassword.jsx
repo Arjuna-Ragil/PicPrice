@@ -13,9 +13,9 @@ const ChangePassword = () => {
       return alert("Passwords is not the same")
     }
     updatePassword(user, newPassword).then(() => {
-      console.log("password changed successfully")
+      alert("password changed successfully")
     }).catch((error) => {
-      console.log("failed to change password", error)
+      alert("failed to change password", error)
     })
   }
 

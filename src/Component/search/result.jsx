@@ -37,7 +37,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
 
   async function addHistory(user, data, file) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -79,16 +79,15 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             }
 
             await updateDoc(historyRef, dataWithTimeStamp)
-            console.log("item updated")
         }
     } catch (error) {
-        console.log(error)
+        alert("failed to add to history", error)
     }
   }
 
   async function addWishlistHandler(user, data) {
     if (!user) {
-        console.log("not logged in");
+        alert("not logged in");
         return
     }
     try {
@@ -97,12 +96,12 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         await addDoc(wishlistRef, data)
         setFilledWishlistIconHandler(true)
     } catch (error) {
-        console.log(error)
+        alert("failed to add wishlist", error)
     }
   }
 
   async function searchProduct(productName) {
-    const apiKey = "AIzaSyAxmryC-1v1vW7udIv3UpuNyNxdxD3BIAY"
+    const apiKey = import.meta.env.VITE_SEARCH_ENGINE_API_KEY
     const searchEngineId = "533bce3e3f5b848be"
     const query = encodeURIComponent(productName)
     const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${query}`
@@ -118,10 +117,9 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
             source: new URL(item.link).hostname,
             snippet: item.snippet
         }))
-
         return links
     } catch (error) {
-        console.log("error when searching product: ", error)
+        alert("error when searching product: ", error)
     }
   }
   
@@ -179,7 +177,6 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         const raw = summary.response.text();
         const clean = raw.replace(/```json|```/g, "").trim();
         const jsonResponse = JSON.parse(clean);
-        console.log(jsonResponse)
         setResult(jsonResponse);
         setShowDetail(true)
         setShowLoading(false)
@@ -187,8 +184,7 @@ const Result = ({processImage, retry, firebaseImage, firebaseSearch}) => {
         await addHistory(user.uid, jsonResponse, firebaseImage)
 
     } catch (error) {
-      alert("didn't get the result, please try again");
-      console.log(error);
+      alert("didn't get the result, please try again", error)
     }
   }
 
