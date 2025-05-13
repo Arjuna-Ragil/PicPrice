@@ -19,7 +19,8 @@ const Team = () => {
       <p 
       className={`
         text-center 
-        text-[12px] sm:text-[13px] lg:text-[15px] 2xl:text-3xl
+        text-xs sm:text-[13px] lg:text-[15px] 2xl:text-3xl
+        dark:text-white
       `}>Meet our amazing team</p>
 
       <h2 
@@ -28,6 +29,7 @@ const Team = () => {
         font-semibold 
         mb-5 sm:mb-7 lg:mb-10 2xl:mb-18
         text-center
+        dark:text-white
       `}>Our Team</h2>
       
       {/* container card */}
@@ -45,8 +47,8 @@ const Team = () => {
         <div 
         className={`
           relative 
-          w-45 sm:w-50 lg:w-70 xl:w-80 2xl:w-150
-          h-60 sm:h-80 lg:h-100 xl:h-110 2xl:h-180
+          w-45 sm:w-50 lg:w-70 2xl:w-150
+          h-60 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -60,21 +62,21 @@ const Team = () => {
             left-1 
             w-full 
             h-full 
-            bg-[#E0F2FE]
+            bg-border dark:bg-border-dark
             rotate-[9deg] 
             rounded-3xl 
-            -z-10
+            -z-10 dark:z-0
           `}/>
 
           {/* white card*/}
           <div 
           className={`
             relative
-            bg-white 
+            bg-white dark:bg-feature-dark
             border-x-1 
             border-b-2 
             border-t-1 
-            border-[#E6E6E6]
+            border-card dark:border-none
             shadow-lg 
             flex 
             flex-col 
@@ -99,16 +101,17 @@ const Team = () => {
               text-center
               2xl:space-y-1
             `}>
+
               <h3 
               className={`
-                text-[12px] sm:text-sm lg:text-xl xl:text-2xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
                 font-semibold 
               `}>Ahmad Ihsan</h3>
 
               <p 
               className={`
-                text-[#9E9E9E]
-                text-[9px] sm:text-[11px] lg:text-sm xl:text-lg 2xl:text-2xl
+                text-position dark:text-position-dark
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
               `}>Front-End</p>
             </div>
             
@@ -116,7 +119,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-3 
+              gap-2
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2 
             `}>
@@ -127,8 +130,8 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaGithub 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
-                  hover:text-black 
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
+                  hover:text-black dark:hover:text-gray-200
                   transition
                 `}/>
               </a>
@@ -139,7 +142,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaInstagram 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-pink-500 
                   transition
                 `}/>
@@ -151,7 +154,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaLinkedin 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-blue-600 
                   transition
                 `}/>
@@ -161,9 +164,9 @@ const Team = () => {
             <p 
             className={`
               text-center 
-              text-[10px] sm:text-[12px] lg:text-sm xl:text-lg 2xl:text-2xl
+              text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
             `}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.
+              Finding synergy in every challenge.
             </p>
           </div>
         </div>
@@ -171,8 +174,8 @@ const Team = () => {
         {/* Card 2 */}
         <div className={`
           relative 
-          w-45 sm:w-50 lg:w-70 xl:w-80 2xl:w-150
-          h-60 sm:h-80 lg:h-100 xl:h-110 2xl:h-180
+          w-45 sm:w-50 lg:w-70 2xl:w-150
+          h-60 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -185,20 +188,20 @@ const Team = () => {
             left-1 
             w-full 
             h-full 
-            bg-[#E0F2FE]
+            bg-border dark:bg-border-dark
             rotate-[9deg] 
             rounded-3xl 
-            -z-10
+            -z-10 dark:z-0
           `}/>
 
             {/* White card */}
           <div className={`
             relative
-            bg-white 
+            bg-white dark:bg-feature-dark
             border-x-1 
             border-b-2 
             border-t-1 
-            border-[#E6E6E6]
+            border-[#E6E6E6] dark:border-none
             shadow-lg 
             flex 
             flex-col 
@@ -223,16 +226,17 @@ const Team = () => {
               text-center
               2xl:space-y-1
             `}>
+              
               <h3 
               className={`
-                text-[12px] sm:text-sm lg:text-xl xl:text-2xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
                 font-semibold 
               `}>Arjuna ragil</h3>
 
               <p 
               className={`
-                text-[#9E9E9E]
-                text-[9px] sm:text-[11px] lg:text-sm xl:text-lg 2xl:text-2xl
+                text-position dark:text-position-dark
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
               `}>Front-End/Back-End</p>
             </div>
             
@@ -240,7 +244,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-3 
+              gap-2
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2
             `}>
@@ -251,8 +255,8 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaGithub 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
-                  hover:text-black 
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
+                  hover:text-black dark:hover:text-gray-200
                   transition
                 `}/>
               </a>
@@ -263,7 +267,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaInstagram 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-pink-500 
                   transition
                 `}/>
@@ -275,7 +279,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaLinkedin 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-blue-600 
                   transition
                 `}/>
@@ -285,9 +289,9 @@ const Team = () => {
             <p 
             className={`
               text-center 
-              text-[10px] sm:text-[12px] lg:text-sm xl:text-lg 2xl:text-2xl
+              text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
             `}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.
+              Driven by innovation, grounded in excellence.
             </p>
           </div>
         </div>
@@ -296,8 +300,8 @@ const Team = () => {
         <div 
         className={`
           relative 
-          w-45 sm:w-50 lg:w-70 xl:w-80 2xl:w-150
-          h-60 sm:h-80 lg:h-100 xl:h-110 2xl:h-180
+          w-45 sm:w-50 lg:w-70 2xl:w-150
+          h-60 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -311,21 +315,21 @@ const Team = () => {
             left-1 
             w-full 
             h-full 
-            bg-[#E0F2FE]
+            bg-border dark:bg-border-dark
             rotate-[9deg] 
             rounded-3xl 
-            -z-10
+            -z-10 dark:z-0
           `}/>
 
           {/* white card*/}
           <div 
           className={`
             relative
-            bg-white 
+            bg-white dark:bg-feature-dark
             border-x-1 
             border-b-2 
             border-t-1 
-            border-[#E6E6E6]
+            border-[#E6E6E6] dark:border-none
             shadow-lg 
             flex 
             flex-col 
@@ -350,16 +354,17 @@ const Team = () => {
               text-center
               2xl:space-y-1
             `}>
+              
               <h3 
               className={`
-                text-[12px] sm:text-sm lg:text-xl xl:text-2xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
                 font-semibold 
               `}>Sarah Fajriah</h3>
 
               <p 
               className={`
-                text-[#9E9E9E]
-                text-[9px] sm:text-[11px] lg:text-sm xl:text-lg 2xl:text-2xl
+                text-position dark:text-position-dark
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
               `}>UI/UX</p>
             </div>
                 
@@ -367,7 +372,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-3 
+              gap-2
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2
             `}>
@@ -378,8 +383,8 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaGithub 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
-                  hover:text-black 
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
+                  hover:text-black dark:hover:text-gray-200
                   transition
                 `}/>
               </a>
@@ -390,7 +395,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaInstagram 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-pink-500 
                   transition
                 `}/>
@@ -402,7 +407,7 @@ const Team = () => {
               rel="noopener noreferrer">
                 <FaLinkedin 
                 className={`
-                  sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
+                  sm:text-xl lg:text-2xl 2xl:text-5xl
                   hover:text-blue-600 
                   transition
                 `}/>
@@ -412,9 +417,9 @@ const Team = () => {
             <p 
             className={`
               text-center 
-              text-[10px] sm:text-[12px] lg:text-sm xl:text-lg 2xl:text-2xl
+              text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
             `}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.
+              Bringing positive energy to the forefront.
             </p>
           </div>
         </div>

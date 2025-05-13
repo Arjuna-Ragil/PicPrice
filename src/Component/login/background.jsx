@@ -7,7 +7,8 @@ const BackgroundLogin = ({direction}) => {
         h-full
         w-full
         -z-10
-        ${direction} from-[#ACCBE4] to-[#E4F3FF]
+        dark:bg-background-dark
+        ${direction} from-linear to-to-linear 
     `}>
     
     </div>

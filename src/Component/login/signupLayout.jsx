@@ -75,7 +75,8 @@ function handleSignUp() {
 }
 
 return (
-  <div className={`
+  <div 
+  className={`
     flex 
     items-center 
     justify-center
@@ -93,10 +94,8 @@ return (
         w-full 2xl:w-260
         h-135 2xl:h-300
         object-contain
-      `}
-      />
+      `}/>
     </div>
-
 
     {/* form signup */}
     <div
@@ -110,13 +109,13 @@ return (
       sm:h-120 lg:h-125 xl:h-125 2xl:h-300
       2xl:mr-80
       lg:ml-10
-      bg-transparent sm:bg-[#ffffff]
-      
+      bg-transparent sm:bg-white dark:sm:bg-container-dark
       sm:rounded-none lg:rounded-3xl 
       sm:shadow-2xl
       transition-all 
       duration-300
     `}>
+
       <h2 
       className={`
         text-lg sm:text-xl xl:text-3xl 2xl:text-6xl
@@ -124,8 +123,7 @@ return (
         font-poppins
         xl:mt-5 
         mb-2 2xl:mb-15
-      `}>
-        Sign Up</h2>
+      `}>Sign Up</h2>
 
       {/* Username */}
       <div 
@@ -145,13 +143,13 @@ return (
           pl-4 2xl:pl-12
           pr-4 2xl:pr-10
           py-1 sm:py-2 2xl:py-7
-          bg-[#F0F0F0]
+          bg-input dark:bg-input-dark
           rounded-full
           placeholder-transparent 
-          text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+          text-xs sm:text-sm lg:text-lg 2xl:text-3xl
           focus:outline-none 
           focus:inset-ring-1
-          focus:inset-ring-[#8d8b8b]
+          focus:inset-ring-inset-input
           transition-all
         `}/>
 
@@ -160,17 +158,17 @@ return (
         htmlFor='username'
         className={`
           absolute 
-                text-[#bbbbbb]
-                left-4 2xl:left-12
-                font-poppins 
-                text-[16px] 2xl:text-2xl
-                transition-all 
-                peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
-                peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
-              peer-placeholder-shown:text-[#bbbbbb] 
-                peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
-                peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
-              peer-focus:text-[#bbbbbb]
+          text-placeholder dark:text-placeholder-dark
+          left-4 2xl:left-12
+          font-poppins 
+          text-[16px] 2xl:text-2xl
+          transition-all 
+          peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+          peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
+          peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
+          peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
+          peer-focus:text-[10px] sm:peer-focus:text-xs lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
+          peer-focus:text-placeholder dark:peer-focus:text-focus-dark
         `}>
           Username</label>)}
       </div>
@@ -194,13 +192,13 @@ return (
           pl-4 2xl:pl-12
           pr-4 2xl:pr-10
           py-1 sm:py-2 2xl:py-7
-          bg-[#F0F0F0]
+          bg-input dark:bg-input-dark
           rounded-full
           placeholder-transparent 
-          text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+          text-xs sm:text-sm lg:text-lg 2xl:text-3xl
           focus:outline-none 
           focus:inset-ring-1
-          focus:inset-ring-[#8d8b8b]
+          focus:inset-ring-inset-input
           transition-all
         `}/>
 
@@ -208,20 +206,19 @@ return (
         <label 
         htmlFor='email'
         className={`
-         absolute 
-                text-[#bbbbbb]
-                left-4 2xl:left-12
-                font-poppins 
-                text-[16px] 2xl:text-2xl
-                transition-all 
-                peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
-                peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
-              peer-placeholder-shown:text-[#bbbbbb] 
-                peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
-                peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
-              peer-focus:text-[#bbbbbb]
-        `}>
-            Email</label>)}
+          absolute 
+          text-placeholder dark:text-placeholder-dark
+          left-4 2xl:left-12
+          font-poppins 
+          text-[16px] 2xl:text-2xl
+          transition-all 
+          peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+          peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
+          peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
+          peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
+          peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
+          peer-focus:text-placeholder dark:peer-focus:text-focus-dark
+        `}>Email</label>)}
       </div>
 
       {/* Password */}
@@ -241,13 +238,13 @@ return (
           pl-4 2xl:pl-12
           pr-10 2xl:pr-10
           py-1 sm:py-2 2xl:py-7
-          bg-[#F0F0F0]
+          bg-input dark:bg-input-dark
           rounded-full
           placeholder-transparent 
-          text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+          text-xs sm:text-sm lg:text-lg 2xl:text-3xl
           focus:outline-none 
           focus:inset-ring-1
-          focus:inset-ring-[#8d8b8b]
+          focus:inset-ring-inset-input
           transition-all
         `}/>
 
@@ -258,7 +255,7 @@ return (
           right-4 
           top-1/2 
           -translate-y-1/2 
-          text-[#bbbbbb]
+          text-placeholder dark:text-placeholder-dark
           cursor-pointer
         `}>
           {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -269,21 +266,19 @@ return (
         htmlFor="password"
         className={`
           absolute 
-                text-[#bbbbbb]
-                left-4 2xl:left-12
-                font-poppins 
-                text-[16px] 2xl:text-2xl
-                transition-all 
-                peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
-                peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
-              peer-placeholder-shown:text-[#bbbbbb] 
-                peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
-                peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
-              peer-focus:text-[#bbbbbb]
-        `}>
-            Password</label>)}
+          text-placeholder dark:text-placeholder-dark
+          left-4 2xl:left-12
+          font-poppins 
+          text-[16px] 2xl:text-2xl
+          transition-all 
+          peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+          peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
+          peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
+          peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
+          peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
+          peer-focus:text-placeholder dark:peer-focus:text-focus-dark
+        `}>Password</label>)}
       </div>
-
 
       {/* confirm password */}
       <div 
@@ -303,13 +298,13 @@ return (
           pl-4 2xl:pl-12
           pr-4 2xl:pr-10
           py-1 sm:py-2 2xl:py-7
-          bg-[#F0F0F0]
+          bg-input dark:bg-input-dark
           rounded-full
           placeholder-transparent 
-          text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+          text-xs sm:text-sm lg:text-lg 2xl:text-3xl
           focus:outline-none 
           focus:inset-ring-1
-          focus:inset-ring-[#8d8b8b]
+          focus:inset-ring-inset-input
           transition-all
         `}/>
 
@@ -318,17 +313,17 @@ return (
         htmlFor='confirmPassword'  
         className={`
           absolute 
-                text-[#bbbbbb]
-                left-4 2xl:left-12
-                font-poppins 
-                text-[16px] 2xl:text-2xl
-                transition-all 
-                peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
-                peer-placeholder-shown:text-[12px] sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
-              peer-placeholder-shown:text-[#bbbbbb] 
-                peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
-                peer-focus:text-[10px] sm:peer-focus:text-[12px] lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
-              peer-focus:text-[#bbbbbb]
+          text-placeholder dark:text-placeholder-dark
+          left-4 2xl:left-12
+          font-poppins 
+          text-[16px] 2xl:text-2xl
+          transition-all 
+          peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+          peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
+        peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
+          peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
+          peer-focus:text-[10px] sm:peer-focus:text-xs lg:peer-focus:text-sm 2xl:peer-focus:text-2xl
+        peer-focus:text-placeholder dark:peer-focus:text-focus-dark
         `}>
             Confirm Password</label>)}
       </div>
@@ -338,70 +333,65 @@ return (
       <button
       onClick={handleSignUp}
       className={`
-        bg-[#ACCBE4]
-            hover:bg-[#95cfff]
-            font-semibold
-            w-60 sm:w-80 xl:w-100 2xl:w-180
-            py-1 sm:py-1.5 lg:py-2 2xl:py-5
-            text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
-            font-poppins
-            rounded-full
-            transition 
-            duration-300
-        `}>
-          Sign Up</button>
+        bg-linear dark:bg-white
+        hover:bg-hover-button dark:hover:bg-hover-button-dark
+        font-semibold
+        w-60 sm:w-80 xl:w-100 2xl:w-180
+        py-1 sm:py-1.5 lg:py-2 2xl:py-5
+        text-xs sm:text-sm lg:text-lg 2xl:text-3xl
+        font-poppins
+        rounded-full
+        transition 
+        duration-300
+        `}>Sign Up</button>
+
 
       {/* button continue with google */}
       <button
       onClick={handleSignInWithGoogle}
       className={`
         w-60 sm:w-80 xl:w-100 2xl:w-180
-            flex
-            font-poppins 
-            text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
-            items-center 
-            justify-center 
-            gap-5 
-            bg-[#ACCBE4]
-            hover:bg-[#95cfff]
-            font-semibold
-            py-1 sm:py-1.5 lg:py-2 2xl:py-4 
-            rounded-full
-            transition 
-            duration-300 
-          
+        flex
+        font-poppins 
+        text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
+        items-center 
+        justify-center 
+        gap-5 
+        bg-linear dark:bg-white
+        hover:bg-hover-button dark:hover:bg-hover-button-dark
+        font-semibold
+        py-1 sm:py-1.5 lg:py-2 2xl:py-4 
+        rounded-full
+        transition 
+        duration-300  
       `}>
 
         <FcGoogle 
         className={`
           text-lg sm:text-2xl 2xl:text-6xl
-        `}/>
-          continue with google
+        `}/>continue with google
       </button>
 
       {/* signin redirect */}
       <div 
       className={`
-        text-[10px] sm:text-[12px] lg:text-sm 2xl:text-2xl
-              mb-4 2xl:mb-8
-              font-poppins 
-            text-[#5E5E5E]
-      `}>
-        Already have an account?{' '}
+        text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
+        mb-4 2xl:mb-8
+        font-poppins 
+      text-redirect
+      `}>Already have an account?{' '}
 
         <Link 
         to="/signin" 
         className={`
-          text-[#5E5E5E]
+          text-redirect
           hover:underline 
-          hover:text-[#9a9a9a]
+          hover:text-hover-redirect
           transition-all 
           duration-200
           font-semibold
           font-poppins
-        `}>
-          Sign in
-        </Link>
+        `}>Sign in</Link>
       </div>
     </div>
   </div>

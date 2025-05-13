@@ -11,6 +11,7 @@ const SignUp = () => {
         justify-center
         items-center
         h-screen
+        dark:bg-[#161E36]
         `}>
         <SignUpLayout />
         </div>

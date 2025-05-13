@@ -4,7 +4,7 @@ const Background = () => {
   return (
     <div className={`
         fixed
-        bg-[#FFFFFF]
+        bg-white
         dark:bg-background-dark
         h-full
         w-full

@@ -6,28 +6,34 @@ const Features = () => {
     <section 
     id="features" 
     className={`
-        py-31
-        sm:px-9 lg:px-12 xl:px-14 2xl:px-25
-        font-poppins
-        w-full
-        h-full
+      py-31
+      sm:px-9 lg:px-12 xl:px-14 2xl:px-25
+      font-poppins
+      w-full
+      h-full
     `}>
-        <p 
-        className={`
-          text-center 
-          text-[11px] sm:text-[13px] lg:text-[15px] 2xl:text-3xl
-        `}>Web Features</p>
+      
+      <p 
+      className={`
+        text-center 
+        text-[11px] sm:text-[13px] lg:text-[15px] 2xl:text-3xl
+        dark:text-white
+        `}>
+          Web Features</p>
 
-        <h2 
-        className={`
-          text-lg sm:text-xl lg:text-3xl 2xl:text-6xl
-          font-semibold 
-          sm:mb-5 lg:mb-8 2xl:mb-15
-          text-center
-        `}>Awesome Features</h2>
+      <h2 
+      className={`
+        text-lg sm:text-xl lg:text-3xl 2xl:text-6xl
+        font-semibold 
+        sm:mb-5 lg:mb-8 2xl:mb-15
+        text-center
+        dark:text-white
+      `}>
+        Awesome Features</h2>
 
       {/* container */}
-      <div className={`
+      <div 
+      className={`
         flex
         flex-col sm:flex-row 
         items-center 
@@ -38,16 +44,16 @@ const Features = () => {
         {/* first feature */}
         <div 
         className={`
-            bg-[#E0F2FE] 
-            w-50 sm:w-80 xl:w- 2xl:w-130
-            h-50 sm:h-80 xl:h- 2xl:h-130
-            py-6 sm:py-8 lg:py-13 xl:py-15 2xl:py-20
-            px-8 sm:px-10 2xl:px-20
-            rounded-3xl 
-            space-y-1 lg:space-y-2 xl:space-y-3 2xl:space-y-6
-            text-left
+          bg-feature dark:bg-feature-dark
+          w-50 sm:w-80 2xl:w-130
+          h-50 sm:h-80 2xl:h-130
+          py-6 sm:py-8 lg:py-13 xl:py-15 2xl:py-20
+          px-8 sm:px-10 2xl:px-20
+          rounded-3xl 
+          space-y-1 lg:space-y-2 xl:space-y-3 2xl:space-y-6
+          text-left
           `}>
-
+            
             <img 
             src={Feature} 
             className={`
@@ -59,18 +65,20 @@ const Features = () => {
               text-sm sm:text-lg lg:text-xl 2xl:text-4xl
               font-semibold 
               mb-1 sm:mb-2
-            `}>Search using Gemini AI</h3>
+            `}>
+              Search using Gemini AI</h3>
 
             <p
             className={`
-              text-[10px] sm:text-[12px] 2xl:text-2xl   
-            `}>Instantly identify products just by uploading a photo—Gemini AI understands images and finds what you're looking for.</p>
+              text-[10px] sm:text-xs 2xl:text-2xl   
+            `}>
+              Instantly identify products just by uploading a photo—Gemini AI understands images and finds what you're looking for.</p>
           </div> 
           
           {/* second feature */}
           <div 
           className={`
-            bg-[#E0F2FE] 
+            bg-feature dark:bg-feature-dark
             w-50 sm:w-80 xl:w- 2xl:w-130
             h-50 sm:h-80 xl:h- 2xl:h-130
             py-6 sm:py-8 lg:py-13 xl:py-15 2xl:py-20
@@ -94,14 +102,14 @@ const Features = () => {
 
             <p 
             className={`
-              text-[10px] sm:text-[12px] 2xl:text-2xl
+              text-[10px] sm:text-xs 2xl:text-2xl
             `}>Compare prices from various online stores to ensure you get the best deal across the web.</p>
           </div>
             
           {/* third feature */}
           <div 
           className={`
-            bg-[#E0F2FE] 
+            bg-feature dark:bg-feature-dark
             w-50 sm:w-80 xl:w- 2xl:w-130
             h-50 sm:h-80 xl:h- 2xl:h-130
             py-6 sm:py-8 lg:py-13 xl:py-15 2xl:py-20
@@ -125,7 +133,7 @@ const Features = () => {
 
             <p
             className={`
-              text-[10px] sm:text-[12px] 2xl:text-2xl
+              text-[10px] sm:text-xs 2xl:text-2xl
             `}>Add items to your wishlist to track prices and revisit your favorite finds anytime.</p>
           </div>
       </div>
