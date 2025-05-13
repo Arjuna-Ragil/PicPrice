@@ -76,7 +76,7 @@ const SidebarSmall = ({isOpen}) => {
 
               <SidebarButton activeIcon={activesearch} deactiveIcon={deactivesearch} name={"Search Price"} isOpen={isOpen} destination={"/search"}/>
               
-              <SidebarButton activeIcon={activeheart} deactiveIcon={deactiveheart} isOpen={isOpen} destination={"/wishlist"}/>
+              <SidebarButton activeIcon={activeheart} deactiveIcon={deactiveheart} name={"Wishlist"} isOpen={isOpen} destination={"/wishlist"}/>
 
               <SidebarButton activeIcon={activesetting} deactiveIcon={deactivesetting} name={"Settings"} isOpen={isOpen} destination={"/setting"}/>
             </div>
