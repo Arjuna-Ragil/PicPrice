@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Color */
   --color-primary: #1E3A8A;
@@ -9,20 +11,85 @@
   --color-accent-dark: #0F172A;
   --color-neutral: #F8FAFC;
   --color-control-bg: #9CD6FF;
+  --color-primary-dark: #7db2de;
 
   /* homepage */
   --color-welcome-text: #1E205B;
   --color-welcome-main-outline: #327191;
 
   /* searchpage */
-  --color-searchpagetitle-text: #BEF2FF;
-  --color-average: #C99E59;
-  --color-lowest: #228B22;
-  --color-highest: #A52F2F;
+  --color-input-btn: #161E36;
+  --color-average: #DBEAFE;
+  --color-lowest: #C7F9CC;
+  --color-highest: #FFADAD;
+  --color-container: #F5F5F5;
+  --color-container-dark: #7C84A1;
+  --color-subcontainer-dark: #565F7E;
+  --color-refresh-btn: #E0F2FE;
+  --color-refresh-btn-hover: #B2E0F0;
+  --color-change-btn: #FEF9C3;
+  --color-change-btn-hover: #FEEBC8;
+  --color-history-btn: #F3E8FF;
+  --color-history-btn-hover: #E9D5FF;
+  --color-shop-btn: #ACCBE4;
+
+  /* history and wishlist page */
+  --color-history-container: #F9F9F9;
+  --color-sort-btn: #161E36;
+  --color-delete-all: #F87171;
+  --color-delete-all-press: #FF6065;
+  --color-search-btn: #C7E3F9;
+  --color-search-btn-press: #B6D7FF;
+  --color-buy-btn: #C7F9CC;
+  --color-buy-btn-press: #96FF7E;
+  --color-like-btn: #CAC7F9;
+  --color-like-btn-press: #BA55FF;
+  --color-delete-btn: #F9C7C8;
+  --color-delete-btn-press: #F94449;
+  --color-average-price: #8BAAFF;
+  --color-lowest-price: #37F17C;
+  --color-highest-price: #FF7D7D;
+
+  /* landing page */
+  --color-border: #E0F2FE;
+  --color-border-dark: #93a0cf;
+  --color-feature: #E0F2FE;
+  --color-feature-dark: #BEC6E2;
+  --color-card: #E6E6E6;
+  --color-position: #9E9E9E;
+  --color-position-dark: #9a9b9e;
+
+  /* login page */
+  --color-linear: #ACCBE4;
+  --color-to-linear: #E4F3FF;
+  --color-container-dark: #7C84A1;
+  --color-input: #F0F0F0;
+  --color-input-dark: #BEC6E2;
+  --color-inset-input: #8d8b8b;
+  --color-placeholder: #bbbbbb;
+  --color-placeholder-dark: #9a9b9e;
+  --color-focus-dark: #a4a4a4;
+  --color-hover-button: #95cfff;
+  --color--hover-button-dark: #9fa8c9;
+  --color-redirect: #5E5E5E;
+  --color-hover-redirect: #9a9a9a;
+
+  /* loading */
+  --color-skeleton-load: #C9C7C6;
 
   /* background */
-  --color-backgroundOne: #FFFFFF;
-  --color-backgroundTwo: #1AC4E1;
+  --color-background-dark: #161E36;
+
+  /* sidebar */
+  --color-sidebar-dark: #7C84A1;
+
+  /* hover */
+  --color-navbar: #a9bfff;
+  --color-button: #677dc1;
+  --color-button-dark: #beccff;
+
+  /* navbar */
+  --color-mobile:#c4e7ff;
 
   /* Typografy */
   --font-VictorMono: "VictorMono", monospace;
@@ -34,4 +101,5 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 

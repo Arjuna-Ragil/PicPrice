@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../layout/mainLayout'
-import Title from '../Component/common/title'
-import ControlBar from '../Component/wishlist/controlBar'
-import WishlistList from '../Component/wishlist/wishlistList'
 import HistoryList from '../Component/history/historyList'
+import ControlBarHistory from '../Component/history/controlBarHistory'
 
 const History = () => {
+  const [search, setSearch] = useState("")
+  const [priceSort, setPriceSort] = useState("")
+  const [dateSort, setDateSort] = useState("")
+  const [refresh, setRefresh] = useState(false)
+
   return (
     <>
         <MainLayout/>
@@ -13,19 +16,19 @@ const History = () => {
           flex
           flex-col
           py-5
-          px-35
-          gap-5
+          xl:px-35
+          lg:pr-10
+          pr-5
+          md:pl-20
+          px-3
+          gap-15
         `}>
-          <header>
-            <Title title={"History"}/>
-          </header>
-
-          <nav>
-            <ControlBar/>
+          <nav className='max-md:mt-20'>
+            <ControlBarHistory search={search} setSearch={setSearch} setPriceSort={setPriceSort} dateSort={dateSort} setDateSort={setDateSort} setRefresh={setRefresh}/>
           </nav>
 
           <main>
-            <HistoryList/>
+            <HistoryList searchResult={search} priceSort={priceSort} dateSort={dateSort} refresh={refresh} setRefresh={setRefresh}/>
           </main>
         </div>
     </>

@@ -12,8 +12,7 @@ const Welcome = () => {
             text-3xl
             font-semibold
             text-welcome-text
-            `}>
-                Welcome to PicPrice, Guest!</h1>
+            `}>Welcome to PicPrice, Guest!</h1>
     </div>
   )
 }

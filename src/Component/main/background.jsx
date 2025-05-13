@@ -4,9 +4,8 @@ const Background = () => {
   return (
     <div className={`
         fixed
-        bg-gradient-to-br
-        from-backgroundOne
-        to-backgroundTwo
+        bg-white
+        dark:bg-background-dark
         h-full
         w-full
         -z-10
