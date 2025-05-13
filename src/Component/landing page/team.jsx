@@ -125,7 +125,7 @@ const Team = () => {
             `}>
 
               <a 
-              href="https://github.com/ahmadihsan" 
+              href="https://github.com/amdihsann" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaGithub 
@@ -137,7 +137,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://instagram.com/ahmadihsan" 
+              href="https://www.instagram.com/iiisssnnnnn/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaInstagram 
@@ -149,7 +149,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://linkedin.com/in/ahmadihsan" 
+              href="https://www.linkedin.com/in/ahmadihsan-/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaLinkedin 
@@ -250,7 +250,7 @@ const Team = () => {
             `}>
 
               <a 
-              href="https://github.com/ahmadihsan" 
+              href="https://github.com/Arjuna-Ragil" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaGithub 
@@ -262,7 +262,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://instagram.com/ahmadihsan" 
+              href="https://www.instagram.com/arjuna_ragill/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaInstagram 
@@ -274,7 +274,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://linkedin.com/in/ahmadihsan" 
+              href="https://www.linkedin.com/in/arjunaragilputera/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaLinkedin 
@@ -378,7 +378,7 @@ const Team = () => {
             `}>
 
               <a 
-              href="https://github.com/ahmadihsan" 
+              href="https://github.com/s-erzv" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaGithub 
@@ -390,7 +390,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://instagram.com/ahmadihsan" 
+              href="https://www.instagram.com/s.erzv/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaInstagram 
@@ -402,7 +402,7 @@ const Team = () => {
               </a>
 
               <a 
-              href="https://linkedin.com/in/ahmadihsan" 
+              href="https://www.linkedin.com/in/serzv/" 
               target="_blank" 
               rel="noopener noreferrer">
                 <FaLinkedin 
