@@ -1,12 +1,72 @@
-# React + Vite
+# 📸 PicPrice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PicPrice is an AI-powered web application that allows users to upload or take a picture of a product and instantly search for its average price across multiple online platforms.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 **Image-Based Price Search**  
+  Upload an image or use your device camera to find product prices instantly.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧠 **AI-Powered Product Recognition**  
+  Utilizes AI to identify products from images.
+
+- 💾 **Search History**  
+  View and reprocess your past searches.
+
+- ❤️ **Wishlist**  
+  Save your favorite products to your personal wishlist.
+
+- 👤 **User Accounts**  
+  Firebase Authentication for secure sign-in and sign-up.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, Tailwind CSS  
+- **Backend:** Firebase (Authentication, Firestore, Storage, Hosting, Vertex AI)  
+- **AI Integration:** Gemini (Google AI)  
+- **Routing:** React Router
+
+---
+
+## 🌏 Website Link
+
+https://picprice-73be9.web.app/
+
+---
+
+## 📦 Installation and help for Developer
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/picprice.git
+
+# Navigate into the project folder
+cd picprice
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+# Folder Structure
+src/
+├── assets/            # Static assets (icons, logos, images)
+├── components/        # Reusable UI components (e.g., Sidebar, Buttons)
+├── hooks/             # Custom hooks (e.g., auth context)
+├── layout/            # Layout UI (mainLayout, loginLayout)
+├── pages/             # Route pages (Home, Search, Wishlist, etc.)
+├── services/          # Firebase config
+├── index.css          # Tailwind v4.1 config
+└── main.jsx           # Entry point
+
+```
+
+---
+
+## ❤️Thank you for using our Website❤️
+From Arjuna and Team <3

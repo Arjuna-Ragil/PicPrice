@@ -80,8 +80,8 @@ const Navbar = ({selected,setSelected, userInfo}) => {
                 px-3
                 font-poppins
                 rounded-full
-                w-full
                 font-semibold
+                bg-red-400
                 hover:bg-red-500
                 dark:text-white
             `}>
