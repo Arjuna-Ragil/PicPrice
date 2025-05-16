@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { deleteUser, updateEmail } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 
-const AccountSetting = ({userInfo}) => {
+const AccountSetting = ({userInfo, setLoading}) => {
 
   const { user } = useAuth()
   const [username, setUsername] = useState(userInfo?.username || "")
@@ -27,7 +27,7 @@ const AccountSetting = ({userInfo}) => {
         email: email
       }
       await updateDoc(accountRef, updateData)
-      alert("successfully updated")
+      setLoading(true)
       }).catch ((error) => {
         alert("failed to update", error)
     })
