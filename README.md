@@ -27,8 +27,9 @@ PicPrice is an AI-powered web application that allows users to upload or take a 
 
 - **Frontend:** React, Tailwind CSS  
 - **Backend:** Firebase (Authentication, Firestore, Storage, Hosting, Vertex AI)  
-- **AI Integration:** Gemini (Google AI)  
+- **AI Integration:** Gemini AI 
 - **Routing:** React Router
+- **Search:** Programmable Search Engine (CSE)
 
 ---
 

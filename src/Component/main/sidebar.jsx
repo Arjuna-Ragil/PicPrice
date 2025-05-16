@@ -99,7 +99,7 @@ const Sidebar = ({setBlur}) => {
             rounded-full 
             ${isOpen ? "bg-white p-1" : "bg-transparent"}`}
             >
-              <img className={` size-11 p-1 rounded-full ${isOpen ? "" : "invert bg-transparent"}`} src={userInfo.profilePictureURL || ProfileIcon} alt='ProfilePic'/>
+              <img className={` size-11 p-1 rounded-full ${isOpen ? "" : "invert bg-transparent"}`} src={userInfo?.profilePictureURL || ProfileIcon} alt='ProfilePic'/>
               <div className={`
                 flex 
                 flex-col 
@@ -109,8 +109,8 @@ const Sidebar = ({setBlur}) => {
                 ml-3
                 ${isOpen ? "" : "hidden"}`}
               >
-                <label className='text-[13px] font-semibold'>{userInfo.username}</label>
-                <label className='text-[11px]'>{userInfo.email}</label>
+                <label className='text-[13px] font-semibold'>{userInfo?.username}</label>
+                <label className='text-[11px]'>{userInfo?.email}</label>
               </div>
             </div>
         </nav>

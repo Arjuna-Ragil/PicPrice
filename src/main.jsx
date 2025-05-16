@@ -14,6 +14,7 @@ import AuthLoginRoute from './hooks/authLoginRoute'
 import History from './Pages/history'
 import LandingPage from './Pages/landingPage'
 import ErrorPage from './Component/error/errorPage'
+import ErrorBoundary from './Component/error/errorBoundary'
 
 const router = createBrowserRouter([
   { path: '/', element:
@@ -61,8 +62,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}/>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <RouterProvider router={router}/>
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )
