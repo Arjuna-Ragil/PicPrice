@@ -13,18 +13,21 @@ import { useAuth } from '../../hooks/authContext'
 import { db } from '../../services/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import logo from '../../assets/sidebar/picPriceLogo.svg'
+import Loading from '../loading/Loading'
 
 const Sidebar = ({setBlur}) => {
   const { user } = useAuth()
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [userInfo, setUserInfo] = useState([])
+  const [show, setShow] = useState(false)
 
   async function getUserInfo() {
     try {
       const accountRef = doc(db, "users", user.uid)
       const getAccount = await getDoc(accountRef)
       setUserInfo(getAccount.data())
+      setShow(true)
     } catch (error) {
       alert("failed to get user", error)
     }
@@ -35,7 +38,8 @@ const Sidebar = ({setBlur}) => {
   }, []) 
  
   return (
-    <>
+    <> 
+      {show ?
         <nav className={`
           flex
           flex-col
@@ -110,6 +114,9 @@ const Sidebar = ({setBlur}) => {
               </div>
             </div>
         </nav>
+        :
+        <Loading/>
+      }
     </>
   )
 }

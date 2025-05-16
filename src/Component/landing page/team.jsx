@@ -10,7 +10,7 @@ const Team = () => {
       id="team" 
       className={`
         sm:px-10 lg:px-12 2xl:px-15
-        pt-25 
+        pt-25 2xl:pt-60
         2xl:pb-5
         relative 
         font-poppins
@@ -19,13 +19,13 @@ const Team = () => {
       <p 
       className={`
         text-center 
-        text-xs sm:text-[13px] lg:text-[15px] 2xl:text-3xl
+        text-xs sm:text-[13px] lg:text-[15px] 2xl:text-4xl
         dark:text-white
       `}>Meet our amazing team</p>
 
       <h2 
       className={`
-        text-lg sm:text-2xl lg:text-3xl 2xl:text-6xl
+        text-lg sm:text-2xl lg:text-3xl 2xl:text-7xl
         font-semibold 
         mb-5 sm:mb-7 lg:mb-10 2xl:mb-18
         text-center
@@ -36,19 +36,19 @@ const Team = () => {
       <div 
       className={`
         flex 
-        flex-col sm:flex-row
+        flex-wrap sm:flex-row
         pb-5 sm:pb-0
-        justify-around 
+        justify-around 2xl:justify-center
         items-center
-        gap-6 sm:gap-11 2xl:gap-17
+        gap-4 sm:gap-11 2xl:gap-40
       `}>
 
         {/* Card 1 */}
         <div 
         className={`
           relative 
-          w-45 sm:w-50 lg:w-70 2xl:w-150
-          h-60 sm:h-80 lg:h-100 2xl:h-180
+          w-35 sm:w-50 lg:w-70 2xl:w-140
+          h-50 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -85,7 +85,7 @@ const Team = () => {
             w-full 
             px-5 sm:px-6 lg:px-10 
             rounded-3xl 
-            space-y-1 lg:space-y-2 2xl:space-y-5
+            space-y-1 lg:space-y-2 2xl:space-y-6
           `}>
 
             <img 
@@ -104,14 +104,14 @@ const Team = () => {
 
               <h3 
               className={`
-                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-5xl
                 font-semibold 
               `}>Ahmad Ihsan</h3>
 
               <p 
               className={`
                 text-position dark:text-position-dark
-                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-3xl
               `}>Front-End</p>
             </div>
             
@@ -119,7 +119,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-2
+              gap-2 2xl:gap-5
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2 
             `}>
@@ -164,7 +164,7 @@ const Team = () => {
             <p 
             className={`
               text-center 
-              text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
+              text-[10px] sm:text-xs lg:text-sm 2xl:text-3xl
             `}>
               Finding synergy in every challenge.
             </p>
@@ -174,8 +174,8 @@ const Team = () => {
         {/* Card 2 */}
         <div className={`
           relative 
-          w-45 sm:w-50 lg:w-70 2xl:w-150
-          h-60 sm:h-80 lg:h-100 2xl:h-180
+          w-35 sm:w-50 lg:w-70 2xl:w-140
+          h-50 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -210,7 +210,7 @@ const Team = () => {
             w-full 
             px-5 sm:px-6 lg:px-10 
             rounded-3xl 
-            space-y-1 lg:space-y-2 2xl:space-y-5
+            space-y-1 lg:space-y-2 2xl:space-y-6
           `}>
 
             <img 
@@ -229,14 +229,14 @@ const Team = () => {
               
               <h3 
               className={`
-                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-5xl
                 font-semibold 
               `}>Arjuna ragil</h3>
 
               <p 
               className={`
                 text-position dark:text-position-dark
-                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-3xl
               `}>Front-End/Back-End</p>
             </div>
             
@@ -244,7 +244,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-2
+              gap-2 2xl:gap-5
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2
             `}>
@@ -289,7 +289,7 @@ const Team = () => {
             <p 
             className={`
               text-center 
-              text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
+              text-[10px] sm:text-xs lg:text-sm 2xl:text-3xl
             `}>
               Driven by innovation, grounded in excellence.
             </p>
@@ -300,8 +300,8 @@ const Team = () => {
         <div 
         className={`
           relative 
-          w-45 sm:w-50 lg:w-70 2xl:w-150
-          h-60 sm:h-80 lg:h-100 2xl:h-180
+          w-35 sm:w-50 lg:w-70 2xl:w-140
+          h-50 sm:h-80 lg:h-100 2xl:h-180
           rounded-3xl 
           flex 
           justify-center
@@ -338,7 +338,7 @@ const Team = () => {
             w-full 
             px-5 sm:px-6 lg:px-10 
             rounded-3xl 
-            space-y-1 lg:space-y-2 2xl:space-y-5
+            space-y-1 lg:space-y-2 2xl:space-y-6
           `}>
 
             <img 
@@ -357,14 +357,14 @@ const Team = () => {
               
               <h3 
               className={`
-                text-xs sm:text-sm lg:text-xl 2xl:text-4xl
+                text-xs sm:text-sm lg:text-xl 2xl:text-5xl
                 font-semibold 
               `}>Sarah Fajriah</h3>
 
               <p 
               className={`
                 text-position dark:text-position-dark
-                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-2xl
+                text-[9px] sm:text-[11px] lg:text-sm 2xl:text-4xl
               `}>UI/UX</p>
             </div>
                 
@@ -372,7 +372,7 @@ const Team = () => {
             <div 
             className={`
               flex 
-              gap-2
+              gap-2 2xl:gap-5
               mb-2 sm:mb-3 lg:mb-4 2xl:mb-7
               sm:mt-2 lg:mt-2
             `}>

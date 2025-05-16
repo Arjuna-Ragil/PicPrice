@@ -5,7 +5,7 @@ const About = () => {
     <section 
     id="about" 
     className={`
-      pt-32
+      pt-32 2xl:pt-90
       sm:px-8 lg:px-11 xl:px-15 2xl:px-25
       font-poppins 
     `}>
@@ -50,7 +50,7 @@ const About = () => {
           
           <p 
           className={`
-            font-medium 
+            font-semibold sm:font-medium 
             text-center sm:text-left
             text-lg lg:text-xl xl:text-4xl 2xl:text-6xl
           `}>
@@ -59,7 +59,8 @@ const About = () => {
           <p 
           className={`
             text-justify
-            text-[11px] sm:text-xs lg:text-[15px] 2xl:text-3xl
+            text-xs lg:text-[15px] 2xl:text-3xl
+            leading-5 sm:leading-6 2xl:leading-10
           `}>
             PicPrice is an AI-powered price comparison tool designed to simplify your shopping experience. By using advanced image recognition technology, our platform lets you snap or upload a photo of a product and instantly search across popular online stores to find the best prices and deals available. 
             Whether you're trying to avoid overpaying, track a wishlist item, or discover alternative sellers, PicPrice makes your journey smarter and more efficient—all with a single click.

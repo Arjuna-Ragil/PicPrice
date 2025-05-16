@@ -28,16 +28,16 @@ const MiniWishlistList = () => {
     <div 
     className={`
       w-full 
-      max-w-128 2xl:max-w-236
-      max-h-[100px] sm:max-h-[135px] lg:max-h-[167px] xl:max-h-[199px] 2xl:max-h-[312px]
+      h-full
       overflow-y-auto 
       bg-history-container
+      dark:bg-container-dark
       px-4
       pb-2 
       rounded-b-xl
     `}>
       {wishlistData.length > 0 ? (
-        wishlistData.map((item) => (
+        wishlistData.slice(0,10).map((item) => (
           <WishlistCard key={item.id} item={item} form="mini" />
         ))
       ) : (

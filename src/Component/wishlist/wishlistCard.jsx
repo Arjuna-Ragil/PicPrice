@@ -36,8 +36,8 @@ async function removeWishlistHandler(user, data) {
 if (form === "mini") {
   return (
     <div className="flex flex-row items-center justify-between px-3 text-sm py-2 border-b">
-      <p>{item.product_name}</p>
-      <p>${item.average_price}</p>
+      <p className='truncate font-poppins font-medium lg:text-xl text-sm'>{item.product_name}</p>
+      <p className='font-poppins font-medium lg:text-xl md:text-sm text-xs'>${item.average_price}</p>
     </div>
   )
 }

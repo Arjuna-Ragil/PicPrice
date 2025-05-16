@@ -41,32 +41,35 @@ const Navbar = () => {
             flex 
             items-center 
             justify-between 
-            px-3 sm:px-10 xl:px-10 2xl:px-20
-            py-1.5 sm:py-4 xl:py-4 2xl:py-8
+            px-5 sm:px-10 xl:px-10 2xl:px-25
+            py-2.5 sm:py-4 xl:py-4 2xl:py-12
         `}>
 
             {/* Logo */}
             <div className={`
                 flex 
                 items-center 
-                gap-2 
+                gap-2
                 font-bold
-                text-[11px] sm:text-[18px] lg:text-xl xl:text-2xl 2xl:text-5xl
+                
             `}>
                 <img 
                 src={PicPrice} 
                 className={`
-                    size-5 sm:size-8 xl:size-10 2xl:size-17
+                    size-7 sm:size-8 xl:size-10 2xl:size-20
                 `} />
-                <p>PicPrice</p>
+                <p
+                className={`
+                    text-sm sm:text-[18px] lg:text-xl xl:text-2xl 2xl:text-5xl
+                `}>PicPrice</p>
             </div>
 
             {/* Desktop Navbar */}
             <div className={`
                 hidden 
                 lg:flex 
-                lg:space-x-7 xl:space-x-10 2xl:space-x-12 
-                lg:text-[14px] xl:text-[15px] 2xl:text-3xl
+                lg:space-x-7 xl:space-x-10 2xl:space-x-15 
+                lg:text-[14px] xl:text-[15px] 2xl:text-4xl
             `}>
             {['home', 'about', 'features', 'team'].map((id) => (
                 <a
@@ -112,8 +115,8 @@ const Navbar = () => {
                     text-black dark:text-white
                     sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
                     font-bold 
-                    sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
-                    sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
+                    sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-10
+                    sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-6 
                     rounded-full 
                     overflow-hidden
                     transition-all 
@@ -147,7 +150,7 @@ const Navbar = () => {
             {/* Mobile Hamburger */}
                 <button 
                 onClick={() => setIsOpen(!isOpen)} 
-                className="text-white lg:hidden">
+                className="text-white dark:text-black lg:hidden">
                     {isOpen ? <X size={18} sm:size={25} /> : <Menu size={18} sm:size={25} />}
                 </button>
             </div>
@@ -159,7 +162,7 @@ const Navbar = () => {
     className={`
         lg:hidden 
         fixed
-        top-9 sm:top-[70px]
+        top-13 sm:top-[70px]
         right-0 sm:right-4
         z-20
         flex

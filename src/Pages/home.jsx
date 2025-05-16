@@ -1,6 +1,5 @@
 import React from 'react'
 import MainLayout from '../layout/mainLayout'
-import Welcome from '../Component/home/welcome'
 import Main from '../Component/home/mainHome'
 import MiniWishlist from '../Component/home/miniWishlist'
 import Tips from '../Component/home/tips'
@@ -11,37 +10,62 @@ const Home = () => {
     <>
       <MainLayout/>
       <div className={`
-        flex
-        flex-col
-        sm:pl-12 xl:pl-10
-        h-200 sm:h-lvh 
+        grid
+        md:grid-cols-2
+        md:grid-rows-3
+        grid-cols-1
+        grid-rows-5
+        md:pl-25
+        lg:pr-15
+        p-5
+        max-md:pt-20
+        max-sm:pt-10
+        h-full
+        w-full
+        2xl:gap-10
+        gap-10
+        gap-x-5
         items-center
-        min-w-screen 
-        `}>
+        justify-between
+        dark:text-white
+      `}>
 
-          <div>
-            <Main />
-          </div>
-        
-          <div
+        <div
           className={`
-            flex
-            flex-col sm:flex-row
-            justify-between
-            items-center
-            sm:w-160 lg:w-220 xl:w-270 2xl:w-500
-            mt-6 2xl:mt-20
-            gap-7 sm:gap-0 
-          `}>
+            md:col-span-2
+            w-full
+            justify-center  
+        `}>
+          <Main />
+        </div>
 
-            <div>
-              <Tips />
-            </div>
+        <div
+        className={`
+          h-full
+          w-full
+          row-start-2
+          row-end-4
+          lg:p-10
+          flex sm:flex-none
+          justify-center 
+        `}>
+          <Tips />
+        </div>
 
-            <div>
-              <MiniWishlist />
-            </div>
-          </div>
+        <div
+        className={`
+          h-full
+          w-full
+          row-start-2
+          row-end-4
+          max-md:row-start-4
+          max-md:row-end-6
+          lg:p-10
+          flex sm:flex-none
+          justify-center 
+        `}>
+          <MiniWishlist />
+        </div>
       </div>
     </>
   )

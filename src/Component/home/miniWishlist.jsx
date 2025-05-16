@@ -1,7 +1,4 @@
 import React from 'react'
-import wishImage1 from '../../assets/home/wishImage1.svg'
-import wishImage2 from '../../assets/home/wishImage2.svg'
-import wishImage3 from '../../assets/home/wishImage3.svg'
 import MiniWishlistList from './miniWishlistList'
 
 const MiniWishlist = () => {
@@ -9,42 +6,31 @@ const MiniWishlist = () => {
     <>
         <section 
         className={`
+            flex
+            flex-col
             bg-history-container
+            dark:bg-container-dark
             border-2 
             rounded-xl
-            w-90 sm:w-75 lg:w-105 xl:w-130 2xl:w-240
-            h-40 sm:h-45 lg:h-55 xl:h-63 2xl:h-100
+            w-full
+            h-full
+            items-center
+            justify-center
+            sm:p-10
+            p-3
+            gap-10
         `}>
-            <div 
+            <h3 
             className={`
-                flex 
-                items-center 
-                justify-center
-                gap-3
-                mt-3 sm:mt-4 2xl:mt-7
-            `}>
-
-                <h3 
-                className={`
-                    font-poppins
-                    text-sm lg:text-xl xl:text-2xl 2xl:text-4xl
-                    font-medium
-                `}>Your Wishlist</h3>
-
-                <span 
-                className={`
-                    text-[8px] sm:text-[10px] lg:text-sm 2xl:text-xl 
-                    font-poppins
-                `}>(0 Items)</span>
-            </div>
+                font-poppins
+                text-xl lg:text-xl xl:text-2xl 2xl:text-4xl
+                font-medium
+            `}>Your Wishlist</h3>
 
             <div className={`
-                flex 
-                flex-col 
-                items-center 
-                justify-center 
-                gap-4 
-                text-center
+                w-full
+                justify-center
+                items-center
             `}> 
                 <MiniWishlistList />
             </div>
