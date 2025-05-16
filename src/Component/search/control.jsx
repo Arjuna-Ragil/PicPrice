@@ -109,7 +109,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
             >
               <div className='flex flex-row w-full items-center justify-center gap-5'>
                 <img src={changeIcon} alt='change image' className={`transition-all duration-300 ${changeIconAnim ? 'animate-pulse' : ''}`}/>
-                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm text-xs max-sm:hidden'>Change Image</p>
+                <p className='font-poppins 2xl:text-2xl xl:text-xl lg:text-base md:text-sm text-xs max-sm:hidden text-center'>Change Image</p>
               </div>
               <input
                 type='file'

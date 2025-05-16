@@ -12,33 +12,43 @@ const Tips = () => {
   return (
     <section 
     className={`
+      flex
+      flex-col
+      gap-5
       bg-history-container
+      dark:bg-container-dark
       border-2 
       rounded-xl
-      w-90 sm:w-75 lg:w-110 xl:w-130 2xl:w-240
-      h-35 sm:h-45 lg:h-55 xl:h-63 2xl:h-100
-      py-2 sm:py-4 xl:py-3 2xl:py-8
-      sm:px-4 lg:px-8 2xl:px-35
+      w-full
+      h-full
+      p-10
     `}>
 
       <h3 
       className={`
         font-poppins 
-        text-sm lg:text-xl xl:text-2xl 2xl:text-4xl
+        2xl:text-5xl
+        xl:text-3xl
+        text-xl
         font-medium
         text-center
-      `}>Tips for use this website </h3>
+      `}>Tips to use this website </h3>
 
       <ol 
       className={`
         list-decimal 
-        mt-2 sm:mt-2.5 lg:mt-4 2xl:mt-8
         list-inside 
-        text-[11px] lg:text-sm 2xl:text-3xl
-        text-center sm:text-left 
-        sm:space-y-1 lg:space-y-2 2xl:space-y-5
+        2xl:text-2xl
+        xl:text-xl
+        text-sm
+        py-15
+        text-center md:text-left 
         font-poppins 
-        sm:pl-0
+        2xl:space-y-4
+        xl:space-y-5
+        lg:space-y-8
+        space-y-7.5
+
       `}>
         {tipsList.map((tip, index) => (
           <li key={index}>{tip}</li>

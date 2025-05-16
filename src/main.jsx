@@ -13,6 +13,7 @@ import AuthRoute from './hooks/authRoute'
 import AuthLoginRoute from './hooks/authLoginRoute'
 import History from './Pages/history'
 import LandingPage from './Pages/landingPage'
+import ErrorPage from './Component/error/errorPage'
 
 const router = createBrowserRouter([
   { path: '/', element:
@@ -54,7 +55,8 @@ const router = createBrowserRouter([
     <AuthLoginRoute>
       <LandingPage/>
     </AuthLoginRoute>
-  }
+  },
+  { path:'*', element:<ErrorPage/>}
 ])
 
 createRoot(document.getElementById('root')).render(
