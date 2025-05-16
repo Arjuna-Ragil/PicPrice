@@ -93,7 +93,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
               </div>
             </button>
             
-            <button className={`
+            <label className={`
                 w-full
                 p-5
                 rounded-2xl
@@ -119,7 +119,7 @@ const Control = ({setRetryTrigger, imageChange, previewChange, retryCheck}) => {
                   hidden
                 `}
               />
-            </button>
+            </label>
 
             <button onClick={() => setGoToHistory(true) } className={`
                 w-full
