@@ -76,6 +76,8 @@ const SigninLayout = () => {
       items-center 
       justify-center 
       sm:gap-10 2xl:gap-10
+      min-w-screen
+      min-h-screen
     `}>
 
       {/* camera icon */}
@@ -100,13 +102,13 @@ const SigninLayout = () => {
         items-center 
         justify-center 
         gap-4 2xl:gap-8
-        lg:w-130 xl:w-180 2xl:w-420
-        sm:h-118 lg:h-130 xl:h-125 2xl:h-300
-        lg:mr-10 xl:mr-15 2xl:mr-20
+        sm:w-full md:w-120 xl:w-180 2xl:w-420
+        sm:h-118 md:h-100 xl:h-125 2xl:h-300
+        sm:mr-0 md:mr-10 xl:mr-15 2xl:mr-20
         bg-transparent sm:bg-white dark:sm:bg-container-dark
         lg:py-8
         sm:px-5 lg:px-15 xl:px-10 2xl:px-15
-        sm:rounded-none lg:rounded-3xl 
+        rounded-none md:rounded-3xl 
         sm:shadow-2xl 
         transition-all 
         duration-300
