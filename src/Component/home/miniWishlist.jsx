@@ -14,6 +14,7 @@ const MiniWishlist = () => {
             rounded-xl
             w-90 sm:w-75 lg:w-105 xl:w-130 2xl:w-240
             h-40 sm:h-45 lg:h-55 xl:h-63 2xl:h-100
+            
         `}>
             <div 
             className={`

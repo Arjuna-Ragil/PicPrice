@@ -75,7 +75,7 @@ const SigninLayout = () => {
       flex 
       items-center 
       justify-center 
-      sm:gap-10 xl:gap- 2xl:gap-10
+      sm:gap-10 2xl:gap-10
     `}>
 
       {/* camera icon */}
@@ -85,8 +85,8 @@ const SigninLayout = () => {
         alt='kamera'
         className={`
           hidden sm:block
-          w-full 2xl:w-260
-          h-135 2xl:h-300
+          w-full 
+          min-h-screen 
           object-contain
         `}
         />
@@ -100,12 +100,12 @@ const SigninLayout = () => {
         items-center 
         justify-center 
         gap-4 2xl:gap-8
-        w-auto lg:w-120 xl:w-180 2xl:w-260
-        sm:h-120 lg:h-125 xl:h-125 2xl:h-300
-        lg:mr-10 xl:mr-15 
-        2xl:ml-80
+        lg:w-130 xl:w-180 2xl:w-420
+        sm:h-118 lg:h-130 xl:h-125 2xl:h-300
+        lg:mr-10 xl:mr-15 2xl:mr-20
         bg-transparent sm:bg-white dark:sm:bg-container-dark
         lg:py-8
+        sm:px-5 lg:px-15 xl:px-10 2xl:px-15
         sm:rounded-none lg:rounded-3xl 
         sm:shadow-2xl 
         transition-all 
@@ -139,17 +139,19 @@ const SigninLayout = () => {
             
             <h2
             className={`
-              text-[16px] sm:text-lg lg:text-2xl 2xl:text-5xl
+              text-xl sm:text-lg lg:text-2xl 2xl:text-5xl
               font-semibold
               font-poppins
+              dark:text-white
               `}>PicPrice</h2>
           </div>
 
             <h2 
             className={`
               font-semibold 
-              text-[20px] sm:text-2xl 2xl:text-7xl
+              text-3xl sm:text-2xl 2xl:text-7xl
               font-poppins
+              dark:text-white
             `}>Welcome Back!</h2>
         </div>
         
@@ -169,11 +171,11 @@ const SigninLayout = () => {
             w-60 sm:w-80 xl:w-100 2xl:w-180
             pl-6 2xl:pl-12
             pr-4 2xl:pr-10
-            py-1 sm:py-2 2xl:py-7
+            py-2 sm:py-2 2xl:py-7
             bg-input dark:bg-input-dark
             rounded-full
             placeholder-transparent 
-            text-xs sm:text-sm lg:text-lg 2xl:text-3xl
+            text-sm sm:text-sm lg:text-lg 2xl:text-3xl
             focus:outline-none 
             focus:inset-ring-1
             focus:inset-ring-inset-input
@@ -190,7 +192,7 @@ const SigninLayout = () => {
               font-poppins 
               text-[16px] 2xl:text-2xl
               transition-all 
-              peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+              peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
               peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
               peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
               peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-5 2xl:peer-focus:-top-8
@@ -216,10 +218,10 @@ const SigninLayout = () => {
               w-60 sm:w-80 xl:w-100 2xl:w-180
               pl-6 2xl:pl-12
               pr-11 2xl:pr-10
-              py-1 sm:py-2 2xl:py-7
+              py-2 sm:py-2 2xl:py-7
               bg-input dark:bg-input-dark
               rounded-full
-              text-xs sm:text-sm lg:text-lg 2xl:text-3xl
+              text-sm sm:text-sm lg:text-lg 2xl:text-3xl
               placeholder-transparent 
               focus:outline-none 
               focus:inset-ring-1
@@ -252,7 +254,7 @@ const SigninLayout = () => {
               font-poppins 
               text-[16px] 2xl:text-xl
               transition-all 
-              peer-placeholder-shown:top-1 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
+              peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-2 lg:peer-placeholder-shown:top-2.5 2xl:peer-placeholder-shown:top-6.5
               peer-placeholder-shown:text-xs sm:peer-placeholder-shown:text-sm lg:peer-placeholder-shown:text-base 2xl:peer-placeholder-shown:text-3xl
               peer-placeholder-shown:text-placeholder dark:peer-placeholder-shown:text-placeholder-dark
               peer-focus:-top-3 sm:peer-focus:-top-4 lg:peer-focus:-top-4 2xl:peer-focus:-top-8
@@ -271,7 +273,7 @@ const SigninLayout = () => {
             hover:bg-hover-button dark:hover:bg-hover-button-dark
             font-semibold
             w-60 sm:w-80 xl:w-100 2xl:w-180
-            py-1 sm:py-1.5 lg:py-2 2xl:py-5
+            py-2 sm:py-1.5 lg:py-2 2xl:py-5
             text-[12px] sm:text-sm lg:text-lg 2xl:text-3xl
             font-poppins
             rounded-full
@@ -296,7 +298,7 @@ const SigninLayout = () => {
             bg-linear dark:bg-white
             hover:bg-hover-button dark:hover:bg-hover-button-dark
             font-semibold
-            py-1 sm:py-1.5 lg:py-2 2xl:py-4 
+            py-2 sm:py-1.5 lg:py-2 2xl:py-4 
             rounded-full
             transition 
             duration-300 
@@ -314,13 +316,13 @@ const SigninLayout = () => {
             text-[10px] sm:text-xs lg:text-sm 2xl:text-2xl
             mb-4 2xl:mb-8
             font-poppins 
-            text-redirect
+            text-gray-300
             `}>Don’t have an account?{' '}
           
             <Link 
             to="/signup" 
             className={`
-              text-redirect
+              text-gray-300
               hover:underline 
               hover:text-hover-redirect
               transition-all 

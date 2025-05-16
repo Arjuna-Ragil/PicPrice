@@ -6,12 +6,13 @@ const SignIn = () => {
   return (
     <>
         <LoginLayout direction={"bg-gradient-to-bl"}/>
-        <div className={`
+        <div 
+        className={`
           flex
           justify-center
           items-center
           h-screen
-          dark:bg-[#161E36]
+          dark:bg-background-dark
           `}>
           <SigninLayout/>
         </div>

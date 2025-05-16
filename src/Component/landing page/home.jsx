@@ -34,7 +34,7 @@ const Home = () => {
     id="home"
     className={`
         w-full 
-        h-55 sm:h-135 lg:h-155 xl:h-200 2xl:h-350
+        h-60 sm:h-135 lg:h-155 xl:h-200 2xl:h-350
         font-poppins 
         bg-cover
         bg-center
@@ -55,7 +55,7 @@ const Home = () => {
             sm:h-100 xl:h-140 2xl:h-250
             mx-auto
             gap-2 lg:gap-18 2xl:gap-36
-            sm:px-20 xl:px-25 2xl:px-45
+            sm:px-20 xl:px-25 2xl:px-40
         `}
         >
 
@@ -72,9 +72,9 @@ const Home = () => {
             `}>
                 <h1 
                 className={`
-                    font-medium sm:font-bold 
+                    font-semibold sm:font-bold 
                     leading-tight
-                    text-sm sm:text-xl lg:text-4xl xl:text-5xl 2xl:text-8xl 
+                    text-xl lg:text-4xl xl:text-5xl 2xl:text-8xl 
                     dark:text-black
                 `}>
                     Shop Smarter with Just a Photo
@@ -82,7 +82,7 @@ const Home = () => {
 
                 <p 
                 className={`
-                    text-[10px] sm:text-xs lg:text-sm xl:text-xl 2xl:text-4xl 
+                    text-xs sm:text-xs lg:text-sm xl:text-xl 2xl:text-5xl 
                     dark:text-black
                 `}>
                     Snap it. Search it. Compare prices instantly across your favorite stores—all powered by AI.
@@ -118,10 +118,10 @@ const Home = () => {
                     relative
                     bg-white dark:bg-background-dark
                     text-black dark:text-white
-                    text-[10px] sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
+                    text-xs sm:text-sm md:text-base xl:text-sm 2xl:text-4xl
                     font-bold 
-                    px-3 sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
-                    py-1.5 sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
+                    px-5 sm:px-6 md:px-3.5 lg:px-4.5 xl:px-6 2xl:px-9
+                    py-2 sm:py-2 md:py-1 lg:py-1.5 xl:py-2 2xl:py-3 
                     rounded-full 
                     overflow-hidden
                     transition-all 
