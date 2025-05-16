@@ -15,7 +15,7 @@ const Main = () => {
           rounded-xl 
           w-90 sm:w-160 lg:w-220 xl:w-270 2xl:w-500
           h-37 sm:h-45 lg:h-60 2xl:h-140
-          mt-25 sm:mt-12 lg:mt-10 xl:mt-4 2xl:mt-30
+          mt-20 sm:mt-12 lg:mt-10 xl:mt-4 2xl:mt-30
         `}>
 
           {/* introduction */}
@@ -23,6 +23,7 @@ const Main = () => {
           className={`
             flex
             flex-col
+            justify-center
             items-center sm:items-start
             lg:mb-2
             2xl:space-y-3
